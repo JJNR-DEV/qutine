@@ -1,5 +1,6 @@
 import React from 'react';
 import './Routine.css';
+import { createRoutine } from '../../api/routines'
 import { formValidation } from './routineValidation';
 
 const Routine = () => {
@@ -24,11 +25,11 @@ const Routine = () => {
             days: selectedDays.map(day => day.value)
         }
         
-        // const response = await fetch('http://localhost:3001/new-routine', {
-        //    method: 'POST',
-        //    body: routine
-        // })
-
+        try {
+            createRoutine(routine)
+        } catch(err) {
+            console.error(err.message)
+        }
     }
 
     return (
