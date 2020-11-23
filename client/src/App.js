@@ -1,12 +1,17 @@
 import './App.css';
-import Dashboard from './dashboard/Dashboard'
-import Goals from './goals/Goals'
+import React from 'react';
+import LandingPage from './components/landingPage/LandingPage'
+import Dashboard from './components/dashboard/Dashboard'
+import Register from "./components/register/Register";
+import Login from "./components/login/Login";
 
 const App = () => {
   return (
     <div className="App">
+      <LandingPage />
       <Dashboard />
-      <Goals />
+      <Register />
+      <Login />
     </div>
   );
 }

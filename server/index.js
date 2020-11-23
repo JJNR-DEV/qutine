@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = 3001;
+const port = 4000;
 const mongoose = require('mongoose');
 const authRoute = require('./routes/auth');
 const createGoal = require('./routes/createGoal');
