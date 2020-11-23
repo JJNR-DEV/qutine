@@ -10,7 +10,6 @@ const Routine = () => {
         const category = document.querySelector('#routineCategory');
         const sTime = document.querySelector('#routineStime');
         const duration = document.querySelector('#routineDuration');
-
         const valid = formValidation(name, category, sTime, duration);
         if (valid) return;
 
@@ -24,15 +23,12 @@ const Routine = () => {
             duration: duration.value,
             days: selectedDays.map(day => day.value)
         }
-        console.log(routine)
+        
+        // const response = await fetch('http://localhost:3001/new-routine', {
+        //    method: 'POST',
+        //    body: routine
+        // })
 
-        const response = await fetch('http://localhost:3001/new-routine', {
-            method: 'POST',
-            body: routine
-        })
-
-        const result = await response.json();
-        console.log(result);
     }
 
     return (

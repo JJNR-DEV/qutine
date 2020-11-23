@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { createGoal } from '../../api/goals';
 import { formValidation } from './goalsValidation';
 import './Goals.css';
@@ -9,7 +10,6 @@ const Goals = () => {
 
         const name = document.querySelector('#goalName');
         const category = document.querySelector('#goalCategory');
-
         const valid = formValidation(name, category)
         if (valid) return;
 
@@ -23,7 +23,7 @@ const Goals = () => {
             duration: document.querySelector('#goalDuration').value,
             days: selectedDays.map(day => day.value)
         }
-
+        
         try {
             createGoal(goal)
         } catch(err) {
