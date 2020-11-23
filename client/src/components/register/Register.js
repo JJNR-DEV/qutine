@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './register.css';
 import {registerUser} from '../../api/auth';
 
 const Register = () => {
@@ -30,19 +31,17 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className='register'>
+      <h1 className='registerGreetingMessage'>Register now and start your routine today!</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Name
-          <input type='text' value={user.name} onChange={handleChangeName}/>
+          <input type='text' value={user.name} onChange={handleChangeName} placeholder='Name' />
         </label>
         <label>
-          Email
-          <input type='email' value={user.email} onChange={handleChangeEmail}/>
+          <input type='email' value={user.email} onChange={handleChangeEmail} placeholder='Email' />
         </label>
         <label>
-          Password
-          <input type='password' value={user.password} onChange={handleChangePassword}/>
+          <input type='password' value={user.password} onChange={handleChangePassword} placeholder='Password' />
         </label>
         <button type='submit'>Register!</button>
       </form>

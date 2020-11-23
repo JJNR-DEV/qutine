@@ -8,10 +8,10 @@ import Login from "./components/login/Login";
 const App = () => {
   return (
     <div className="App">
-      <LandingPage />
-      <Dashboard />
+      {/* <LandingPage />
+      <Dashboard /> */}
       <Register />
-      <Login />
+      {/* <Login /> */}
     </div>
   );
 }
