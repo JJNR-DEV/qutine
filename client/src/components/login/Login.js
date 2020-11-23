@@ -1,3 +1,4 @@
+import './login.css';
 import React, {useState} from 'react';
 import {loginUser} from "../../api/auth";
 
@@ -25,17 +26,16 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login">
+      <h1 className='loginGreetingMessage'>Log in <span className='loginGreetingMessageSpan1'><br />and get started with your routine!</span></h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Email
-          <input type='email' value={user.email} onChange={handleChangeEmail}/>
+          <input type='email' value={user.email} onChange={handleChangeEmail} placeholder='Email' />
         </label>
         <label>
-          Password
-          <input type='password' value={user.password} onChange={handleChangePassword}/>
+          <input type='password' value={user.password} onChange={handleChangePassword} placeholder='Password' />
         </label>
-        <button>Sign in!</button>
+        <button>Sign in</button>
       </form>
     </div>
   );
