@@ -1,42 +1,47 @@
 import React from 'react';
 import './Routine.css';
+import { formValidation } from './routineValidation';
 
 const Routine = () => {
     const handleSubmit = async e => {
         e.preventDefault();
 
+        const name = document.querySelector('#routineName');
+        const category = document.querySelector('#routineCategory');
+        const sTime = document.querySelector('#routineStime');
+        const duration = document.querySelector('#routineDuration');
+        const valid = formValidation(name, category, sTime, duration);
+        if (valid) return;
+
         const weekDays = [...document.querySelectorAll('.selectionDays li input')];
         const selectedDays = weekDays.filter(day => day.checked);
 
         const routine = {
-            name: document.querySelector('#routineName').value,
-            category: document.querySelector('#routineCategory').value,
-            sTime: document.querySelector('#routineStime').value,
-            duration: document.querySelector('#routineDuration').value,
+            name: name.value,
+            category: category.value,
+            sTime: sTime.value,
+            duration: duration.value,
             days: selectedDays.map(day => day.value)
         }
-        console.log(routine)
+        
+        // const response = await fetch('http://localhost:3001/new-routine', {
+        //    method: 'POST',
+        //    body: routine
+        // })
 
-        const response = await fetch('http://localhost:3001/new-routine', {
-            method: 'POST',
-            body: routine
-        })
-
-        const result = await response.json();
-        console.log(result);
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <h1>Enter a Habit</h1>
                 <div className="form-fields">
-                <label htmlFor="routineName">Name</label><br/>
+                <label htmlFor="routineName">Name</label>
                 <input id="routineName" type="text" /><br/>
-                <label htmlFor="routineCategory">Category</label><br/>
+                <label htmlFor="routineCategory">Category</label>
                 <input id="routineCategory" type="text" /><br/>
-                <label htmlFor="routineStime">Start Time</label><br/>
+                <label htmlFor="routineStime">Start Time</label>
                 <input id="routineStime" type="time" /><br/>
-                <label htmlFor="routineDuration">Duration</label><br/>
+                <label htmlFor="routineDuration">Duration</label>
                 <input id="routineDuration" type="time" /><br/>
                 <div className="selectionDays">
                     <span>Choose Days: </span>

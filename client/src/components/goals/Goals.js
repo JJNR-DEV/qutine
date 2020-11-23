@@ -1,29 +1,34 @@
 import React from 'react';
-import './Goals.css'
+
+import { createGoal } from '../../api/goals';
+import { formValidation } from './goalsValidation';
+import './Goals.css';
 
 const Goals = () => {
     const handleSubmit = async e => {
         e.preventDefault();
 
+        const name = document.querySelector('#goalName');
+        const category = document.querySelector('#goalCategory');
+        const valid = formValidation(name, category)
+        if (valid) return;
+
         const weekDays = [...document.querySelectorAll('.selectionDays li input')];
         const selectedDays = weekDays.filter(day => day.checked);
 
         const goal = {
-            name: document.querySelector('#goalName').value,
-            category: document.querySelector('#goalCategory').value,
+            name: name.value,
+            category: category.value,
             sTime: document.querySelector('#goalStime').value,
             duration: document.querySelector('#goalDuration').value,
             days: selectedDays.map(day => day.value)
         }
-        console.log(goal)
-
-        const response = await fetch('/new-goal', {
-            method: 'POST',
-            body: goal
-        })
-
-        const result = await response.json();
-        console.log(result);
+        
+        try {
+            createGoal(goal)
+        } catch(err) {
+            console.error(err.message)
+        }
     }
 
     return (
