@@ -10,7 +10,7 @@ const Dashboard = () => {
         day: 'Tuesday',
         time: {start: 830, end: 1200},
         repeat: 'everyWeekDay',
-        category: 'home',
+        category: 'work',
       },
     ]},
     {day: 'Wednesday', modules: []},
