@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from "react-router-dom";
 import './landingPage.css';
 
 const LandingPage = () => {
@@ -10,8 +11,8 @@ const LandingPage = () => {
       <p>Routine for your quarantine.</p>
       </div>
       <div className='landingPageButtonsContainer'>
-        <button className='landingPageButtons registerButton'>Register</button>
-        <button className='landingPageButtons logInButton'>Log in</button>
+        <Link to={'/register'} className='landingPageButtons registerButton'>Register</Link>
+        <Link to={'/login'} className='landingPageButtons logInButton'>Log in</Link>
       </div>
     </div>
   );
