@@ -1,0 +1,60 @@
+.login {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginGreetingMessage {
+  width: 500px;
+  margin: 2% 2%;
+  background: linear-gradient(45deg, #CAE4DB, #00303F);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 70px;
+  text-align: left;
+}
+
+.loginGreetingMessageSpan1 {
+  text-align: right;
+  width: 600px;
+}
+
+.login > form {
+  margin: 2% 2%;
+  width: 500px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #CAE4DB;
+  border-radius: 1em;
+  box-shadow: 0 0 4px #9e9e9e;
+}
+
+.login > form input,
+.login > form button {
+  margin: 10px;
+  width: 300px;
+  padding: 15px;
+  background-color: white;
+  border: none;
+  border-radius: 20em;
+  box-shadow: 0 0 4px #afafaf;
+  margin: 10px;
+  color: #00303F;
+}
+
+.login > form button {
+  margin-top: 20px;
+  width: 200px;
+  color: white;
+  background-color: #00303F;
+  font-size: 16px;
+}
