@@ -2,7 +2,7 @@ import React from 'react';
 import './Goals.css'
 
 const Goals = () => {
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
         const weekDays = [...document.querySelectorAll('.selectionDays li input')];
@@ -16,6 +16,14 @@ const Goals = () => {
             days: selectedDays.map(day => day.value)
         }
         console.log(goal)
+
+        const response = await fetch('/new-goal', {
+            method: 'POST',
+            body: goal
+        })
+
+        const result = await response.json();
+        console.log(result);
     }
 
     return (

@@ -2,7 +2,7 @@ import React from 'react';
 import './Routine.css';
 
 const Routine = () => {
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
         const weekDays = [...document.querySelectorAll('.selectionDays li input')];
@@ -16,6 +16,14 @@ const Routine = () => {
             days: selectedDays.map(day => day.value)
         }
         console.log(routine)
+
+        const response = await fetch('http://localhost:3001/new-routine', {
+            method: 'POST',
+            body: routine
+        })
+
+        const result = await response.json();
+        console.log(result);
     }
 
     return (
