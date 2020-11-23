@@ -10,8 +10,8 @@ const LandingPage = () => {
       <p>Routine for your quarantine.</p>
       </div>
       <div className='landingPageButtonsContainer'>
-        <button className='landingPageButton registerButton'>Register</button>
-        <button className='landingPageButton logInButton'>Log in</button>
+        <button className='landingPageButtons registerButton'>Register</button>
+        <button className='landingPageButtons logInButton'>Log in</button>
       </div>
     </div>
   );
