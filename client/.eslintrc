@@ -1,7 +1,17 @@
 {
   "extends": "airbnb",
   "rules": {
-
-  }
+    "no-console": "off",
+    "import/prefer-default-export": "off"
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "overrides": [
+    {
+      "files": ["*.jsx", "*.js"]
+    }
+  ]
 }
 

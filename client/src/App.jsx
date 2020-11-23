@@ -5,12 +5,12 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import RegisterScreen from './screens/registerScreen';
-import LoginScreen from './screens/loginScreen';
-import LandingPageScreen from './screens/landingPageScreen';
-import DashboardScreen from './screens/dashboardScreen';
-import CreateRoutineScreen from './screens/createRoutineScreen';
-import CreateGoalScreen from './screens/createGoalScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import LoginScreen from './screens/LoginScreen';
+import LandingPageScreen from './screens/LandingPageScreen';
+import DashboardScreen from './screens/DashboardScreen';
+import CreateRoutineScreen from './screens/CreateRoutineScreen';
+import CreateGoalScreen from './screens/CreateGoalScreen';
 
 const App = () => (
   <Router>

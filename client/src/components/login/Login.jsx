@@ -1,4 +1,4 @@
-import './login.css';
+import './Login.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { loginUser } from '../../api/auth';
@@ -36,8 +36,8 @@ const Login = () => {
         </span>
       </h1>
       <form onSubmit={handleSubmit}>
-          <input type="email" value={user.email} onChange={handleChangeEmail} placeholder="Email" />
-          <input type="password" value={user.password} onChange={handleChangePassword} placeholder="Password" />
+        <input type="email" value={user.email} onChange={handleChangeEmail} placeholder="Email" />
+        <input type="password" value={user.password} onChange={handleChangePassword} placeholder="Password" />
         <Link to="/dashboard" className="loginButton">Sign in</Link>
       </form>
     </div>
