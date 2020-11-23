@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './register.css';
+import './Register.css';
 import { registerUser } from '../../api/auth';
 
 const Register = () => {
@@ -34,9 +34,9 @@ const Register = () => {
     <div className="register">
       <h1 className="registerGreetingMessage">Register now and start your routine today!</h1>
       <form onSubmit={handleSubmit}>
-          <input type="text" value={user.name} onChange={handleChangeName} placeholder="Name" />
-          <input type="email" value={user.email} onChange={handleChangeEmail} placeholder="Email" />
-          <input type="password" value={user.password} onChange={handleChangePassword} placeholder="Password" />
+        <input type="text" value={user.name} onChange={handleChangeName} placeholder="Name" />
+        <input type="email" value={user.email} onChange={handleChangeEmail} placeholder="Email" />
+        <input type="password" value={user.password} onChange={handleChangePassword} placeholder="Password" />
         <button type="submit">Register!</button>
       </form>
     </div>

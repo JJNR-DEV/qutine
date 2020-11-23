@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 
 const GoalsDesktop = () => {
   const [goals, setGoals] = useState([]);
-  
+
   return (
-    <div className='weekGoalsContainer'>
-    </div>
+    <div className="weekGoalsContainer" />
   );
-}
+};
 
 export default GoalsDesktop;
