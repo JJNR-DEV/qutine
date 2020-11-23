@@ -1,9 +1,20 @@
 import React from 'react';
-import './Goals.css'
+import { createGoal } from '../api/goals';
+import './Goals.css';
 
 const Goals = () => {
     const handleSubmit = async e => {
         e.preventDefault();
+
+        const name = document.querySelector('#goalName');
+        const category = document.querySelector('#goalCategory');
+
+        if (name.value === '') {
+            name.classList.add('invalid-field');
+        } 
+        if (category.value === '') {
+            category.classList.add('invalid-field');
+        }
 
         const weekDays = [...document.querySelectorAll('.selectionDays li input')];
         const selectedDays = weekDays.filter(day => day.checked);
@@ -17,13 +28,11 @@ const Goals = () => {
         }
         console.log(goal)
 
-        const response = await fetch('/new-goal', {
-            method: 'POST',
-            body: goal
-        })
-
-        const result = await response.json();
-        console.log(result);
+        try {
+            createGoal(goal)
+        } catch(err) {
+            console.error(err.message)
+        }
     }
 
     return (

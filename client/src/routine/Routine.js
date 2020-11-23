@@ -5,6 +5,12 @@ const Routine = () => {
     const handleSubmit = async e => {
         e.preventDefault();
 
+        [...document.querySelectorAll('input')].forEach(field => {
+            if (field.value === '') {
+                field.classList.add('invalid-field');
+            }
+        })
+
         const weekDays = [...document.querySelectorAll('.selectionDays li input')];
         const selectedDays = weekDays.filter(day => day.checked);
 
