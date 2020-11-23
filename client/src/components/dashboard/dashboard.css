@@ -1,9 +1,13 @@
-.weekHabitsContainer {
-  min-height: 1000px;
-  max-height: 1000px;
-  max-width: 70%;
+.dashboard {
   display: flex;
-  margin: 20% 0 0 0;
+  flex-direction: row;
+}
+
+.weekHabitsContainer {
+  max-width: 75%;
+  width: 75%;
+  display: flex;
+  margin: 10% 0 0 0;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -40,4 +44,13 @@
   padding: 5px;
   background: white;
   box-shadow: 0 0 4px #c9c9c9;
-} 
+}
+
+.weekGoalsContainer {
+  width: 20%;
+  height: 100%;
+  min-height: 100vh;
+  margin: 10% 0 0 0;
+  background: linear-gradient(#F2B95A, #ffffff);
+  border-radius: 10px 10px 0 0;
+}
