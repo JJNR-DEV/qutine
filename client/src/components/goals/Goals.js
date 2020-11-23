@@ -1,5 +1,6 @@
 import React from 'react';
-import { createGoal } from '../api/goals';
+import { createGoal } from '../../api/goals';
+import { formValidation } from './goalsValidation';
 import './Goals.css';
 
 const Goals = () => {
@@ -9,24 +10,19 @@ const Goals = () => {
         const name = document.querySelector('#goalName');
         const category = document.querySelector('#goalCategory');
 
-        if (name.value === '') {
-            name.classList.add('invalid-field');
-        } 
-        if (category.value === '') {
-            category.classList.add('invalid-field');
-        }
+        const valid = formValidation(name, category)
+        if (valid) return;
 
         const weekDays = [...document.querySelectorAll('.selectionDays li input')];
         const selectedDays = weekDays.filter(day => day.checked);
 
         const goal = {
-            name: document.querySelector('#goalName').value,
-            category: document.querySelector('#goalCategory').value,
+            name: name.value,
+            category: category.value,
             sTime: document.querySelector('#goalStime').value,
             duration: document.querySelector('#goalDuration').value,
             days: selectedDays.map(day => day.value)
         }
-        console.log(goal)
 
         try {
             createGoal(goal)
