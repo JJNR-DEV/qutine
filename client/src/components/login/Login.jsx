@@ -1,29 +1,49 @@
 import './Login.css';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { loginUser } from '../../api/auth';
+import { Link, Redirect } from 'react-router-dom';
+import { loginUser } from '../../actions';
 
-const Login = () => {
-  const [user, setUser] = useState({
-    email: '',
-    password: '',
-  });
+import { connect } from 'react-redux'
 
-  const handleChangeEmail = (e) => {
-    setUser({ ...user, email: e.target.value });
+const Login = props => {
+  const validateInput = user => {
+    const email = document.querySelector('.email');
+    const password = document.querySelector('.password');
+
+    if (user.email === '') {
+      return email.classList.add('invalid-field');
+    } else {
+      email.classList.remove('invalid-field');
+    }
+
+    if (user.password === '') {
+      return password.classList.add('invalid-field');
+    } else {
+      password.classList.remove('invalid-field');
+    }
   };
 
-  const handleChangePassword = (e) => {
-    setUser({ ...user, password: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    loginUser(user)
-      .then((res) => console.log(res));
+    const user = {
+      email: document.querySelector('.email').value,
+      password: document.querySelector('.password').value
+    };
 
-    setUser({ email: '', password: '' });
+    console.log(user)
+
+    validateInput(user);
+
+    try {
+      await props.loginUser(user);
+      return (<Redirect to={'/login'} />)
+    } catch (error) {
+      console.error(error);
+    }
+
+    document.querySelector('.email').value = '';
+    document.querySelector('.password').value = '';
   };
 
   return (
@@ -36,12 +56,18 @@ const Login = () => {
         </span>
       </h1>
       <form onSubmit={handleSubmit}>
-        <input type="email" value={user.email} onChange={handleChangeEmail} placeholder="Email" />
-        <input type="password" value={user.password} onChange={handleChangePassword} placeholder="Password" />
-        <Link to="/dashboard" className="loginButton">Sign in</Link>
+        <input className='email' type="email" placeholder="Email" />
+        <input className='password' type="password"
+          placeholder="Password" />
+        <button to="/dashboard" className="loginButton">Sign in</button>
       </form>
     </div>
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return { login: state.login }
+}
+
+export default connect(mapStateToProps, { loginUser })(Login);
