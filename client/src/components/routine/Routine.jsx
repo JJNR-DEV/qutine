@@ -33,72 +33,56 @@ const Routine = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Enter a Habit</h1>
-      <div className="form-fields">
-        <label htmlFor="routineName">
-          Name
-          <input id="routineName" type="text" />
-        </label>
-        <br />
-        <label htmlFor="routineCategory">
-          Category
-          <input id="routineCategory" type="text" />
-        </label>
-        <br />
-        <label htmlFor="routineStime">
-          Start Time
-          <input id="routineStime" type="time" />
-        </label>
-        <br />
-        <label htmlFor="routineDuration">
-          Duration
-          <input id="routineDuration" type="time" />
-        </label>
-        <br />
-        <div className="selectionDays">
-          <span>Choose Days: </span>
-          <ul>
-            <li>
-              <input type="checkbox" value="Monday" />
-              {' '}
-              Monday
-            </li>
-            <li>
-              <input type="checkbox" value="Tuesday" />
-              {' '}
-              Tuesday
-            </li>
-            <li>
-              <input type="checkbox" value="Wednesday" />
-              {' '}
-              Wednesday
-            </li>
-            <li>
-              <input type="checkbox" value="Thursday" />
-              {' '}
-              Thursday
-            </li>
-            <li>
-              <input type="checkbox" value="Friday" />
-              {' '}
-              Friday
-            </li>
-            <li>
-              <input type="checkbox" value="Saturday" />
-              {' '}
-              Saturday
-            </li>
-            <li>
-              <input type="checkbox" value="Sunday" />
-              {' '}
-              Sunday
-            </li>
-          </ul>
-        </div>
-        <button type="submit">Save</button>
-      </div>
-    </form>
+    <div className='addRoutine'>
+    <h1 className='addRoutineMessage'>Enter a routine for your week</h1>
+      <form onSubmit={handleSubmit}>
+        <input id="routineName" type="text" placeholder='Name' />
+        <input id="routineCategory" type="text" placeholder='Category' />
+        <input id="routineStime" type="time" placeholder='Start Time' />
+        <input id="routineDuration" type="time" placeholder='Duration' />
+          <div className="selectionDays">
+            <span>Choose Days: </span>
+            <ul>
+              <li>
+                <input type="checkbox" value="Monday" />
+                {' '}
+                M
+              </li>
+              <li>
+                <input type="checkbox" value="Tuesday" />
+                {' '}
+                T
+              </li>
+              <li>
+                <input type="checkbox" value="Wednesday" />
+                {' '}
+                W
+              </li>
+              <li>
+                <input type="checkbox" value="Thursday" />
+                {' '}
+                T
+              </li>
+              <li>
+                <input type="checkbox" value="Friday" />
+                {' '}
+                F
+              </li>
+              <li>
+                <input type="checkbox" value="Saturday" />
+                {' '}
+                S
+              </li>
+              <li>
+                <input type="checkbox" value="Sunday" />
+                {' '}
+                S
+              </li>
+            </ul>
+          </div>
+          <button type="submit" className='submitRoutine'>Save</button>
+      </form>
+    </div>
   );
 };
 
