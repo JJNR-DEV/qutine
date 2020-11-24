@@ -1,9 +1,15 @@
 import React from 'react';
+import { Redirect } from "react-router-dom";
 import { createGoal } from '../../api/goals';
 import { formValidation } from './GoalsValidation';
 import './Goals.css';
 
 const Goals = () => {
+  const authenticate = localStorage.getItem('user');
+  if (authenticate === null) {
+    return <Redirect to={'/login'} />
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
