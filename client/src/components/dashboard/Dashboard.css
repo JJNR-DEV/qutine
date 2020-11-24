@@ -15,15 +15,21 @@
 }
 
 .timePole {
+  position: absolute;
+  text-align: left;
   min-height: 1000px;
   max-height: 1000px;
-  padding: 40px 0 0 0;
+  width: 67vw;
+  padding: 40px 50px 0 0;
   display: flex;
+  justify-content: flex-start;
   flex-direction: column;
 }
 
 .time {
-  margin: 30px 0;
+  border-bottom: #fff 1px solid;
+  font-size: 12px;
+  margin: 20px 0;
 }
 
 .weekday {
@@ -34,16 +40,19 @@
   margin: 0 .1%;
   padding: 15px 0;
   border-radius: 10px 10px 0 0;
-  display: grid;
-  grid-template-rows: repeat(24, 1fr);
 }
 
 .habitModule {
+  position: absolute;
+  width: 7.7%;
   border-radius: 5px;
   margin: 0 2px;
   padding: 5px;
   background: white;
   box-shadow: 0 0 4px #c9c9c9;
+  color: #00303F;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .weekGoalsContainer {
