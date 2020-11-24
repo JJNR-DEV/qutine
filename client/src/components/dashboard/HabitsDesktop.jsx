@@ -1,89 +1,91 @@
 import React, { useState } from 'react';
 
 const HabitsDesktop = () => {
-  const [weekDays, setWeekDays] = useState([
-    { day: 'Monday', modules: [] },
-    {
-      day: 'Tuesday',
-      modules: [
-        {
-          title: 'This is our first title',
-          day: 'Tuesday',
-          time: { start: 830, end: 1200 },
-          repeat: 'everyWeekDay',
-          category: 'work',
-        },
-      ],
-    },
-    { day: 'Wednesday', modules: [] },
-    {
-      day: 'Thursday',
-      modules: [
-        {
-          title: 'This is our first title',
-          day: 'Thursday',
-          time: { start: 1030, end: 1200 },
-          repeat: 'everyWeekDay',
-          category: 'training',
-        },
-      ],
-    },
-    { day: 'Friday', modules: [] },
-    { day: 'Saturday', modules: [] },
-    {
-      day: 'Sunday',
-      modules: [
-        {
-          title: 'This is our second title',
-          day: 'Sunday',
-          time: { start: 830, end: 1200 },
-          repeat: 'everyWeekDay',
-          category: 'work',
-        },
-      ],
-    }]);
-  const [categoryColor, setCategoryColor] = useState([{ home: '#CAE4DB' }, { work: '#CAE4DB' }, { training: '#CAE4DB' }]);
+  const [routines, setRoutines] = useState(
+    [
+      {
+        routineName: 'This is our first title',
+        day: ['Tuesday'],
+        startTime: '10',
+        duration: '2',
+        category: 'work',
+      },
+      {
+        routineName: 'This is our second title',
+        day: ['Friday'],
+        startTime: '12',
+        duration: '5',
+        category: 'home',
+      },
+      {
+        routineName: 'This is our Third title',
+        day: ['Monday'],
+        startTime: '3',
+        duration: '2.5',
+        category: 'home',
+      },
+    ]
+  );
 
+  const [categoryColor, setCategoryColor] = useState([{ home: 'blue' }, { work: 'yellow' }, { training: 'red' }]);
+  
   const createHabit = (object) => {
     const {
-      title, time, repeat, category,
+      routineName, startTime, duration, category,
     } = object;
     const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
     const newModule = React.createElement(
       'div',
       {
-        className: `habitModule ${category} ${repeat}`,
-        id: `${time.start}:${time.end}`,
-        style: { backgroundColor: colorMatch[0] },
+        className: `habitModule ${category}`,
+        style: {
+          height: `${(duration * 56) -12}px`,
+          marginTop: `${(startTime * 56) + 38}px`,
+          borderLeft: `${colorMatch[0]} 5px solid`
+        },
         key: Date.now(),
       },
-      title,
+      routineName,
     );
     return newModule;
   };
 
-  const appendHabitToWeek = (divDay) => weekDays.map((day) => day.modules.map((module) => {
-    if (module.day === divDay) {
-      return createHabit(module);
+  const appendHabitToWeek = (divDay) => routines.map( (routine) => {
+    if (routine.day[0] === divDay) {
+      return createHabit(routine);
     }
     return null;
-  }));
+  });
 
-  const createWeek = () => weekDays.map((day) => React.createElement('div',
-    {
-      className: `weekday ${day.day}`,
-      key: day.day,
-    },
-    [day.day, appendHabitToWeek(day.day)]));
+  const createWeek = () => {
+    const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    return weekDays.map(day => React.createElement('div',
+      {
+        className: `weekday ${day}`,
+        key: day
+      },
+      [day, appendHabitToWeek(day)]
+    ));
+  };
+
+  const addZero = (index) => {
+    let newNum;
+    if (index.toString().length < 2) {
+      newNum = `0${index}`;
+    } else {
+      newNum = `${index}`;
+    }
+    return newNum;
+  }
 
   const timePole = () => {
     const timeArr = [];
-    for (let i = 0; i < 25; i += 2) {
-      timeArr.push(React.createElement('p', { className: 'time', key: i }, i));
+    for (let i = 0; i < 25; i++) {
+      timeArr.push(React.createElement('p', { className: 'time', key: i }, `${addZero(i)}.00`));
     }
     return timeArr;
   };
-
+    
   return (
     <div className="weekHabitsContainer">
       <div className="timePole">
@@ -92,6 +94,6 @@ const HabitsDesktop = () => {
       {createWeek()}
     </div>
   );
-};
+}
 
 export default HabitsDesktop;
