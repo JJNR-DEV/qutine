@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { createGoal } from '../../api/goals';
 import { formValidation } from './GoalsValidation';
 import './Goals.css';
