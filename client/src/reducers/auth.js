@@ -13,7 +13,7 @@ export default function (state = initialState, action) {
     case 'USER_REGISTER_SUCCESS':
       return {
         ...state,
-        isLoggedIn: false,
+        isLoggedIn: true,
       };
     case 'USER_REGISTER_FAIL':
       return {
