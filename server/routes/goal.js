@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Goal = require('../model/Goal');
 
-router.post('/', async (req, res) => {
+router.post('/new-goal', async (req, res) => {
     console.log(req.body);
     const goal = new Goal({
         name: req.body.name,
