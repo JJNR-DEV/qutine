@@ -12,7 +12,7 @@ const HabitsDesktop = () => {
       },
       {
         routineName: 'This is our second title',
-        day: ['Friday'],
+        day: ['Monday', 'Tuesday', 'Friday'],
         startTime: '12',
         duration: '5',
         category: 'home',
@@ -20,8 +20,8 @@ const HabitsDesktop = () => {
       {
         routineName: 'This is our Third title',
         day: ['Monday'],
-        startTime: '3',
-        duration: '2.5',
+        startTime: '8',
+        duration: '3.5',
         category: 'home',
       },
     ]
@@ -51,10 +51,12 @@ const HabitsDesktop = () => {
   };
 
   const appendHabitToWeek = (divDay) => routines.map( (routine) => {
-    if (routine.day[0] === divDay) {
-      return createHabit(routine);
-    }
-    return null;
+    return routine.day.map(day => {
+      if (day === divDay) {
+        return createHabit(routine);
+      }
+      return null;
+    })
   });
 
   const createWeek = () => {
