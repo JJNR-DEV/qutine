@@ -4,13 +4,13 @@ const routineSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    min: 6,
+    min: 2,
     max: 55
   },
   category: {
     type: String,
     required: true,
-    min: 6,
+    min: 2,
     max: 55
   },
   startTime: {
