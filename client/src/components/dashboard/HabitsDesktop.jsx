@@ -8,7 +8,6 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
     getAllUserRoutines();
   }, [])
   
-  console.log(routines);
   const [categoryColor, setCategoryColor] = useState([{ home: 'blue' }, { work: 'yellow' }, { training: 'red' }]);
 
   const createHabit = (object) => {
