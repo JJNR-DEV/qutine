@@ -1,29 +1,48 @@
 import './Login.css';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { loginUser } from '../../api/auth';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 
-const Login = () => {
-  const [user, setUser] = useState({
-    email: '',
-    password: '',
-  });
+import { connect, useDispatch } from 'react-redux';
+import { login } from '../../actions/auth';
 
-  const handleChangeEmail = (e) => {
-    setUser({ ...user, email: e.target.value });
+const Login = (props) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const validateInput = (user) => {
+    const email = document.querySelector('.email');
+    const password = document.querySelector('.password');
+
+    if (user.email === '') {
+      return email.classList.add('invalid-field');
+    }
+    email.classList.remove('invalid-field');
+
+    if (user.password === '') {
+      return password.classList.add('invalid-field');
+    }
+    password.classList.remove('invalid-field');
   };
 
-  const handleChangePassword = (e) => {
-    setUser({ ...user, password: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    loginUser(user)
-      .then((res) => console.log(res));
+    const user = {
+      email: document.querySelector('.email').value,
+      password: document.querySelector('.password').value,
+    };
 
-    setUser({ email: '', password: '' });
+    validateInput(user);
+
+    try {
+      await dispatch(login(user));
+      return history.push('/dashboard');
+    } catch (error) {
+      console.error(error);
+    }
+
+    document.querySelector('.email').value = '';
+    document.querySelector('.password').value = '';
   };
 
   return (
@@ -36,9 +55,9 @@ const Login = () => {
         </span>
       </h1>
       <form onSubmit={handleSubmit}>
-        <input type="email" value={user.email} onChange={handleChangeEmail} placeholder="Email" />
-        <input type="password" value={user.password} onChange={handleChangePassword} placeholder="Password" />
-        <Link to="/dashboard" className="loginButton">Sign in</Link>
+        <input className="email" type="email" placeholder="Email" />
+        <input className="password" type="password" placeholder="Password" />
+        <button to="/dashboard" className="loginButton">Sign in</button>
       </form>
     </div>
   );

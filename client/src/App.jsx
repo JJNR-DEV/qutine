@@ -4,13 +4,35 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import RegisterScreen from './screens/RegisterScreen';
 import LoginScreen from './screens/LoginScreen';
 import LandingPageScreen from './screens/LandingPageScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import CreateRoutineScreen from './screens/CreateRoutineScreen';
 import CreateGoalScreen from './screens/CreateGoalScreen';
+
+const PrivateRoute = ({ children, ...rest }) => {
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
+
+  return (
+    <Route
+      {...rest}
+      render={({ location }) => (isLoggedIn ? (
+        children
+      ) : (
+        <Redirect
+          to={{
+            pathname: '/login',
+            state: { from: location },
+          }}
+        />
+      ))}
+    />
+  );
+};
 
 const App = () => (
   <Router>
@@ -22,15 +44,15 @@ const App = () => (
         <Route path="/login">
           <LoginScreen />
         </Route>
-        <Route path="/dashboard">
+        <PrivateRoute path="/dashboard">
           <DashboardScreen />
-        </Route>
-        <Route path="/routine">
+        </PrivateRoute>
+        <PrivateRoute path="/routine">
           <CreateRoutineScreen />
-        </Route>
-        <Route path="/goal">
+        </PrivateRoute>
+        <PrivateRoute path="/goal">
           <CreateGoalScreen />
-        </Route>
+        </PrivateRoute>
         <Route path="/">
           <LandingPageScreen />
         </Route>
