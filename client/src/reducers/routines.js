@@ -3,7 +3,8 @@ export const getAllUserRoutinesReducer =  (state = [], action) => {
 
     switch(type){
         case 'GET_USER_ROUTINES':
-            return [...state, ...payload];
+            console.log(payload);
+            return payload;
         default:
             return state;
     }

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import TimePole from './TimePole';
 import { connect } from 'react-redux';
 import { getAllUserRoutines } from '../../actions/routines';
+import { deleteRoutine } from '../../api/routines';
 
 const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
   useEffect(() => {
     getAllUserRoutines();
   }, [])
-  
-  console.log(routines);
+
   const [categoryColor, setCategoryColor] = useState([{ home: 'blue' }, { work: 'yellow' }, { training: 'red' }]);
 
   const createHabit = (object) => {
@@ -16,6 +16,20 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
       name, startTime, duration, category,
     } = object;
     const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
+
+    const eraseBtn = React.createElement(
+      'button',
+      {
+        className: 'erase-btn',
+        onClick: async () => {
+          await deleteRoutine(name);
+          getAllUserRoutines();
+        },
+        key: Math.random(),
+      },
+      'X',
+    );
+
     const newModule = React.createElement(
       'div',
       {
@@ -24,10 +38,13 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
           height: `${(parseInt(duration) * 56) - 12}px`,
           marginTop: `${(parseInt(startTime) * 56) + 38}px`,
           borderLeft: `${colorMatch[0]} 5px solid`,
+          display: 'grid',
+          gridTemplateRows: '90% 10%'
         },
         key: Date.now(),
       },
       name,
+      eraseBtn
     );
     return newModule;
   };
@@ -60,6 +77,7 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
 };
 
 const mapStateToProps = state => {
+  console.log('== STATE == ', state.allUserRoutines)
   return {
     routines: state.allUserRoutines
   }
