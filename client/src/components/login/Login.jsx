@@ -1,38 +1,39 @@
 import './Login.css';
 import React, { useState } from 'react';
-import { Link, Redirect, useHistory } from 'react-router-dom';
-
-import { connect, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { login } from '../../actions/auth';
 
-const Login = (props) => {
+const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [emailValidation, setEmailValidation] = useState(true);
+  const [passwordValidation, setPasswordValidation] = useState(true);
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  });
 
-  const validateInput = (user) => {
-    const email = document.querySelector('.email');
-    const password = document.querySelector('.password');
-
-    if (user.email === '') {
-      return email.classList.add('invalid-field');
+  const handleChangeEmail = (e) => {
+    setUser({ ...user, email: e.target.value });
+    if (user.email.length < 6) {
+      setEmailValidation(false);
+    } else {
+      setEmailValidation(true);
     }
-    email.classList.remove('invalid-field');
+  };
 
-    if (user.password === '') {
-      return password.classList.add('invalid-field');
+  const handleChangePassword = (e) => {
+    setUser({ ...user, password: e.target.value });
+    if (user.email.length < 6) {
+      setPasswordValidation(false);
+    } else {
+      setPasswordValidation(true);
     }
-    password.classList.remove('invalid-field');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const user = {
-      email: document.querySelector('.email').value,
-      password: document.querySelector('.password').value,
-    };
-
-    validateInput(user);
 
     try {
       await dispatch(login(user));
@@ -40,9 +41,7 @@ const Login = (props) => {
     } catch (error) {
       console.error(error);
     }
-
-    document.querySelector('.email').value = '';
-    document.querySelector('.password').value = '';
+    setUser({ email: '', password: '' });
   };
 
   return (
@@ -55,9 +54,21 @@ const Login = (props) => {
         </span>
       </h1>
       <form onSubmit={handleSubmit}>
-        <input className="email" type="email" placeholder="Email" />
-        <input className="password" type="password" placeholder="Password" />
-        <button to="/dashboard" className="loginButton">Sign in</button>
+        <input
+          type="email"
+          placeholder="Email"
+          value={user.email}
+          onChange={handleChangeEmail}
+          className={`email ${emailValidation ? '' : 'invalid-field'}`}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={user.password}
+          onChange={handleChangePassword}
+          className={`password ${passwordValidation ? '' : 'invalid-field'}`}
+        />
+        <button type="submit" className="loginButton">Sign in</button>
       </form>
     </div>
   );
