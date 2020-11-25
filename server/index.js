@@ -21,4 +21,3 @@ app.use('/new-goal', createGoal);
 app.use('/new-routine', createRoutine);
 
 app.listen(port, () => console.log(`Server listening to port ${port}!`));
-
