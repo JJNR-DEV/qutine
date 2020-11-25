@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import './Register.css';
-import { Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { registerUser } from '../../api/auth';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { register } from '../../actions/auth'
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [nameValidation, setNameValidation] = useState(true);
+  const [emailValidation, setEmailValidation] = useState(true);
+  const [passwordValidation, setPasswordValidation] = useState(true);
   const [user, setUser] = useState({
     name: '',
     email: '',
     password: '',
   });
-
-  const [nameValidation, setNameValidation] = useState(true);
-  const [emailValidation, setEmailValidation] = useState(true);
-  const [passwordValidation, setPasswordValidation] = useState(true);
-
-  const { user: currentUser, isLoggedIn: isCurrentUserLoggedIn } = useSelector((state) => state.auth);
 
   const handleChangeName = (e) => {
     setUser({ ...user, name: e.target.value });
@@ -48,16 +47,13 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await registerUser(user);
+      await dispatch(register(user));
+      return history.push('/dashboard');
     } catch (error) {
       console.error(error);
     }
     setUser({ name: '', email: '', password: '' });
   };
-
-  if (isCurrentUserLoggedIn) {
-    return <Redirect to="/dashboard" />;
-  }
 
   return (
     <div className="register">
