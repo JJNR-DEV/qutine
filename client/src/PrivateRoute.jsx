@@ -1,9 +1,9 @@
-import {useSelector} from "react-redux";
-import {Redirect, Route} from "react-router-dom";
-import React from "react";
+import { useSelector } from 'react-redux';
+import { Redirect, Route } from 'react-router-dom';
+import React from 'react';
 
 const PrivateRoute = ({ children, ...rest }) => {
-  const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   return (
     <div>
