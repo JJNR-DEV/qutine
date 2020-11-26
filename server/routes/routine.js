@@ -25,6 +25,15 @@ router.get('/all-routines', async (req, res) => {
     res.json(allRoutines);
 })
 
+// GET all day routines
+
+router.get('/all-day-routines', async (req, res) => {
+    const { today } = req.query;
+    const allDayRoutines = await Routine.find({ days: today });
+    console.log(allDayRoutines)
+    res.json(allDayRoutines);
+})
+
 // DELETE one routine
 
 router.delete('/delete-routine', (req, res) => {

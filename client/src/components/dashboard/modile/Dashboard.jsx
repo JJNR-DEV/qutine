@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import TimePole from './TimePole';
+import './DashboardMobile.css';
+import TimePole from '../TimePole';
+import getWeekDay from './helper/getWeekDay';
 import { connect } from 'react-redux';
-import { getAllUserRoutines } from '../../actions/routines';
-import { deleteRoutine } from '../../api/routines';
+import { getAllUserDayRoutines } from '../../../actions/routines';
+import { deleteRoutine } from '../../../api/routines';
 
-const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
+const Dashboard = ({ getAllUserDayRoutines, routines }) => {
+  const today = getWeekDay();
+
   useEffect(() => {
-    getAllUserRoutines();
+    getAllUserDayRoutines(today);
   }, [])
+
   const [categoryColor, setCategoryColor] = useState([{ home: 'blue' }, { work: 'yellow' }, { training: 'red' }]);
 
   const createHabit = (object) => {
-    const {
-      name, startTime, duration, category,
-    } = object;
+    const { name, startTime, duration, category } = object;
     const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
-
     const eraseBtn = React.createElement(
       'button',
       {
         className: 'erase-btn',
         onClick: async () => {
           await deleteRoutine(name);
-          getAllUserRoutines();
+          getAllUserDayRoutines(today);
         },
         key: Math.random(),
       },
       'X',
     );
-
+  
     const newModule = React.createElement(
       'div',
       {
@@ -48,35 +50,29 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
     return newModule;
   };
 
-  const appendHabitToWeek = (divDay) => routines.map( (routine) => {
-    return routine.days.map(day => {
-      if (day === divDay) {
-        return createHabit(routine);
-      }
-      return null;
-    })
+  const appendHabitToDay = () => routines.map(routine => {
+    return createHabit(routine);
   });
 
-  const createWeek = () => {
-    const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    return weekDays.map((day) => React.createElement('div',
+  const createDay = () => {
+    return React.createElement('div',
       {
-        className: `weekday ${day}`,
-        key: day,
+        className: `weekday ${today}`,
+        key: Math.random(),
       },
-      [day, appendHabitToWeek(day)]));
+      [today, appendHabitToDay(today)]);
   };
 
   return (
-    <div className="weekHabitsContainer">
+    <div className="dayHabitsContainer">
       <TimePole />
-      {createWeek()}
+      {createDay()}
     </div>
   );
-};
+}
 
 const mapStateToProps = state => {
   return { routines: state.allUserRoutines }
 }
 
-export default connect(mapStateToProps, { getAllUserRoutines })(HabitsDesktop);
+export default connect(mapStateToProps, { getAllUserDayRoutines })(Dashboard)

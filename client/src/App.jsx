@@ -14,6 +14,8 @@ import CreateGoalScreen from './screens/CreateGoalScreen';
 import PrivateRoute from './PrivateRoute';
 import Navbar from './components/navbar/Navbar';
 
+import Dashboard from './components/dashboard/modile/Dashboard';
+
 const App = () => (
   <Router>
     <div className="App">
@@ -28,6 +30,11 @@ const App = () => (
         <PrivateRoute path="/dashboard">
           <DashboardScreen />
         </PrivateRoute>
+
+        <PrivateRoute path="/mobile-dashboard">
+          <Dashboard />
+        </PrivateRoute>
+
         <PrivateRoute path="/routine">
           <CreateRoutineScreen />
         </PrivateRoute>
