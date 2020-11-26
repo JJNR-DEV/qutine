@@ -51,6 +51,12 @@
   color: #00303F;
 }
 
+.register > form input:focus,
+.register > form button:focus {
+  box-shadow: 0 0 0 2pt #F2B95A;
+  outline: none;
+}
+
 .register > form button {
   margin-top: 20px;
   width: 200px;

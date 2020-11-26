@@ -10,7 +10,10 @@ export const registerUser = (user) => axios.post('/api/user/register', user)
     }
     return res.data;
   })
-  .catch((err) => console.error('Failed to register user!', err));
+  .catch((err) => {
+    console.error('Failed to register user!', err);
+    throw err;
+  });
 
 export const loginUser = (user) => axios.post('/api/user/login', user)
   .then((res) => {
@@ -22,7 +25,10 @@ export const loginUser = (user) => axios.post('/api/user/login', user)
     }
     return res.data;
   })
-  .catch((err) => console.error('Failed to login user!', err));
+  .catch((err) => {
+    console.error('Failed to login user!', err);
+    throw err;
+  });
 
 export const logoutUser = () => {
   localStorage.removeItem('user');
@@ -32,7 +38,7 @@ export const authHeader = () => {
   const user = JSON.parse(localStorage.getItem('user'));
 
   if (user && user.accessToken) {
-    return { 'x-access-token': user.accessToken };
+    return {'x-access-token': user.accessToken};
   }
   return {};
 };

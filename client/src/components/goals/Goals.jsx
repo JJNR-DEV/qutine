@@ -1,9 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { createGoal } from '../../api/goals';
 import { formValidation } from './GoalsValidation';
 import './Goals.css';
 
 const Goals = () => {
+  const history = useHistory();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,6 +28,7 @@ const Goals = () => {
 
     try {
       await createGoal(goal);
+      history.push('/dashboard');
     } catch (err) {
       console.error(err.message);
     }
