@@ -19,7 +19,6 @@ router.post('/new-goal', async (req, res) => {
 
 router.get('/all-goals', async (req, res) => {
   const allGoals = await Goal.find({});
-  console.log(allGoals);
   res.json(allGoals);
 })
 
