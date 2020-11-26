@@ -8,7 +8,6 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
   useEffect(() => {
     getAllUserRoutines();
   }, [])
-
   const [categoryColor, setCategoryColor] = useState([{ home: 'blue' }, { work: 'yellow' }, { training: 'red' }]);
 
   const createHabit = (object) => {
@@ -41,7 +40,7 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
           display: 'grid',
           gridTemplateRows: '90% 10%'
         },
-        key: Date.now(),
+        key: Math.random(),
       },
       name,
       eraseBtn

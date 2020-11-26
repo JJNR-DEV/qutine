@@ -24,7 +24,7 @@ const Goals = () => {
     };
 
     try {
-      createGoal(goal);
+      await createGoal(goal);
     } catch (err) {
       console.error(err.message);
     }
