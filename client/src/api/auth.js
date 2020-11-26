@@ -26,7 +26,7 @@ export const loginUser = (user) => axios.post('/api/user/login', user)
     return res.data;
   })
   .catch((err) => {
-    console.error('Failed to login user!', err);
+    console.error('Failed to login user!', err.response);
     throw err;
   });
 

@@ -1,5 +1,7 @@
 import {loginUser, registerUser, logoutUser} from '../api/auth';
 import {
+  HIDE_SNACKBAR,
+  SHOW_SNACKBAR,
   USER_LOGIN_FAIL,
   USER_LOGIN_SUCCESS,
   USER_LOGOUT,
@@ -36,6 +38,21 @@ export const login = (user) => (dispatch) => loginUser(user).then(
       type: USER_LOGIN_FAIL,
       payload: {error: error}
     });
+
+    dispatch({
+      type: SHOW_SNACKBAR,
+      payload: {
+        success: false,
+        message: error.response.data
+      }
+    });
+
+    setTimeout(() => {
+      dispatch({
+        type: HIDE_SNACKBAR
+      });
+    }, 2900)
+
     return Promise.reject();
   });
 
