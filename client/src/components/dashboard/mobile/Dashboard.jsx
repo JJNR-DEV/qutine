@@ -23,7 +23,7 @@ const Dashboard = ({ getAllUserDayRoutines, routines }) => {
       {
         className: 'erase-btn',
         onClick: async () => {
-          await deleteRoutine(name);
+          await deleteRoutine(name, today);
           getAllUserDayRoutines(today);
         },
         key: Math.random(),

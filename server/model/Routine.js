@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
 
+const arrayValidation = days => {
+  if (days.length === 0) return false;
+  if (days.length > 7) return false;
+  return true;
+}
+
 const routineSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -26,10 +32,11 @@ const routineSchema = new mongoose.Schema({
     max: 4
   },
   days: {
-      type: [],
+      type: [{
+        type: String
+      }],
       required: true,
-      min: 1,
-      max: 7
+      validate: [arrayValidation, 'Days selected are not correct']
   }
 });
 
