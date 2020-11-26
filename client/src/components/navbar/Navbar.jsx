@@ -8,19 +8,16 @@ const Navbar = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
 
   return (
-    <div>
-      <ul className="navLinks">
+    <div className="navBar">
+      <ul className="linkList">
         <li>
-          <NavLink to="/">Home</NavLink>
+          {isLoggedIn && <NavLink className='navLink' exact to="/dashboard">Dashboard</NavLink>}
         </li>
         <li>
-          {isLoggedIn && <NavLink exact to="/dashboard">Dashboard</NavLink>}
+          {isLoggedIn && <NavLink className='navLink' to="/routine">Create Routine</NavLink>}
         </li>
         <li>
-          {isLoggedIn && <NavLink to="/routine">Create Routine</NavLink>}
-        </li>
-        <li>
-          {isLoggedIn && <NavLink to="/goal">Create Goal</NavLink>}
+          {isLoggedIn && <NavLink className='navLink' to="/goal">Create Goal</NavLink>}
         </li>
       </ul>
       {isLoggedIn && <Logout />}
