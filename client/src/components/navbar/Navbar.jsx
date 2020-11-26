@@ -11,6 +11,9 @@ const Navbar = () => {
     <div className="navBar">
       <ul className="linkList">
         <li>
+          {!isLoggedIn && <NavLink className='navLink' exact to="/">Home</NavLink>}
+        </li>
+        <li>
           {isLoggedIn && <NavLink className='navLink' exact to="/dashboard">Dashboard</NavLink>}
         </li>
         <li>

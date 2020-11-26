@@ -1,7 +1,7 @@
 import './Login.css';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { login } from '../../actions/auth';
 
 const Login = () => {
@@ -13,6 +13,8 @@ const Login = () => {
     email: '',
     password: '',
   });
+
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   const handleChangeEmail = (e) => {
     setUser({ ...user, email: e.target.value });
@@ -37,7 +39,7 @@ const Login = () => {
 
     try {
       await dispatch(login(user));
-      return history.push('/dashboard');
+      history.push('/dashboard');
     } catch (error) {
       console.error(error);
     }

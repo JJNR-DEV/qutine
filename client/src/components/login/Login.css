@@ -51,6 +51,12 @@
   color: #00303F;
 }
 
+.login > form input:focus,
+.loginButton:focus {
+  box-shadow: 0 0 0 2pt #F2B95A;
+  outline: none;
+}
+
 .loginButton {
   margin-top: 20px;
   width: 200px;

@@ -2,8 +2,11 @@ import React from 'react';
 import './Routine.css';
 import { createRoutine } from '../../api/routines';
 import { formValidation } from './RoutineValidation';
+import {useHistory} from "react-router-dom";
 
 const Routine = () => {
+  const history = useHistory();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,6 +30,7 @@ const Routine = () => {
 
     try {
       await createRoutine(routine);
+      history.push('/dashboard');
     } catch (err) {
       console.error(err.message);
     }
