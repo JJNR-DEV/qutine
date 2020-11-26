@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const Routine = require('../model/Routine');
 
-router.post('/', async (req, res) => {
-    console.log(req.body)
+router.post('/new-routine', async (req, res) => {
     const routine = new Routine({
         name: req.body.name,
         category: req.body.category,
@@ -12,7 +11,7 @@ router.post('/', async (req, res) => {
     })
 
     try {
-        const savedRoutine = await routine.save();
+        await routine.save();
         res.status(201).send(`You routine task "${req.body.name}" has been successfully added!`)
     } catch({ message }) {
         res.status(500).send(`Something went wrong: ${message}`)
@@ -23,9 +22,15 @@ router.post('/', async (req, res) => {
 
 router.get('/all-routines', async (req, res) => {
     const allRoutines = await Routine.find({});
-    console.log(allRoutines);
-
     res.json(allRoutines);
+})
+
+// DELETE one routine
+
+router.delete('/delete-routine', (req, res) => {
+    Routine.findOneAndDelete({ name: req.query.name }, () => {
+        res.status(204).send({ message: 'Successfuly deleted task!' })
+    })
 })
 
 module.exports = router;

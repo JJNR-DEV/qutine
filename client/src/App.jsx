@@ -11,11 +11,13 @@ import LandingPageScreen from './screens/LandingPageScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import CreateRoutineScreen from './screens/CreateRoutineScreen';
 import CreateGoalScreen from './screens/CreateGoalScreen';
-import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from './PrivateRoute';
+import Navbar from './components/navbar/Navbar';
 
 const App = () => (
   <Router>
     <div className="App">
+      <Navbar />
       <Switch>
         <Route path="/register">
           <RegisterScreen />

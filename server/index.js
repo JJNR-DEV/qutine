@@ -4,8 +4,8 @@ const app = express();
 const port = 4000;
 const mongoose = require('mongoose');
 const authRoute = require('./routes/auth');
-const createGoal = require('./routes/createGoal');
-const createRoutine = require('./routes/createRoutine');
+const goal = require('./routes/goal');
+const routine = require('./routes/routine');
 
 mongoose.connect(process.env.DB_CONNECT, {
     useUnifiedTopology: true,
@@ -17,7 +17,7 @@ mongoose.connect(process.env.DB_CONNECT, {
 app.use(express.json());
 
 app.use('/api/user', authRoute);
-app.use('/new-goal', createGoal);
-app.use('/new-routine', createRoutine);
+app.use('/goals', goal);
+app.use('/routines', routine);
 
 app.listen(port, () => console.log(`Server listening to port ${port}!`));

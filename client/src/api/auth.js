@@ -24,7 +24,7 @@ export const loginUser = (user) => axios.post('/api/user/login', user)
   })
   .catch((err) => console.error('Failed to login user!', err));
 
-export const logout = () => {
+export const logoutUser = () => {
   localStorage.removeItem('user');
 };
 
@@ -32,7 +32,7 @@ export const authHeader = () => {
   const user = JSON.parse(localStorage.getItem('user'));
 
   if (user && user.accessToken) {
-    return {'x-access-token': user.accessToken};
+    return { 'x-access-token': user.accessToken };
   }
   return {};
 };
