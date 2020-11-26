@@ -6,4 +6,6 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 export const GET_USER_ROUTINES = 'GET_USER_ROUTINES';
 export const GET_USER_DAY_ROUTINES = 'GET_USER_DAY_ROUTINES';
 export const GET_USER_GOALS = 'GET_USER_GOALS';
-
+// Snackbar
+export const SHOW_SNACKBAR = 'SHOW_SNACKBAR';
+export const HIDE_SNACKBAR = 'HIDE_SNACKBAR';

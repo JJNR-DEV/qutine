@@ -15,11 +15,13 @@ import PrivateRoute from './PrivateRoute';
 import Navbar from './components/navbar/Navbar';
 
 import Dashboard from './components/dashboard/modile/Dashboard';
+import Snackbar from "./components/snackbar/Snackbar";
 
 const App = () => (
   <Router>
     <div className="App">
       <Navbar />
+      <Snackbar />
       <Switch>
         <Route path="/register">
           <RegisterScreen />
