@@ -40,7 +40,7 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
           display: 'grid',
           gridTemplateRows: '90% 10%'
         },
-        key: Date.now(),
+        key: Math.random(),
       },
       name,
       eraseBtn
@@ -76,7 +76,6 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
 };
 
 const mapStateToProps = state => {
-  console.log('== STATE == ', state.allUserRoutines)
   return {
     routines: state.allUserRoutines
   }

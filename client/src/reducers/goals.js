@@ -3,7 +3,7 @@ export const getAllUserGoalsReducer =  (state = [], action) => {
 
   switch(type){
       case 'GET_USER_GOALS':
-          return [...state, ...payload];
+          return payload;
       default:
           return state;
   }
