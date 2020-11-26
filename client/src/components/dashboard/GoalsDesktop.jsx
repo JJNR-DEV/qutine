@@ -18,14 +18,14 @@ const GoalsDesktop = ({ getAllUserGoals, goals }) => {
     const eraseBtn = React.createElement(
       'button',
       {
-        className: 'erase-btn',
+        className: 'eraseBtn',
         onClick: async () => {
           await deleteGoal(name);
           getAllUserGoals();
         },
         key: Math.random(),
       },
-      'X',
+      <p>&#10005;</p>
     );
 
     const newModule = React.createElement(

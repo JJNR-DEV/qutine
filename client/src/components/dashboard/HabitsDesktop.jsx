@@ -10,24 +10,54 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
   }, [])
   const [categoryColor, setCategoryColor] = useState([{ home: 'blue' }, { work: 'yellow' }, { training: 'red' }]);
 
-  const createHabit = (object) => {
-    const {
-      name, startTime, duration, category,
-    } = object;
-    const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
+  const createHeader = (name) => {
+    return React.createElement(
+      'h3',
+      {
+        className: 'routineName',
+      },
+      name
+    );
+  }
 
-    const eraseBtn = React.createElement(
+  const createRemoveButton = (name) => {
+    return React.createElement(
       'button',
       {
-        className: 'erase-btn',
+        className: 'eraseBtn',
         onClick: async () => {
           await deleteRoutine(name);
           getAllUserRoutines();
         },
         key: Math.random(),
       },
-      'X',
+      <p>&#10005;</p>
     );
+  }
+
+  const createCategoryDiv = (color) => {
+    return React.createElement(
+      'div',
+      {
+        className: 'categoryBackground',
+        style: {
+          background: `radial-gradient(circle, ${color} 20%, transparent 0%)`,
+          backgroundSize: '20px 2px',
+          transform: 'rotate(45deg)',
+          opacity: '0.1',
+          height: '300%',
+          width: '50%',
+          position: 'absolute',
+          zIndex: '0',
+        },
+        key: Math.random(),
+      },
+    );
+  }
+
+  const createHabit = (object) => {
+    const { name, startTime, duration, category } = object;
+    const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
 
     const newModule = React.createElement(
       'div',
@@ -35,15 +65,15 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
         className: `habitModule ${category}`,
         style: {
           height: `${(parseInt(duration) * 56) - 12}px`,
-          marginTop: `${(parseInt(startTime) * 56) + 38}px`,
-          borderLeft: `${colorMatch[0]} 5px solid`,
-          display: 'grid',
-          gridTemplateRows: '90% 10%'
+          marginTop: `${(parseInt(startTime) * 56) + 39}px`,
+          overflow: 'hidden',
+          zIndex: '10',
         },
         key: Math.random(),
       },
-      name,
-      eraseBtn
+      createCategoryDiv(colorMatch[0]),
+      createHeader(name),
+      createRemoveButton(name)
     );
     return newModule;
   };
