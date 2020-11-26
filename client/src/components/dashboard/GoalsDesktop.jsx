@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getAllUserGoals } from '../../actions/goals';
 
-const GoalsDesktop = () => {
-  const [goals, setGoals] = useState([{name: 'test', duraton: '3', category: 'home'}]);
+const GoalsDesktop = ({ getAllUserGoals, goals }) => {
+  useEffect(() => {
+    getAllUserGoals();
+  }, [])
   const [categoryColor, setCategoryColor] = useState([{ home: 'blue' }, { work: 'yellow' }, { training: 'red' }]);
 
   const createGoal = (object) => {
@@ -23,7 +27,7 @@ const GoalsDesktop = () => {
     return newModule;
   };
 
-  const appendGoalToBoard = () => goals.map((goal) =>  createGoal(goal));
+  const appendGoalToBoard = () => goals?.map((goal) =>  createGoal(goal));
 
   return (
     <div className="weekGoalsContainer">
@@ -33,4 +37,10 @@ const GoalsDesktop = () => {
   );
 };
 
-export default GoalsDesktop;
+const mapStateToProps = state => {
+  return {
+    goals: state.allUserGoals
+  }
+}
+
+export default connect(mapStateToProps, { getAllUserGoals })(GoalsDesktop);
