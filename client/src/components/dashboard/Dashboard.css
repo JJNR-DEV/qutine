@@ -60,6 +60,15 @@
   height: 100%;
   min-height: 100vh;
   margin: 10% 0 0 0;
+  padding: 20px 0;
   background: linear-gradient(#F2B95A, #ffffff);
   border-radius: 10px 10px 0 0;
+}
+
+.goalModule {
+  margin: 10px;
+  padding: 5px;
+  background-color: #ffffffb2;
+  border-radius: 5px;
+  text-align: left;
 }

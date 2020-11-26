@@ -21,4 +21,11 @@ router.post('/', async (req, res) => {
     }
 })
 
+
+    router.get('/all-goals', async (req, res) => {
+    const allGoals = await Goal.find({});
+    console.log(allGoals);
+    res.json(allGoals);
+})
+
 module.exports = router;
