@@ -30,8 +30,23 @@ router.get('/all-routines', async (req, res) => {
 router.get('/all-day-routines', async (req, res) => {
     const { today } = req.query;
     const allDayRoutines = await Routine.find({ days: today });
-    console.log(allDayRoutines)
     res.json(allDayRoutines);
+})
+
+// GET specific routine
+
+router.get('/get-selected-routine', async (req, res) => {
+    const { routine } = req.query;
+    const selectedRoutine = await Routine.find({ name: routine });
+    res.json(selectedRoutine);
+})
+
+// PUT a routine
+
+router.put('/update-routine', async (req, res) => {
+    const { name, days } = req.body;
+    const selectedRoutine = await Routine.findOneAndUpdate({ name }, { days });
+    res.status(204).send({ message: 'Successfuly deleted task for selected day!' })
 })
 
 // DELETE one routine

@@ -14,6 +14,8 @@ mongoose.connect(process.env.DB_CONNECT, {
   .then(() => console.log('Connected to db!'))
   .catch(err => console.log(`Error occurred! ${err.message}`));
 
+mongoose.set('useFindAndModify', false);  
+
 app.use(express.json());
 
 app.use('/api/user', authRoute);

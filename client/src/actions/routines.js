@@ -12,7 +12,6 @@ export const getAllUserRoutines = () => dispatch => {
 
 export const getAllUserDayRoutines = today => dispatch => {
     allDayRoutines(today).then(data => {
-        console.log(data);
         dispatch({
             type: GET_USER_DAY_ROUTINES,
             payload: data

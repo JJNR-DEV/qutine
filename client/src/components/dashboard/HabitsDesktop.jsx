@@ -20,13 +20,19 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
     );
   }
 
+  const createHabit = (object, day) => {
+    const {
+      name, startTime, duration, category,
+    } = object;
+    const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
+
   const createRemoveButton = (name) => {
     return React.createElement(
       'button',
       {
         className: 'eraseBtn',
         onClick: async () => {
-          await deleteRoutine(name);
+          await deleteRoutine(name, day);
           getAllUserRoutines();
         },
         key: Math.random(),
@@ -81,7 +87,7 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
   const appendHabitToWeek = (divDay) => routines.map( (routine) => {
     return routine.days.map(day => {
       if (day === divDay) {
-        return createHabit(routine);
+        return createHabit(routine, day);
       }
       return null;
     })
