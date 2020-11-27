@@ -20,7 +20,7 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
     );
   }
 
-  const createRemoveButton = (name) => {
+  const createRemoveButton = (name, day) => {
     return React.createElement(
       'button',
       {
@@ -55,7 +55,7 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
     );
   }
 
-  const createHabit = (object) => {
+  const createHabit = (object, day) => {
     const { name, startTime, duration, category } = object;
     const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
 
@@ -73,7 +73,7 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
       },
       createCategoryDiv(colorMatch[0]),
       createHeader(name),
-      createRemoveButton(name)
+      createRemoveButton(name, day)
     );
     return newModule;
   };
