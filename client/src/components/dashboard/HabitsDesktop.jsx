@@ -58,13 +58,12 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
   const createHabit = (object, day) => {
     const { name, startTime, duration, category } = object;
     const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
-    console.log(`${((parseInt(duration) -1) * 55 + 52)}px`)
     const newModule = React.createElement(
       'div',
       {
         className: `habitModule ${category}`,
         style: {
-          height: `${(parseInt(duration) * 56 + 52)}px`,
+          height: `${(parseInt(duration) * 56 - 3)}px`,
           marginTop: `${(parseInt(startTime) * 56) + 39}px`,
           overflow: 'hidden',
           zIndex: '10',
