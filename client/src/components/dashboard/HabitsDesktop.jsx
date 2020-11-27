@@ -20,12 +20,6 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
     );
   }
 
-  const createHabit = (object, day) => {
-    const {
-      name, startTime, duration, category,
-    } = object;
-    const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
-
   const createRemoveButton = (name) => {
     return React.createElement(
       'button',
