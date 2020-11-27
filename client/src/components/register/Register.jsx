@@ -50,7 +50,7 @@ const Register = () => {
 
     try {
       await dispatch(register(user));
-      if (isLoggedIn) history.push('/dashboard');
+      history.push('/dashboard');
     } catch (error) {
       console.error(error);
     }
