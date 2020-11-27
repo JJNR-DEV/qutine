@@ -22,6 +22,21 @@ export const register = (user) => (dispatch) => registerUser(user).then(
       type: USER_REGISTER_FAIL,
       payload: {error: error}
     });
+
+    dispatch({
+      type: SHOW_SNACKBAR,
+      payload: {
+        success: false,
+        message: error.response.data
+      }
+    });
+
+    setTimeout(() => {
+      dispatch({
+        type: HIDE_SNACKBAR
+      });
+    }, 2900)
+
     return Promise.reject();
   });
 
