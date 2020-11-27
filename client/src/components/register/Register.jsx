@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Register.css';
 import { useHistory } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import { register } from '../../actions/auth';
 
 const Register = () => {
@@ -15,8 +15,6 @@ const Register = () => {
     email: '',
     password: '',
   });
-
-  const { isLoggedIn } = useSelector((state) => state.auth);
 
   const handleChangeName = (e) => {
     setUser({ ...user, name: e.target.value });
