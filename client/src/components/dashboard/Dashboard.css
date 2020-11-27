@@ -47,20 +47,21 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 8.1%;
+  width: 8.8%;
   border-radius: 5px;
-  padding: 5px;
   margin-left: 2px;
   background: white;
   box-shadow: 0 0 4px #c9c9c9;
   color: #00303F;
   font-size: 16px;
   font-weight: 500;
+  word-wrap: break-word;
 }
 
 .habitModule h3 {
   margin: 15px 5px;
   padding: 0;
+  word-wrap: break-word;
 }
 
 .habitModule .eraseBtn {
