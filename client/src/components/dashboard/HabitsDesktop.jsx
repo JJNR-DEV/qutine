@@ -64,8 +64,8 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
       {
         className: `habitModule ${category}`,
         style: {
-          height: `${(parseInt(duration) * 56) - 12}px`,
-          marginTop: `${(parseInt(startTime) * 56) + 39}px`,
+          height: `${(parseInt(duration - 1) * 55 + 52)}px`,
+          marginTop: `${(parseInt(startTime) * 55.3) + 38}px`,
           overflow: 'hidden',
           zIndex: '10',
         },
