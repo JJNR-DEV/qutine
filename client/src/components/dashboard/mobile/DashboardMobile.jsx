@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getAllUserDayRoutines } from '../../../actions/routines';
 import { deleteRoutine } from '../../../api/routines';
 
-const Dashboard = ({ getAllUserDayRoutines, routines }) => {
+const DashboardMobile = ({ getAllUserDayRoutines, routines }) => {
   const today = getWeekDay();
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Dashboard = ({ getAllUserDayRoutines, routines }) => {
       },
       'X',
     );
-  
+
     const newModule = React.createElement(
       'div',
       {
@@ -75,4 +75,4 @@ const mapStateToProps = state => {
   return { routines: state.allUserRoutines }
 }
 
-export default connect(mapStateToProps, { getAllUserDayRoutines })(Dashboard)
+export default connect(mapStateToProps, { getAllUserDayRoutines })(DashboardMobile)

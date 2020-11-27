@@ -5,17 +5,17 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import RegisterScreen from './screens/RegisterScreen';
-import LoginScreen from './screens/LoginScreen';
-import LandingPageScreen from './screens/LandingPageScreen';
-import DashboardScreen from './screens/DashboardScreen';
-import CreateRoutineScreen from './screens/CreateRoutineScreen';
-import CreateGoalScreen from './screens/CreateGoalScreen';
 import PrivateRoute from './PrivateRoute';
 import Navbar from './components/navbar/Navbar';
 
-import Dashboard from './components/dashboard/mobile/Dashboard';
+import Dashboard from './components/dashboard/Dashboard';
 import Snackbar from "./components/snackbar/Snackbar";
+import Goals from "./components/goals/Goals";
+import Routine from "./components/routine/Routine";
+import DashboardMobile from "./components/dashboard/mobile/DashboardMobile";
+import LandingPage from "./components/landingPage/LandingPage";
+import Login from "./components/login/Login";
+import Register from "./components/register/Register";
 
 const App = () => (
   <Router>
@@ -24,27 +24,27 @@ const App = () => (
       <Snackbar />
       <Switch>
         <Route path="/register">
-          <RegisterScreen />
+          <Register />
         </Route>
         <Route path="/login">
-          <LoginScreen />
+          <Login />
         </Route>
         <PrivateRoute path="/dashboard">
-          <DashboardScreen />
-        </PrivateRoute>
-
-        <PrivateRoute path="/mobile-dashboard">
           <Dashboard />
         </PrivateRoute>
 
+        <PrivateRoute path="/mobile-dashboard">
+          <DashboardMobile />
+        </PrivateRoute>
+
         <PrivateRoute path="/routine">
-          <CreateRoutineScreen />
+          <Routine />
         </PrivateRoute>
         <PrivateRoute path="/goal">
-          <CreateGoalScreen />
+          <Goals />
         </PrivateRoute>
         <Route path="/">
-          <LandingPageScreen />
+          <LandingPage />
         </Route>
       </Switch>
     </div>
