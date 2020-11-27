@@ -14,7 +14,7 @@ import CreateGoalScreen from './screens/CreateGoalScreen';
 import PrivateRoute from './PrivateRoute';
 import Navbar from './components/navbar/Navbar';
 
-import Dashboard from './components/dashboard/modile/Dashboard';
+import Dashboard from './components/dashboard/mobile/Dashboard';
 import Snackbar from "./components/snackbar/Snackbar";
 
 const App = () => (
