@@ -67,8 +67,7 @@
 .habitModule .eraseBtn {
   position: absolute;
   align-self: flex-start;
-  margin: 0 0 0 40%;
-  padding: 0;
+  padding: 3% 0 0 80%;
   background: transparent;
   border: none;
 }
@@ -76,7 +75,8 @@
 .habitModule .eraseBtn p {
   margin: 0;
   padding: 0;
-  font-size: 16px;
+  font-size: 12px;
+  color: #b6b6b6;
 }
 
 .goalModule .eraseBtn {
