@@ -19,7 +19,7 @@ const TimePole = () => {
     }
     return timeArr;
   };
-  
+
   return (
     <div className="timePole"> 
       {timePole()}
@@ -28,4 +28,3 @@ const TimePole = () => {
 };
 
 export default TimePole;
-      
