@@ -13,23 +13,23 @@ const goalSchema = new mongoose.Schema({
     min: 6,
     max: 55
   },
-  startTime: {
+  amountOfTimes: {
     type: String,
     required: false,
     min: 0,
     max: 4
   },
-  duration: {
-    type: String,
+  counterAmount: {
+    type: Number,
     required: false,
     min: 0,
     max: 4
   },
-  days: {
-      type: [],
-      required: false,
-      min: 0,
-      max: 7
+  userEmail: {
+    type: String,
+    required: true,
+    min: 4,
+    max: 100
   }
 });
 

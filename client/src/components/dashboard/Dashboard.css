@@ -115,6 +115,26 @@
   border-radius: 5px;
 }
 
+.goalMain {
+  display: flex;
+  justify-content: space-between;
+}
+
+.goalAmount {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.incrementBtn {
+  position: relative;
+  align-self: flex-start;
+  justify-content: flex-end;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+  
 .progressBar {
   min-height: 20px;
   max-height: 20px;

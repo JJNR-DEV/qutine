@@ -6,7 +6,8 @@ import { deleteRoutine } from '../../api/routines';
 
 const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
   useEffect(() => {
-    getAllUserRoutines();
+    const { email } = JSON.parse(localStorage.getItem('user'));
+    getAllUserRoutines(email);
   }, [])
   const [categoryColor, setCategoryColor] = useState([{ home: '#a0a0ff' }, { work: '#ffff7d' }, { training: '#ff9898' }]);
 
@@ -21,13 +22,14 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
   }
 
   const createRemoveButton = (name, day) => {
+    const { email } = JSON.parse(localStorage.getItem('user'));
     return React.createElement(
       'button',
       {
         className: 'eraseBtn',
         onClick: async () => {
           await deleteRoutine(name, day);
-          getAllUserRoutines();
+          getAllUserRoutines(email);
         },
         key: Math.random(),
       },

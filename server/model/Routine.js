@@ -37,6 +37,12 @@ const routineSchema = new mongoose.Schema({
       }],
       required: true,
       validate: [arrayValidation, 'Days selected are not correct']
+  },
+  userEmail: {
+    type: String,
+    required: true,
+    min: 4,
+    max: 100
   }
 });
 

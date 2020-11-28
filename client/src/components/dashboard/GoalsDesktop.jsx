@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getAllUserGoals } from '../../actions/goals';
-import { deleteGoal } from '../../api/goals';
+
+import Goal from './goals-desktop/Goal';
 
 const GoalsDesktop = ({ getAllUserGoals, goals }) => {
 
@@ -27,77 +28,28 @@ const GoalsDesktop = ({ getAllUserGoals, goals }) => {
   // ]
 
   useEffect(() => {
-    getAllUserGoals();
+    const { email } = JSON.parse(localStorage.getItem('user'));
+    getAllUserGoals(email);
   }, [])
-  const [categoryColor, setCategoryColor] = useState([{ home: '#a0a0ff' }, { work: '#ffff7d' }, { training: '#ff9898' }]);
 
-  const createRemoveButton = (name) => {
-    return React.createElement(
-      'button',
-      {
-        className: 'eraseBtn',
-        onClick: async () => {
-          await deleteGoal(name);
-          getAllUserGoals();
-        },
-        key: Math.random(),
-      },
-      <p>&#10005;</p>
-    );
-  }
+  const appendGoalToBoard = () => goals?.map(goal => <Goal 
+    key={Math.random()} 
+    goalElements={goal} 
+    getAllUserGoals={getAllUserGoals} 
+  /> );
 
-
-  const progressBar = (checked, amount, category) => {
-    return React.createElement(
-      'div',
-      {
-        className: 'progressBar',
-        style: {
-          backgroundSize: `${checked / amount * 100}% 100%`,
-          backgroundImage: `linear-gradient(45deg, #fff, ${category})`,
-          border: `1px solid ${category}`,
-        }
-      }
-    )
-  }
-
-  const createGoal = (object) => {
-    const {
-      name,
-      category,
-      checked,
-      amount
-    } = object;
-    const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
-    const newModule = React.createElement(
-      'div',
-      {
-        className: `goalModule ${category}`,
-        key: Math.random(),
-      },
-      createRemoveButton(name),
-      name,
-      progressBar(checked, amount, colorMatch),
-    );
-    return newModule;
-  };
-
-  const appendGoalToBoard = () => goals?.map((goal) =>  createGoal(goal));
   // const appendGoalToBoard = () => testGoal?.map((goal) =>  createGoal(goal));
 
   return (
     <div className="weekGoalsContainer">
       Weekly Goals
       {appendGoalToBoard()}
-      {createGoal(goals)}
     </div>
   );
 };
 
 const mapStateToProps = state => {
-  return {
-    goals: state.allUserGoals
-  }
+  return { goals: state.allUserGoals }
 }
 
 export default connect(mapStateToProps, { getAllUserGoals })(GoalsDesktop);
