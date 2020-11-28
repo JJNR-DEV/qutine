@@ -4,11 +4,11 @@ export const createRoutine = (routine) => axios.post('/routines/new-routine', ro
   .then((res) => res.data)
   .catch((err) => console.error(`${err.message}`));
 
-export const allRoutines = () => axios.get('/routines/all-routines')
+export const allRoutines = email => axios.get(`/routines/all-routines/?userEmail=${email}`)
   .then(res => res.data)
   .catch((err) => console.error(`${err.message}`));
 
-export const allDayRoutines = today => axios.get(`/routines/all-day-routines/?today=${today}`)
+export const allDayRoutines = (today, email) => axios.get(`/routines/all-day-routines/?userEmail=${email}&today=${today}`)
   .then(res => res.data)
   .catch((err) => console.error(`${err.message}`));
 

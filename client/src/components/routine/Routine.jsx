@@ -2,7 +2,7 @@ import React from 'react';
 import './Routine.css';
 import { createRoutine } from '../../api/routines';
 import { formValidation } from './RoutineValidation';
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Routine = () => {
   const history = useHistory();
@@ -20,12 +20,15 @@ const Routine = () => {
     const weekDays = [...document.querySelectorAll('.selectionDays li input')];
     const selectedDays = weekDays.filter((day) => day.checked);
 
+    const { email } = JSON.parse(localStorage.getItem('user'));
+
     const routine = {
       name: name.value,
       category: category.value,
       sTime: sTime.value,
       duration: duration.value,
       days: selectedDays.map((day) => day.value),
+      userEmail: email
     };
 
     try {

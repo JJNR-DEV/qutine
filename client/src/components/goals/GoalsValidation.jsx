@@ -1,14 +1,18 @@
-export const formValidation = (...args) => {
+export const formValidation = (form, goal) => {
   let invalidInput = false;
-  args.forEach((field) => {
-    if (field.classList.contains('invalid-field')) {
-      field.classList.remove('invalid-field');
+  let index = 0;
+
+  for  (const property in goal) {
+    if (form.children[index].classList.contains('invalid-field')) {
+      form.children[index].classList.remove('invalid-field');
     }
-    if (field.value === '') {
-      field.classList.add('invalid-field');
+
+    if (goal[property] === '') {
+      form.children[index].classList.add('invalid-field');
       invalidInput = true;
     }
-  });
+    index += 1;
+  }
 
   return invalidInput;
 };

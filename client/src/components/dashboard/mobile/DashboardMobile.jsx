@@ -10,7 +10,8 @@ const DashboardMobile = ({ getAllUserDayRoutines, routines }) => {
   const today = getWeekDay();
 
   useEffect(() => {
-    getAllUserDayRoutines(today);
+    const { email } = JSON.parse(localStorage.getItem('user'));
+    getAllUserDayRoutines(today, email);
   }, [])
 
   const [categoryColor, setCategoryColor] = useState([{ home: 'blue' }, { work: 'yellow' }, { training: 'red' }]);

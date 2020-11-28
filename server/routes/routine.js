@@ -7,7 +7,8 @@ router.post('/new-routine', async (req, res) => {
         category: req.body.category,
         startTime: req.body.sTime,
         duration: req.body.duration,
-        days: req.body.days
+        days: req.body.days,
+        userEmail: req.body.userEmail
     })
 
     try {
@@ -21,15 +22,16 @@ router.post('/new-routine', async (req, res) => {
 // GET all routines
 
 router.get('/all-routines', async (req, res) => {
-    const allRoutines = await Routine.find({});
+    const { userEmail } = req.query;
+    const allRoutines = await Routine.find({ userEmail });
     res.json(allRoutines);
 })
 
 // GET all day routines
 
 router.get('/all-day-routines', async (req, res) => {
-    const { today } = req.query;
-    const allDayRoutines = await Routine.find({ days: today });
+    const { today, userEmail } = req.query;
+    const allDayRoutines = await Routine.find({ days: today, userEmail });
     res.json(allDayRoutines);
 })
 
@@ -45,16 +47,15 @@ router.get('/get-selected-routine', async (req, res) => {
 
 router.put('/update-routine', async (req, res) => {
     const { name, days } = req.body;
-    const selectedRoutine = await Routine.findOneAndUpdate({ name }, { days });
+    await Routine.findOneAndUpdate({ name }, { days });
     res.status(204).send({ message: 'Successfuly deleted task for selected day!' })
 })
 
 // DELETE one routine
 
 router.delete('/delete-routine', (req, res) => {
-    Routine.findOneAndDelete({ name: req.query.name }, () => {
-        res.status(204).send({ message: 'Successfuly deleted task!' })
-    })
+    const { name, userEmail } = req.query;
+    Routine.findOneAndDelete({ name, userEmail }, () => res.status(204).send());
 })
 
 module.exports = router;
