@@ -1,7 +1,7 @@
 import React from 'react';
 import './Routine.css';
-import { createRoutine } from '../../api/routines';
-import { formValidation } from './RoutineValidation';
+import {createRoutine} from '../../api/routines';
+import {formValidation} from './RoutineValidation';
 import {useHistory} from "react-router-dom";
 
 const Routine = () => {
@@ -40,45 +40,52 @@ const Routine = () => {
     <div className="addRoutine">
       <h1 className="addRoutineMessage">Enter a routine for your week</h1>
       <form onSubmit={handleSubmit}>
-        <input id="routineName" type="text" placeholder="Name" />
-        <input id="routineCategory" type="text" placeholder="Category" />
-        <input id="routineStime" type="time" placeholder="Start Time" />
-        <input id="routineDuration" type="time" placeholder="Duration" />
+        <input id="routineName" type="text" placeholder="Name"/>
+        <input id="routineStime" type="time" placeholder="Start Time"/>
+        <input id="routineDuration" type="time" placeholder="Duration"/>
+        <label className="category">
+          Choose Category
+          <select id="routineCategory">
+            <option value="home">Home</option>
+            <option value="work">Work</option>
+            <option value="training">Training</option>
+          </select>
+        </label>
         <div className="selectionDays">
           <span>Choose Days: </span>
           <ul>
             <li>
-              <input type="checkbox" value="Monday" />
+              <input type="checkbox" value="Monday"/>
               {' '}
               M
             </li>
             <li>
-              <input type="checkbox" value="Tuesday" />
+              <input type="checkbox" value="Tuesday"/>
               {' '}
               T
             </li>
             <li>
-              <input type="checkbox" value="Wednesday" />
+              <input type="checkbox" value="Wednesday"/>
               {' '}
               W
             </li>
             <li>
-              <input type="checkbox" value="Thursday" />
+              <input type="checkbox" value="Thursday"/>
               {' '}
               T
             </li>
             <li>
-              <input type="checkbox" value="Friday" />
+              <input type="checkbox" value="Friday"/>
               {' '}
               F
             </li>
             <li>
-              <input type="checkbox" value="Saturday" />
+              <input type="checkbox" value="Saturday"/>
               {' '}
               S
             </li>
             <li>
-              <input type="checkbox" value="Sunday" />
+              <input type="checkbox" value="Sunday"/>
               {' '}
               S
             </li>
