@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Register.css';
 import { useHistory } from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { register } from '../../actions/auth';
 
 const Register = () => {

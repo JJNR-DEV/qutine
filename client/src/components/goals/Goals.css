@@ -34,7 +34,14 @@
     text-align: left;
   }
 
+  #goalCategory {
+    box-sizing: content-box;
+    -webkit-appearance: none;
+    display: flex;
+  }
+
   .addGoal > form > input,
+  .addGoal #goalCategory,
   .submitGoal {
     margin: 10px;
     width: 300px;
@@ -43,14 +50,14 @@
     border: none;
     border-radius: 20em;
     box-shadow: 0 0 4px #afafaf;
-    color: #00303F;
   }
 
-  .addGoal > form > input:focus {
+  .addGoal > form > input:focus,
+  .addGoal > form > select:focus {
     box-shadow: 0 0 0 2pt #F2B95A;
     outline: none;
   }
- 
+
   .selectionDays {
     width: 300px;
     margin: 10px 0;
