@@ -26,4 +26,13 @@ export const deleteRoutine = async (name, today) => {
       .catch((err) => console.error(`${err.message}`));
   }
 }
-  
+
+export const completedRoutineProgress = (routine) => {
+  return axios.post('/routine/progress/complete', routine)
+      .then(res => res.data);
+}
+
+export const incompleteRoutineProgress = (routine) => {
+  return axios.post('/routine/progress/incomplete', routine)
+      .then(res => res.data);
+}
