@@ -94,7 +94,6 @@
   font-size: 16px;
 }
 
-
 .weekGoalsContainer {
   width: 20%;
   height: 100%;
@@ -106,6 +105,10 @@
 }
 
 .goalModule {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 80px;
   margin: 10px;
   padding: 5px;
   background-color: #ffffffb2;
@@ -130,4 +133,12 @@
   padding: 0;
   background: transparent;
   border: none;
+}
+  
+.progressBar {
+  min-height: 20px;
+  max-height: 20px;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  color: #ff9898;
 }

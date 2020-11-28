@@ -22,6 +22,7 @@
 
   .addRoutine > form {
     margin: 2% 2%;
+    padding-top: 20px;
     width: 500px;
     height: 500px;
     display: flex;
@@ -34,7 +35,14 @@
     text-align: left;
   }
 
+  #routineCategory {
+    box-sizing: content-box;
+    -webkit-appearance: none;
+    display: flex;
+  }
+
   .addRoutine > form > input,
+  .addRoutine #routineCategory,
   .submitRoutine {
     margin: 10px;
     width: 300px;
@@ -46,9 +54,25 @@
     color: #00303F;
   }
 
-  .addRoutine > form > input:focus {
+  .addRoutine > form > input:focus,
+  .addRoutine > form > label > select:focus {
   box-shadow: 0 0 0 2pt #F2B95A;
   outline: none;
+  }
+
+  .category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    margin: 10px 0;
+    padding: 0 15px;
+    color: #00303F;
+  }
+
+  .routineCategory {
+    align-self: center;
+    width: 330px;
   }
 
   .selectionDays {

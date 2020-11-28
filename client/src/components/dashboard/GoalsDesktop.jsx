@@ -5,6 +5,28 @@ import { getAllUserGoals } from '../../actions/goals';
 import Goal from './goals-desktop/Goal';
 
 const GoalsDesktop = ({ getAllUserGoals, goals }) => {
+
+  // const testGoal = [
+  //   {
+  //     name: 'Clean',
+  //     category: 'home',
+  //     amount: 4,
+  //     checked: 2
+  //   },
+  //   {
+  //     name: 'Work out',
+  //     category: 'training',
+  //     amount: 10,
+  //     checked: 6
+  //   },
+  //   {
+  //     name: 'Read',
+  //     category: 'work',
+  //     amount: 3,
+  //     checked: 1
+  //   },
+  // ]
+
   useEffect(() => {
     const { email } = JSON.parse(localStorage.getItem('user'));
     getAllUserGoals(email);
@@ -15,6 +37,8 @@ const GoalsDesktop = ({ getAllUserGoals, goals }) => {
     goalElements={goal} 
     getAllUserGoals={getAllUserGoals} 
   /> );
+
+  // const appendGoalToBoard = () => testGoal?.map((goal) =>  createGoal(goal));
 
   return (
     <div className="weekGoalsContainer">
