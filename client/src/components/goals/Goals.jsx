@@ -11,21 +11,21 @@ const Goals = () => {
   const [category, setCategory] = useState('');
   const [amountOfTimes, setAmountOfTimes] = useState('');
 
-  const handleNameChange = e => setName(e.target.value);
-  const handleCategoryChange = e => setCategory(e.target.value);
-  const handleTimesChange = e => setAmountOfTimes(e.target.value);
+  const handleNameChange = (e) => setName(e.target.value);
+  const handleCategoryChange = (e) => setCategory(e.target.value);
+  const handleTimesChange = (e) => setAmountOfTimes(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const valid = formValidation(e.target, { name, category });
     if (valid) return;
 
-    const { email } = JSON.parse(localStorage.getItem('user'));  
+    const { email } = JSON.parse(localStorage.getItem('user'));
     const goal = {
       name,
       category,
       amountOfTimes,
-      userEmail: email
+      userEmail: email,
     };
 
     try {
@@ -41,7 +41,12 @@ const Goals = () => {
       <h1 className="addGoalMessage">Enter a new weekly goal</h1>
       <form onSubmit={handleSubmit}>
         <input id="goalName" type="text" placeholder="Name" onChange={handleNameChange} />
-        <input id="goalCategory" type="text" placeholder="Category" onChange={handleCategoryChange} />
+        <select id="goalCategory" type="text" placeholder="Category" onChange={handleCategoryChange}>
+          <option>Choose Category</option>
+          <option value="home">Home</option>
+          <option value="work">Work</option>
+          <option value="training">Training</option>
+        </select>
         <input type="number" placeholder="Amount of times" onChange={handleTimesChange} />
         <button type="submit" className="submitGoal">Save</button>
       </form>

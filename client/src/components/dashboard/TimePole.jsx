@@ -1,7 +1,6 @@
 import React from 'react';
 
 const TimePole = () => {
-
   const addZero = (index) => {
     let newNum;
     if (index.toString().length < 2) {
@@ -21,7 +20,7 @@ const TimePole = () => {
   };
 
   return (
-    <div className="timePole"> 
+    <div className="timePole">
       {timePole()}
     </div>
   );

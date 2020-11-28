@@ -1,7 +1,7 @@
 import './Login.css';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from '../../actions/auth';
 
 const Login = () => {

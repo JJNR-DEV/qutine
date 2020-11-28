@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './DashboardMobile.css';
+import { connect } from 'react-redux';
 import TimePole from '../TimePole';
 import getWeekDay from './helper/getWeekDay';
-import { connect } from 'react-redux';
 import { getAllUserDayRoutines } from '../../../actions/routines';
 import { deleteRoutine } from '../../../api/routines';
 
@@ -12,12 +12,14 @@ const DashboardMobile = ({ getAllUserDayRoutines, routines }) => {
   useEffect(() => {
     const { email } = JSON.parse(localStorage.getItem('user'));
     getAllUserDayRoutines(today, email);
-  }, [])
+  }, []);
 
   const [categoryColor, setCategoryColor] = useState([{ home: 'blue' }, { work: 'yellow' }, { training: 'red' }]);
 
   const createHabit = (object) => {
-    const { name, startTime, duration, category } = object;
+    const {
+      name, startTime, duration, category,
+    } = object;
     const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
     const eraseBtn = React.createElement(
       'button',
@@ -41,28 +43,24 @@ const DashboardMobile = ({ getAllUserDayRoutines, routines }) => {
           marginTop: `${(parseInt(startTime) * 56) + 38}px`,
           borderLeft: `${colorMatch[0]} 5px solid`,
           display: 'grid',
-          gridTemplateRows: '90% 10%'
+          gridTemplateRows: '90% 10%',
         },
         key: Math.random(),
       },
       name,
-      eraseBtn
+      eraseBtn,
     );
     return newModule;
   };
 
-  const appendHabitToDay = () => routines.map(routine => {
-    return createHabit(routine);
-  });
+  const appendHabitToDay = () => routines.map((routine) => createHabit(routine));
 
-  const createDay = () => {
-    return React.createElement('div',
-      {
-        className: `weekday ${today}`,
-        key: Math.random(),
-      },
-      [today, appendHabitToDay(today)]);
-  };
+  const createDay = () => React.createElement('div',
+    {
+      className: `weekday ${today}`,
+      key: Math.random(),
+    },
+    [today, appendHabitToDay(today)]);
 
   return (
     <div className="dayHabitsContainer">
@@ -70,10 +68,8 @@ const DashboardMobile = ({ getAllUserDayRoutines, routines }) => {
       {createDay()}
     </div>
   );
-}
+};
 
-const mapStateToProps = state => {
-  return { routines: state.allUserRoutines }
-}
+const mapStateToProps = (state) => ({ routines: state.allUserRoutines });
 
-export default connect(mapStateToProps, { getAllUserDayRoutines })(DashboardMobile)
+export default connect(mapStateToProps, { getAllUserDayRoutines })(DashboardMobile);
