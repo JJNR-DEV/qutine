@@ -3,9 +3,23 @@ import { deleteGoal, updateIncrement } from '../../../api/goals';
 
 const Goal = ({ goalElements, getAllUserGoals }) => {
   const categoryColor = [{ home: 'blue' }, { work: 'yellow' }, { training: 'red' }];
-  const { name, category, amountOfTimes, counterAmount } = goalElements;
+  const { name, category, amountOfTimes, counterAmount, checked } = goalElements;
 
   const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
+
+  const progressBar = (checked, amount, category) => {
+    return React.createElement(
+      'div',
+      {
+        className: 'progressBar',
+        style: {
+          backgroundSize: `${checked / amount * 100}% 100%`,
+          backgroundImage: `linear-gradient(45deg, #fff, ${category})`,
+          border: `1px solid ${category}`,
+        }
+      }
+    )
+  }
 
   const eraseBtn = () => {
     const { email } = JSON.parse(localStorage.getItem('user'));
@@ -26,10 +40,6 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
 
   const incrementBtn = newCounter => {
     const { email } = JSON.parse(localStorage.getItem('user'));
-
-    console.log(newCounter);
-    console.log(amountOfTimes);
-    console.log(newCounter > amountOfTimes);
 
     if (newCounter > amountOfTimes) {
       return React.createElement(
@@ -77,6 +87,8 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
           {incrementBtn(counterAmount + 1)}
         </div> 
       }
+
+      {progressBar(checked, amountOfTimes, colorMatch)}
     </div>
   )
 }
