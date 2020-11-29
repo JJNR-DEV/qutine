@@ -27,8 +27,5 @@ export const deleteRoutine = async (name, today) => {
   }
 };
 
-export const completedRoutineProgress = (routine) => axios.post('/routine/progress/complete', routine)
-  .then((res) => res.data);
-
-export const incompleteRoutineProgress = (routine) => axios.post('/routine/progress/incomplete', routine)
+export const updateRoutineProgress = (routine) => axios.post('/routine/progress', routine)
   .then((res) => res.data);
