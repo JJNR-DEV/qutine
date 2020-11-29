@@ -13,5 +13,5 @@ export const deleteGoal = (name, email) => axios.delete(`/goals/delete-goal/?use
   .catch((err) => console.error(`${err.message}`));
 
 export const updateIncrement = (name, email, newCounter) => axios.put('/goals/increment-goal', { name, email, newCounter })
-  .then(() => console.log('Successfully updated counter!'))
+  .then(() => console.log(newCounter, 'Successfully updated counter!'))
   .catch((err) => console.error(`${err.message}`));

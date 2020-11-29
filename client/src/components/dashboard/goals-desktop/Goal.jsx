@@ -2,9 +2,10 @@ import React from 'react';
 import { deleteGoal, updateIncrement } from '../../../api/goals';
 
 const Goal = ({ goalElements, getAllUserGoals }) => {
-  const categoryColor = [{ home: 'blue' }, { work: 'yellow' }, { training: 'red' }];
+  const categoryColor = [{ home: '#a0a0ff' }, { work: '#ffff7d' }, { training: '#ff9898' }];
+
   const {
-    name, category, amountOfTimes, counterAmount, checked,
+    name, category, amountOfTimes, counterAmount,
   } = goalElements;
 
   const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
@@ -41,7 +42,7 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
   const incrementBtn = (newCounter) => {
     const { email } = JSON.parse(localStorage.getItem('user'));
 
-    if (newCounter > amountOfTimes) {
+    if (newCounter === amountOfTimes) {
       return React.createElement(
         'button',
         {
@@ -70,12 +71,8 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
     );
   };
 
-  const style = {
-    borderLeft: `${colorMatch[0]} 5px solid`,
-  };
-
   return (
-    <div className={`${category} goalModule`} style={style}>
+    <div className={`${category} goalModule`}>
       <div className="goalMain">
         {name}
         {eraseBtn(name)}
@@ -83,17 +80,11 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
       { amountOfTimes !== ''
         && (
         <div className="goalAmount">
-          {counterAmount}
-          {' '}
-          out of
-          {amountOfTimes}
-          {' '}
-          done
+          {`${counterAmount} out of ${amountOfTimes} done this week.`}
           {incrementBtn(counterAmount + 1)}
         </div>
         )}
-
-      {progressBar(checked, amountOfTimes, colorMatch)}
+      {progressBar(counterAmount, amountOfTimes, colorMatch)}
     </div>
   );
 };
