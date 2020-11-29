@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,7 +10,6 @@ import { toast, ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import PrivateRoute from './PrivateRoute';
 import Navbar from './components/navbar/Navbar';
-
 import Dashboard from './components/dashboard/Dashboard';
 import Snackbar from './components/snackbar/Snackbar';
 import Goals from './components/goals/Goals';
@@ -20,7 +19,7 @@ import LandingPage from './components/landingPage/LandingPage';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import 'react-toastify/dist/ReactToastify.css';
-import { completedRoutineProgress, incompleteRoutineProgress } from './api/routines';
+import RoutineNotification from './components/notifications/routineNotifications';
 
 const ENDPOINT = 'http://localhost:4000';
 
@@ -38,41 +37,6 @@ const App = () => {
 
     return () => socket.disconnect();
   }, []);
-
-  const RoutineNotification = ({ closeToast, routine }) => {
-    const mapRoutineProgress = (routineData) => ({
-      routineId: routineData._id,
-      routineName: routineData.name,
-      userEmail: routineData.userEmail,
-    });
-
-    return (
-      <div>
-        Have you completed
-        {' '}
-        {routine.name}
-        ?
-        <div style={{ marginTop: '10px' }}>
-          <button onClick={() => {
-            const routineProgress = mapRoutineProgress(routine);
-            completedRoutineProgress(routineProgress)
-              .finally(() => closeToast());
-          }}
-          >
-            Yes
-          </button>
-          <button onClick={() => {
-            const routineProgress = mapRoutineProgress(routine);
-            incompleteRoutineProgress(routineProgress)
-              .finally(() => closeToast());
-          }}
-          >
-            No
-          </button>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <Router>
