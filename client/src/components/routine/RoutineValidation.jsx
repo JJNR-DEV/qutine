@@ -2,7 +2,7 @@ export const formValidation = (form, routine, selectedDays) => {
   let invalidInput = false;
   let index = 0;
 
-  const newRoutineDetails = form.children[1].children;
+  const newRoutineDetails = form.children[2].children;
 
   for (const property in routine) {
     if (newRoutineDetails[index].classList.contains('invalid-field')) {
@@ -17,10 +17,10 @@ export const formValidation = (form, routine, selectedDays) => {
   }
 
   if (selectedDays.length === 0) {
-    form.children[2].classList.add('invalid-field');
+    form.children[3].classList.add('invalid-field');
     invalidInput = true;
-  } else if (form.children[2].classList.contains('invalid-field')) {
-    form.children[2].classList.remove('invalid-field');
+  } else if (form.children[3].classList.contains('invalid-field')) {
+    form.children[3].classList.remove('invalid-field');
   }
 
   return invalidInput;
