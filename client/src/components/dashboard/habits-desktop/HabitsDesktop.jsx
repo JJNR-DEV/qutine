@@ -1,17 +1,21 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
+
 import TimePole from '../TimePole';
 import { getAllUserRoutines } from '../../../actions/routines';
 import { deleteRoutine } from '../../../api/routines';
+import Routine from '../../routine/Routine';
 import Habit from './habit';
 
 const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
+  const [ displayModal, setDisplayModal ] = useState(false);
   const timeRef = useRef(null);
   const categoryColor = [{ home: '#a0a0ff' }, { work: '#ffff7d' }, { training: '#ff9898' }];
-  
-  // const focus = () => {
-  //   timeRef.current.scrollIntoView();
-  // }
+
+  useEffect(() => {
+    const { email } = JSON.parse(localStorage.getItem('user'));
+    getAllUserRoutines(email);
+  }, []);
 
   const createHeader = (name) => React.createElement(
     'h3',
@@ -81,15 +85,19 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
   }, []);
 
   return (
-    <div className='weekHabitsContainer'>
-      <div className="weekHabits" >
-        <TimePole />
-        {createWeek()}
+    <div className="weekHabitsSection">
+      <button className="createRoutineBtn" onClick={() => setDisplayModal(!displayModal)}>Create Routine</button>
+      <div className="weekHabitsContainer">
+        <div className="weekHabits" >
+          <TimePole />
+          {createWeek()}
+        </div>
+        <Routine show={displayModal} handleClose={() => setDisplayModal(false)} />
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({ routines: state.allUserRoutines });
+const mapStateToProps = state => ({ routines: state.allUserRoutines });
 
 export default connect(mapStateToProps, { getAllUserRoutines })(HabitsDesktop);
