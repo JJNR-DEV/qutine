@@ -42,7 +42,7 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
   const incrementBtn = (newCounter) => {
     const { email } = JSON.parse(localStorage.getItem('user'));
 
-    if (newCounter === amountOfTimes) {
+    if (newCounter > amountOfTimes) {
       return React.createElement(
         'button',
         {
