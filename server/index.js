@@ -45,7 +45,7 @@ io.on("connection", async (socket) => {
     if (interval) {
         clearInterval(interval);
     }
-    interval = setInterval( async () => await sendTodaysRoutineEvents(socket), 10000);
+    interval = setInterval(async () => await sendTodaysRoutineEvents(socket), 10000);
     socket.on("disconnect", async () => {
         console.log("Client disconnected");
         clearInterval(interval);
@@ -54,30 +54,30 @@ io.on("connection", async (socket) => {
 
 
 const sendTodaysRoutineEvents = async (socket) => {
-  try {
-    const now = new Date();
-    const currentDay = getCurrentDay();
-    const routines = await Routine.find({
-      days: {$in: currentDay},
-      activateNotification: true,
-      userEmail: {$ne: null}
-    }).exec();
-    const currentHours = DateTime.local()
-      .toFormat("T");
-    for (const routine of routines) {
-      const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const routineNotification = await RoutineNotification.findOne({
-        routineId: routine._id,
-        created: {$gte: startOfToday}
-      }).exec();
+    try {
+        const now = new Date();
+        const currentDay = getCurrentDay();
+        const routines = await Routine.find({
+            days: {$in: currentDay},
+            activateNotification: true,
+            userEmail: {$ne: null}
+        }).exec();
+        const currentHours = DateTime.local()
+            .toFormat("T");
+        for (const routine of routines) {
+            const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const routineNotification = await RoutineNotification.findOne({
+                routineId: routine._id,
+                created: {$gte: startOfToday}
+            }).exec();
 
-      if (!routineNotification && currentHours === routine.startTime) {
-        socket.emit(`routine-notification/${routine.userEmail}`, routine);
-      }
+            if (!routineNotification && currentHours === routine.startTime) {
+                socket.emit(`routine-notification/${routine.userEmail}`, routine);
+            }
+        }
+    } catch (error) {
+        console.error("Error ", error);
     }
-  } catch (error) {
-    console.error("Error ", error);
-  }
 };
 
 
