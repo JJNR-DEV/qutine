@@ -22,13 +22,15 @@ const Navbar = () => {
 
     return (
         <div className="navBar">
-            <ul>
+            <ul style={{marginLeft: '30px'}}>
                 {!isLoggedIn && <li><NavLink className="navLink" exact to="/">Home</NavLink></li>}
                 {isLoggedIn && <li><NavLink className="navLink" exact to="/dashboard">Dashboard</NavLink></li>}
+
             </ul>
-            <div style={{marginLeft: 'auto'}}>
+
+            <ul style={{marginRight: '30px'}}>
                 {isLoggedIn ? (
-                    <>
+                    <li style={{float: 'right'}}>
                         <span>{user.email}</span>
                         <button className="small-btn"
                                 type="button"
@@ -36,9 +38,9 @@ const Navbar = () => {
                         >
                             Logout
                         </button>
-                    </>
+                    </li>
                 ) : (
-                    <button className="logoutButton"
+                    <button className="small-btn"
                             type="button"
                             onClick={() => {
                                 history.push('/login');
@@ -47,7 +49,8 @@ const Navbar = () => {
                         Login
                     </button>
                 )}
-            </div>
+
+            </ul>
         </div>
     );
 };
