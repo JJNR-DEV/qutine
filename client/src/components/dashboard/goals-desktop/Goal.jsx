@@ -7,7 +7,6 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
   const {
     name, category, amountOfTimes, counterAmount,
   } = goalElements;
-  console.log(counterAmount)
 
   const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
 

@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import TimePole from './TimePole';
-import { getAllUserRoutines } from '../../actions/routines';
-import { deleteRoutine } from '../../api/routines';
+import TimePole from '../TimePole';
+import { getAllUserRoutines } from '../../../actions/routines';
+import { deleteRoutine } from '../../../api/routines';
+import Habit from './habit';
 
 const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
-  useEffect(() => {
-    const { email } = JSON.parse(localStorage.getItem('user'));
-    getAllUserRoutines(email);
-  }, []);
-  const [categoryColor, setCategoryColor] = useState([{ home: '#a0a0ff' }, { work: '#ffff7d' }, { training: '#ff9898' }]);
+  const timeRef = useRef(null);
+  const categoryColor = [{ home: '#a0a0ff' }, { work: '#ffff7d' }, { training: '#ff9898' }];
+  
+  // const focus = () => {
+  //   timeRef.current.scrollIntoView();
+  // }
 
   const createHeader = (name) => React.createElement(
     'h3',
@@ -35,7 +37,7 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
     );
   };
 
-  const createHabit = (object, day) => {
+  const createHabit = (object, day, firstHabit) => {
     const {
       name, startTime, duration, category,
     } = object;
@@ -45,11 +47,12 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
       {
         className: `habitModule ${category}`,
         style: {
-          height: `${(parseInt(duration) * 56 - 3)}px`,
-          marginTop: `${(parseInt(startTime) * 56) + 39}px`,
+          height: `${(parseInt(duration) * 58 - 4)}px`,
+          marginTop: `${(parseInt(startTime) * 58) + 88}px`,
           overflow: 'hidden',
           backgroundColor: colorMatch,
         },
+        ref: firstHabit ? timeRef : null,
         key: Math.random(),
       },
       createRemoveButton(name, day),
@@ -58,6 +61,7 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
     return newModule;
   };
 
+  let firstHabit = false;
   const appendHabitToWeek = (divDay) => routines.map((routine) => routine.days.map((day) => {
     if (day === divDay) {
       return createHabit(routine, day);
@@ -67,18 +71,21 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
 
   const createWeek = () => {
     const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    return weekDays.map((day) => React.createElement('div',
-      {
-        className: `weekday ${day}`,
-        key: day,
-      },
-      [day, appendHabitToWeek(day)]));
+    return weekDays.map((day) => <Habit day={day} appendHabitToWeek={appendHabitToWeek} key={day} />);
   };
 
+  useEffect(() => {
+    const { email } = JSON.parse(localStorage.getItem('user'));
+    getAllUserRoutines(email);
+    // focus();
+  }, []);
+
   return (
-    <div className="weekHabitsContainer">
-      <TimePole />
-      {createWeek()}
+    <div className='weekHabitsContainer'>
+      <div className="weekHabits" >
+        <TimePole />
+        {createWeek()}
+      </div>
     </div>
   );
 };
