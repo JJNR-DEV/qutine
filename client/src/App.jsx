@@ -20,6 +20,7 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import 'react-toastify/dist/ReactToastify.css';
 import RoutineNotification from './components/notifications/routineNotifications';
+import {aknowledgeNotification} from "./api/routines";
 
 const ENDPOINT = 'http://localhost:4000';
 
@@ -32,6 +33,7 @@ const App = () => {
     if (isLoggedIn) {
       socket.on(`routine-notification/${user.email}`, (routine) => {
         toast(<RoutineNotification routine={routine} />);
+        aknowledgeNotification(routine);
       });
     }
 

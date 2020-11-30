@@ -29,3 +29,6 @@ export const deleteRoutine = async (name, today) => {
 
 export const updateRoutineProgress = (routine) => axios.post('/routine/progress', routine)
   .then((res) => res.data);
+
+export const aknowledgeNotification = (routine) => axios.post('/routines/notification', routine)
+  .then((res) => res.data);

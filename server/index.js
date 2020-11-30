@@ -73,13 +73,6 @@ const sendTodaysRoutineEvents = async (socket) => {
 
       if (!routineNotification && currentHours === routine.startTime) {
         socket.emit(`routine-notification/${routine.userEmail}`, routine);
-        const newRoutineNotification = new RoutineNotification({
-          routineId: routine._id,
-          routineName: routine.name,
-          created: new Date(),
-          userEmail: routine.userEmail,
-        });
-        await newRoutineNotification.save();
       }
     }
   } catch (error) {

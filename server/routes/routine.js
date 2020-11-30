@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Routine = require('../model/Routine');
+const RoutineNotification = require('../model/RoutineNotification');
 
 router.post('/new-routine', async (req, res) => {
     const routine = new Routine({
@@ -17,6 +18,23 @@ router.post('/new-routine', async (req, res) => {
     } catch({ message }) {
         res.status(500).send(`Something went wrong: ${message}`)
     }
+})
+
+router.post('/notification', async (req, res) => {
+  const {_id, name, userEmail} = req.body;
+  const newRoutineNotification = new RoutineNotification({
+    routineId: _id,
+    routineName: name,
+    created: new Date(),
+    userEmail: userEmail,
+  });
+
+  try {
+    await newRoutineNotification.save();
+    res.status(201).send(`You routine task "${req.body.name}" has been successfully added!`)
+  } catch({ message }) {
+    res.status(500).send(`Something went wrong: ${message}`)
+  }
 })
 
 // GET all routines
