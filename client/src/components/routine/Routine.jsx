@@ -21,11 +21,13 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
   const [category, setCategory] = useState('');
   const [sTime, setSTime] = useState('');
   const [duration, setDuration] = useState('');
+  const [enableNotification, setEnableNotification] = useState(false);
 
   const handleNameChange = e => setName(e.target.value);
   const handleCategoryChange = e => setCategory(e.target.value);
   const handleSTime = e => setSTime(e.target.value); 
-  const handleDuration = e => setDuration(e.target.value); 
+  const handleDuration = e => setDuration(e.target.value);
+  const handleEnableNotification = e => setEnableNotification(val => !val);
 
   // const history = useHistory();
 
@@ -46,6 +48,7 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
       duration,
       days: selectedDays.map((day) => day.value),
       userEmail: email,
+      activateNotification: enableNotification
     };
 
     try {
@@ -73,7 +76,11 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
             <option value="work">Work</option>
             <option value="training">Training</option>
           </select>
-        </div>        
+        </div>
+        <label className="checkbox-container">Enable notification
+          <input type="checkbox" checked={enableNotification} onChange={handleEnableNotification} />
+          <span className="checkmark"/>
+        </label>
         <div className="selectionDays">
           <span>Choose Days: </span>
           <ul>
