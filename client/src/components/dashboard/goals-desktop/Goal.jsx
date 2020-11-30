@@ -7,6 +7,7 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
   const {
     name, category, amountOfTimes, counterAmount,
   } = goalElements;
+  console.log(counterAmount)
 
   const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
 
@@ -16,7 +17,7 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
       className: 'progressBar',
       style: {
         backgroundSize: `${checked / amount * 100}% 100%`,
-        backgroundImage: `linear-gradient(45deg, #fff, ${category})`,
+        backgroundImage: `linear-gradient(45deg, ${category}, ${category})`,
         border: `1px solid ${category}`,
       },
     },
