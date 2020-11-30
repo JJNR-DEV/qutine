@@ -1,15 +1,27 @@
-export const formValidation = (...args) => {
+export const formValidation = (form, routine, selectedDays) => {
   let invalidInput = false;
-  args.forEach((field) => {
-    console.log(field);
-    if (field.classList.contains('invalid-field')) {
-      field.classList.remove('invalid-field');
+  let index = 0;
+
+  const newRoutineDetails = form.children[2].children;
+
+  for (const property in routine) {
+    if (newRoutineDetails[index].classList.contains('invalid-field')) {
+      newRoutineDetails[index].classList.remove('invalid-field');
     }
-    if (field.value === '') {
-      field.classList.add('invalid-field');
+
+    if (routine[property] === '') {
+      newRoutineDetails[index].classList.add('invalid-field');
       invalidInput = true;
     }
-  });
+    index += 1;
+  }
+
+  if (selectedDays.length === 0) {
+    form.children[3].classList.add('invalid-field');
+    invalidInput = true;
+  } else if (form.children[3].classList.contains('invalid-field')) {
+    form.children[3].classList.remove('invalid-field');
+  }
 
   return invalidInput;
 };

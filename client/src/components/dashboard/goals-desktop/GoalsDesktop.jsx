@@ -1,31 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getAllUserGoals } from '../../../actions/goals';
 
+import { getAllUserGoals } from '../../../actions/goals';
+import Goals from '../../goals/Goals';
 import Goal from './Goal';
 
 const GoalsDesktop = ({ getAllUserGoals, goals }) => {
-
-  // const testGoal = [
-  //   {
-  //     name: 'Clean',
-  //     category: 'home',
-  //     amount: 4,
-  //     checked: 2
-  //   },
-  //   {
-  //     name: 'Work out',
-  //     category: 'training',
-  //     amount: 10,
-  //     checked: 6
-  //   },
-  //   {
-  //     name: 'Read',
-  //     category: 'work',
-  //     amount: 3,
-  //     checked: 1
-  //   },
-  // ]
+  const [ displayModal, setDisplayModal ] = useState(false);
 
   useEffect(() => {
     const { email } = JSON.parse(localStorage.getItem('user'));
@@ -38,12 +19,15 @@ const GoalsDesktop = ({ getAllUserGoals, goals }) => {
     getAllUserGoals={getAllUserGoals} 
   /> );
 
-  // const appendGoalToBoard = () => testGoal?.map((goal) =>  createGoal(goal));
-
   return (
-    <div className="weekGoalsContainer">
-      Weekly Goals
-      {appendGoalToBoard()}
+    <div className="weekGoalsSection">
+      <button className="createGoalBtn" onClick={() => setDisplayModal(!displayModal)}>Create Goal</button>
+      <div className="weekGoalsContainer">
+        Weekly Goals
+        {appendGoalToBoard()}
+      </div>
+
+      <Goals show={displayModal} handleClose={() => setDisplayModal(false)} />
     </div>
   );
 };

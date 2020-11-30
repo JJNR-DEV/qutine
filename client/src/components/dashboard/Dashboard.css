@@ -6,6 +6,13 @@
   background-image: linear-gradient(#F0EFEB, #ffffff);
 }
 
+.weekHabitsSection {
+  max-width: 75%;
+  width: 75%;
+  margin: 5% 0 0 0;
+  text-align: right;
+}
+
 .weekHabitsContainer {
   position: relative;
   max-width: 75%;
@@ -19,16 +26,22 @@
   overflow-y: scroll;
 }
 
-.weekHabits{
-  position: absolute;
-  width: 100%;
-  margin-top: -3%;
+/*
+.weekHabitsContainer {
   display: flex;
+  text-align: center;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   min-height: 1500px;
   max-height: 1500px;
+*/
+
+.weekHabits{
+  position: absolute;
+  width: 100%;
+  margin-top: -3%;
+  display: flex;
 }
 
 .timePole {
@@ -132,8 +145,36 @@
   font-size: 16px;
 }
 
-.weekGoalsContainer {
+.weekGoalsSection {
   width: 20%;
+  margin: 5% 0 0 0;
+}
+
+.createGoalBtn {
+  padding: 6px;
+  background-color: #F2B95A;
+  border: none;
+  border-radius: 20em;
+  margin: 15px 0;
+  width: 100%;
+  font-size: large;
+  font-weight: bold;
+}
+
+.createRoutineBtn {
+  padding: 6px;
+  background-color: #f1f0ec;
+  border: none;
+  border-radius: 20em;
+  margin: 15px 0;
+  width: 177px;
+  font-size: large;
+  font-weight: bold;
+  position: relative;
+  right: 7%;
+}
+
+.weekGoalsContainer {
   height: 1000px;
   min-height: 1000px;
   margin: 9% 0 0 0;
