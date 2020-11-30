@@ -65,7 +65,6 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
     return newModule;
   };
 
-  let firstHabit = false;
   const appendHabitToWeek = (divDay) => routines.map((routine) => routine.days.map((day) => {
     if (day === divDay) {
       return createHabit(routine, day);
