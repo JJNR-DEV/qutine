@@ -7,12 +7,12 @@ import { deleteRoutine } from '../../../api/routines';
 import Routine from '../../routine/Routine';
 import Habit from './Habit';
 import Modal from "../../modal/Modal";
+import RoutineDetails from "../../routine/RoutineDetails";
 
 const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
   const [displayModal, setDisplayModal] = useState(false);
   const timeRef = useRef(null);
   const categoryColor = [{ home: '#a0a0ff' }, { work: '#ffff7d' }, { training: '#ff9898' }];
-  const categoryColorMap = [{ type: 'home', color: '#a0a0ff' }, {type:'work', color: '#ffff7d' }, { type: 'training', color: '#ff9898' }];
   const [open, setOpen] = useState(false);
   const [selectedRoutine, setSelectedRoutine] = useState(null);
 
@@ -43,10 +43,6 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
       },
       <p>&#10005;</p>,
     );
-  };
-
-  const findCategoryColor = (category) => {
-    return categoryColorMap.filter(val =>  val.type === category).map(val => val.color);
   };
 
   const createHabit = (object, day, firstHabit) => {
@@ -92,21 +88,8 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
 
   return (
     <div className="weekHabitsSection">
-      {/*<button id="open-button"  onClick={() => setOpen(true)}>Open Button</button>*/}
       {selectedRoutine && <Modal open={open} toggle={setOpen}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <h1 style={{ verticalAlign: 'middle' }}>{selectedRoutine.name}
-            <span className="md-chip"
-                  style={{ background: findCategoryColor(selectedRoutine.category) }}>{selectedRoutine.category}</span>
-          </h1>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam,
-            doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius
-            assumenda, cumque.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam,
-            doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius
-            assumenda, cumque.</p>
-        </div>
+        <RoutineDetails routine={selectedRoutine}/>
       </Modal>}
       <button className="createRoutineBtn" onClick={() => setDisplayModal(!displayModal)}>Create Routine</button>
       <div className="weekHabitsContainer">
