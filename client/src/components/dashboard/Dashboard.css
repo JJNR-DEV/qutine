@@ -8,26 +8,21 @@
 
 .weekHabitsSection {
   position: relative;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  max-width: 75%;
   width: 75%;
-  min-height: 60%;
-  max-height: 60%;
-  margin: 14% 0 5% 0;
+  margin: 5% 5% 20px 0;
 }
 
 .createRoutineBtn {
   position: absolute;
-  padding: 6px;
+  padding: 2px;
   background-color: #f1f0ec;
   border: none;
   border-radius: 20em;
-  width: 200px;
-  height: 50px;
+  width: 100px;
+  height: 40px;
+  margin: 3% 0 0 50%;
+  right: 100px;
   align-self: flex-end;
-  margin: -20% 0 0 0;
   z-index: 40;
 }
 
@@ -35,8 +30,7 @@
   position: relative;
   min-height: 100%;
   max-height: 100%;
-  display: flex;
-  justify-content: center;
+  margin: 12% 0 5% 0;
   border-radius: 10px;
   color: #00303F;
   overflow-y: scroll;
@@ -45,10 +39,11 @@
 .weekHabits{
   position: absolute;
   width: 100%;
+  min-height: 1500px;
+  max-height: 1500px;
   margin-top: -3%;
   margin-left: 7%;
   display: flex;
-  overflow-x: hide;
 }
 
 .timePole {
@@ -56,7 +51,7 @@
   text-align: left;
   min-height: 1500px;
   max-height: 1500px;
-  width: 80%;
+  width: 63vw;
   padding: 1% 8% 0 0;
   margin-top: 57px;
   margin-left: -4%;
@@ -65,7 +60,7 @@
   flex-direction: column;
   pointer-events: none;
   z-index: 10;
-  overflow-x: hide;
+  overflow-x: hidden;
 }
 
 .time {
@@ -83,8 +78,8 @@
   margin-top: 10px;
   border-radius: 10px 10px 0 0;
   display: flex;
-  border: #fff 1px solid;
   justify-content: center;
+  border: #fff 1px solid;
 }
 
 #Sunday {
