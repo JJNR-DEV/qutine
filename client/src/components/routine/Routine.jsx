@@ -1,57 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import './Routine.css';
-import { useHistory } from 'react-router-dom';
 import { createRoutine } from '../../api/routines';
 import { formValidation } from './RoutineValidation';
+import { getAllUserRoutines } from '../../actions/routines';
 
-const Routine = () => {
-  const history = useHistory();
+const Routine = ({ handleClose, show, getAllUserRoutines }) => {
+  const showHideClassName = show ? "addRoutine modal display-block" : "addRoutine modal display-none";
+  const buttonStyle = {
+    position: 'relative',
+    top: '-10px',
+    backgroundColor: '#fff',
+    borderRadius: '1em',
+    right: '-45%',
+    fontWeight: 'bold',
+    padding: '2px 4px'
+  }
 
-  const handleSubmit = async (e) => {
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('');
+  const [sTime, setSTime] = useState('');
+  const [duration, setDuration] = useState('');
+
+  const handleNameChange = e => setName(e.target.value);
+  const handleCategoryChange = e => setCategory(e.target.value);
+  const handleSTime = e => setSTime(e.target.value); 
+  const handleDuration = e => setDuration(e.target.value); 
+
+  // const history = useHistory();
+
+  const handleSubmit = async e => {
     e.preventDefault();
-
-    const name = document.querySelector('#routineName');
-    const category = document.querySelector('#routineCategory');
-    const sTime = document.querySelector('#routineStime');
-    const duration = document.querySelector('#routineDuration');
-    const valid = formValidation(name, category, sTime, duration);
-    if (valid) return;
-
     const weekDays = [...document.querySelectorAll('.selectionDays li input')];
     const selectedDays = weekDays.filter((day) => day.checked);
+
+    const valid = formValidation(e.target, { name, sTime, duration, category }, selectedDays);
+    if (valid) return;
 
     const { email } = JSON.parse(localStorage.getItem('user'));
 
     const routine = {
-      name: name.value,
-      category: category.value,
-      sTime: sTime.value,
-      duration: duration.value,
+      name,
+      category,
+      sTime,
+      duration,
       days: selectedDays.map((day) => day.value),
       userEmail: email,
     };
 
     try {
+      const { email } = JSON.parse(localStorage.getItem('user'));
       await createRoutine(routine);
-      history.push('/dashboard');
+      getAllUserRoutines(email);
+      handleClose();
     } catch (err) {
       console.error(err.message);
     }
   };
 
   return (
-    <div className="addRoutine">
-      <h1 className="addRoutineMessage">Enter a routine for your week</h1>
+    <div className={showHideClassName}>
       <form onSubmit={handleSubmit}>
-        <input id="routineName" type="text" placeholder="Name" />
-        <input id="routineStime" type="time" placeholder="Start Time" />
-        <input id="routineDuration" type="time" placeholder="Duration" />
-        <select id="routineCategory">
-          <option>Choose Category</option>
-          <option value="home">Home</option>
-          <option value="work">Work</option>
-          <option value="training">Training</option>
-        </select>
+        <button onClick={handleClose} style={buttonStyle} type="button">&#10005;</button>
+        <h1 className="addRoutineMessage">Enter a routine for your week</h1>
+        <div className="newRoutineDetails">
+          <input id="routineName" type="text" placeholder="Name" onChange={handleNameChange} />
+          <input id="routineStime" type="time" placeholder="Start Time" onChange={handleSTime} />
+          <input id="routineDuration" type="time" placeholder="Duration" onChange={handleDuration} />
+          <select id="routineCategory" onChange={handleCategoryChange}>
+            <option>Choose Category</option>
+            <option value="home">Home</option>
+            <option value="work">Work</option>
+            <option value="training">Training</option>
+          </select>
+        </div>        
         <div className="selectionDays">
           <span>Choose Days: </span>
           <ul>
@@ -98,4 +120,4 @@ const Routine = () => {
   );
 };
 
-export default Routine;
+export default connect(null, { getAllUserRoutines })(Routine);

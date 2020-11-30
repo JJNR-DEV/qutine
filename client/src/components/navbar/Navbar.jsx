@@ -16,12 +16,6 @@ const Navbar = () => {
         <li>
           {isLoggedIn && <NavLink className="navLink" exact to="/dashboard">Dashboard</NavLink>}
         </li>
-        <li>
-          {isLoggedIn && <NavLink className="navLink" to="/routine">Create Routine</NavLink>}
-        </li>
-        <li>
-          {isLoggedIn && <NavLink className="navLink" to="/goal">Create Goal</NavLink>}
-        </li>
       </ul>
       {isLoggedIn && (
         <>
