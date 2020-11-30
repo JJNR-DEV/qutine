@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getAllUserGoals } from '../../actions/goals';
+import { getAllUserGoals } from '../../../actions/goals';
 
-import Goal from './goals-desktop/Goal';
+import Goal from './Goal';
 
 const GoalsDesktop = ({ getAllUserGoals, goals }) => {
 

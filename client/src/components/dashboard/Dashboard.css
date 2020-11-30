@@ -1,45 +1,83 @@
 .dashboard {
   display: flex;
   flex-direction: row;
+  overflow-y: hidden;
+  max-height: 93vh;
+  background-image: linear-gradient(#F0EFEB, #ffffff);
 }
 
 .weekHabitsContainer {
+  position: relative;
   max-width: 75%;
   width: 75%;
+  min-height: 60%;
+  max-height: 60%;
   display: flex;
-  margin: 10% 0 0 0;
+  margin: 12% 0 5% 0;
+  border-radius: 10px;
+  color: #00303F;
+  overflow-y: scroll;
+}
+
+.weekHabits{
+  position: absolute;
+  width: 100%;
+  margin-top: -3%;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: #00303F;
+  min-height: 1500px;
+  max-height: 1500px;
+  transform: ;
 }
 
 .timePole {
   position: absolute;
   text-align: left;
-  min-height: 1000px;
-  max-height: 1000px;
+  min-height: 1500px;
+  max-height: 1500px;
   width: 67vw;
-  padding: 40px 50px 0 0;
+  padding: 1% 8% 0 0;
+  margin-top: 57px;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  z-index: 10;
 }
 
 .time {
   border-bottom: #fff 1px solid;
+  min-height: 16px;
+  max-height: 16px;
   font-size: 12px;
   margin: 20px 0;
 }
 
 .weekday {
   width: 12%;
-  min-height: 1000px;
-  max-height: 1000px;
-  background: linear-gradient(#F0EFEB, #ffffff);
-  margin: 0 .1%;
-  padding: 15px 0;
+  min-height: 1500px;
+  max-height: 1500px;
+  margin-top: 10px;
   border-radius: 10px 10px 0 0;
+  display: flex;
+  border: #fff 1px solid;
+  justify-content: center;
+}
+
+#Sunday {
+  border-right: none;
+}
+
+.weekdayName {
+  position: fixed;
+  background-color: #00303F;
+  width: 9%;
+  margin-top: -20px;
+  padding: 15px 0 20px 0;
+  border-radius: 10px 10px 0 0;
+  color: white;
+  z-index: 20;
 }
 
 .habitModule {
@@ -47,15 +85,15 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 8.8%;
+  width: 12%;
   border-radius: 5px;
-  margin-left: 2px;
   background: white;
   box-shadow: 0 0 4px #c9c9c9;
   color: #00303F;
   font-size: 16px;
   font-weight: 500;
   word-wrap: break-word;
+  z-index: 15;
 }
 
 .habitModule h3 {
