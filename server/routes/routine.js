@@ -9,7 +9,8 @@ router.post('/new-routine', async (req, res) => {
         startTime: req.body.sTime,
         duration: req.body.duration,
         days: req.body.days,
-        userEmail: req.body.userEmail
+        userEmail: req.body.userEmail,
+        activateNotification: req.body.activateNotification,
     })
 
     try {

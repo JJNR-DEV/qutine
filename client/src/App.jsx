@@ -1,9 +1,9 @@
 import './App.css';
 import React, { useEffect } from 'react';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
+    BrowserRouter as Router,
+    Switch,
+    Route,
 } from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
 import { toast, ToastContainer } from 'react-toastify';
@@ -20,70 +20,70 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import 'react-toastify/dist/ReactToastify.css';
 import RoutineNotification from './components/notifications/routineNotifications';
-import {aknowledgeNotification} from "./api/routines";
+import { aknowledgeNotification } from "./api/routines";
 
 const ENDPOINT = 'http://localhost:4000';
 
 const App = () => {
-  const { isLoggedIn, user } = useSelector((state) => state.auth);
+    const {isLoggedIn, user} = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
+    useEffect(() => {
+        const socket = socketIOClient(ENDPOINT);
 
-    if (isLoggedIn) {
-      socket.on(`routine-notification/${user.email}`, (routine) => {
-        toast(<RoutineNotification routine={routine} />);
-        aknowledgeNotification(routine);
-      });
-    }
+        if (isLoggedIn) {
+            socket.on(`routine-notification/${user.email}`, (routine) => {
+                toast(<RoutineNotification routine={routine}/>);
+                aknowledgeNotification(routine);
+            });
+        }
 
-    return () => socket.disconnect();
-  }, []);
+        return () => socket.disconnect();
+    }, []);
 
-  return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <Snackbar />
-        <ToastContainer
-          position="top-right"
-          autoClose={false}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <Switch>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <PrivateRoute path="/dashboard">
-            <Dashboard />
-          </PrivateRoute>
+    return (
+        <Router>
+            <div className="App">
+                <Navbar/>
+                <Snackbar/>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={false}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
+                <Switch>
+                    <Route path="/register">
+                        <Register/>
+                    </Route>
+                    <Route path="/login">
+                        <Login/>
+                    </Route>
+                    <PrivateRoute path="/dashboard">
+                        <Dashboard/>
+                    </PrivateRoute>
 
-          <PrivateRoute path="/mobile-dashboard">
-            <DashboardMobile />
-          </PrivateRoute>
+                    <PrivateRoute path="/mobile-dashboard">
+                        <DashboardMobile/>
+                    </PrivateRoute>
 
-          <PrivateRoute path="/routine">
-            <Routine />
-          </PrivateRoute>
-          <PrivateRoute path="/goal">
-            <Goals />
-          </PrivateRoute>
-          <Route path="/">
-            <LandingPage />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+                    <PrivateRoute path="/routine">
+                        <Routine/>
+                    </PrivateRoute>
+                    <PrivateRoute path="/goal">
+                        <Goals/>
+                    </PrivateRoute>
+                    <Route path="/">
+                        <LandingPage/>
+                    </Route>
+                </Switch>
+            </div>
+        </Router>
+    );
 };
 
 export default App;
