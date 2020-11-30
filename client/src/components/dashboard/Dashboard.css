@@ -8,8 +8,12 @@
 
 .weekHabitsSection {
   position: relative;
-  width: 75%;
-  margin: 5% 5% 20px 0;
+  width: 70%;
+  margin: 5% 5% 0 0;
+  padding-bottom: 12%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .createRoutineBtn {
@@ -20,29 +24,29 @@
   border-radius: 20em;
   width: 100px;
   height: 40px;
-  margin: 3% 0 0 50%;
-  right: 100px;
+  margin: 3.5% 0 0 -5px;
   align-self: flex-end;
   z-index: 40;
+  box-shadow: 0 0 5px #b4b4b4;
 }
 
 .weekHabitsContainer {
   position: relative;
   min-height: 100%;
-  max-height: 100%;
-  margin: 12% 0 5% 0;
+  margin: 13.5% 0 5% 0;
   border-radius: 10px;
   color: #00303F;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-.weekHabits{
+.weekHabits {
   position: absolute;
-  width: 100%;
+  width: 95%;
   min-height: 1500px;
   max-height: 1500px;
   margin-top: -3%;
-  margin-left: 7%;
+  padding: 0 0 5% 5%;
   display: flex;
 }
 
@@ -51,12 +55,10 @@
   text-align: left;
   min-height: 1500px;
   max-height: 1500px;
-  width: 63vw;
-  padding: 1% 8% 0 0;
-  margin-top: 57px;
-  margin-left: -4%;
+  width: 67vw;
+  padding-left: 2%;
+  margin-top: 20px;
   display: flex;
-  justify-content: flex-start;
   flex-direction: column;
   pointer-events: none;
   z-index: 10;
@@ -72,14 +74,14 @@
 }
 
 .weekday {
-  width: 12%;
+  width: 100%;
   min-height: 1500px;
   max-height: 1500px;
-  margin-top: 10px;
   border-radius: 10px 10px 0 0;
   display: flex;
   justify-content: center;
   border: #fff 1px solid;
+  border-bottom: none;
 }
 
 #Sunday {
@@ -89,7 +91,7 @@
 .weekdayName {
   position: fixed;
   background-color: #00303F;
-  width: 9%;
+  width: 9.4%;
   margin-top: -1%;
   padding: 15px 0 20px 0;
   border-radius: 10px 10px 0 0;
@@ -102,7 +104,7 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 12%;
+  width: 13.3%;
   border-radius: 5px;
   background: white;
   box-shadow: 0 0 4px #c9c9c9;
@@ -151,24 +153,30 @@
 
 .weekGoalsSection {
   width: 20%;
-  margin: 5% 0 0 0;
+  margin: 7.5% 0 0 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .createGoalBtn {
-  padding: 6px;
-  background-color: #F2B95A;
+  position: absolute;
+  padding: 2px;
+  background-color: #f1f0ec;
   border: none;
   border-radius: 20em;
-  margin: 15px 0;
-  width: 100%;
-  font-size: large;
-  font-weight: bold;
+  width: 100px;
+  height: 40px;
+  margin: 0% 0 0 50%;
+  right: 100px;
+  align-self: flex-start;
+  z-index: 40;
+  box-shadow: 0 0 5px #b4b4b4;
 }
 
 .weekGoalsContainer {
   height: 1000px;
   min-height: 1000px;
-  margin: 9% 0 0 0;
+  margin: 19% 0 0 0;
   padding: 20px 0;
   background: linear-gradient(#F2B95A, #ffffff);
   border-radius: 10px 10px 0 0;
