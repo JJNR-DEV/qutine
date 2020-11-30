@@ -43,6 +43,10 @@ const routineSchema = new mongoose.Schema({
     required: true,
     min: 4,
     max: 100
+  },
+  activateNotification: {
+    type: Boolean,
+    default: false
   }
 });
 

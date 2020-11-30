@@ -1,43 +1,13 @@
 import React from 'react';
-import { updateRoutineProgress } from '../../api/routines';
 
-const RoutineNotification = ({ closeToast, routine }) => {
-  const mapRoutineProgress = (routineData) => ({
-    routineId: routineData._id,
-    routineName: routineData.name,
-    userEmail: routineData.userEmail,
-  });
+const RoutineNotification = ({ routine }) => {
 
   return (
-    <div>
-      Have you completed
+    <div className="notification">
+      It's time for
       {' '}
       {routine.name}
-      ?
-      <div style={{ marginTop: '10px' }}>
-        <button
-          type="button"
-          onClick={() => {
-            const routineProgress = mapRoutineProgress(routine);
-            routineProgress.status = 'COMPLETE';
-            updateRoutineProgress(routineProgress)
-              .finally(() => closeToast());
-          }}
-        >
-          Yes
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            const routineProgress = mapRoutineProgress(routine);
-            routineProgress.status = 'INCOMPLETE';
-            updateRoutineProgress(routineProgress)
-              .finally(() => closeToast());
-          }}
-        >
-          No
-        </button>
-      </div>
+      !
     </div>
   );
 };
