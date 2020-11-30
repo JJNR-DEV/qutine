@@ -2,6 +2,17 @@
   text-align: center;
 }
 
+.md-chip {
+  display: inline-block;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 32px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+.md-chip:hover {
+  background: #ccc;
+}
 
 .small-btn {
   background-color: #F2B95A;
