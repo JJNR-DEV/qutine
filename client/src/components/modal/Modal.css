@@ -1,6 +1,15 @@
 @import 'https://fonts.googleapis.com/css?family=Prompt:400,700';
 
+.reset {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .qutine-modal {
+    margin: inherit;
+    padding: inherit;
+    box-sizing: inherit;
     /* This way it could be display flex or grid or whatever also. */
     display: block;
 
@@ -34,6 +43,9 @@
 }
 
 .modal-overlay {
+    box-sizing: inherit;
+    margin: inherit;
+    padding: inherit;
     position: fixed;
     top: 0;
     left: 0;
@@ -45,6 +57,9 @@
 }
 
 .modal-guts {
+    box-sizing: inherit;
+    margin: inherit;
+    padding: inherit;
     position: absolute;
     top: 0;
     left: 0;
@@ -71,8 +86,3 @@
     /*font-size: 1.3rem;*/
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
