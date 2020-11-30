@@ -8,7 +8,10 @@ const goal = require('./routes/goal');
 const routine = require('./routes/routine');
 const routineProgress = require('./routes/routineprogress');
 const http = require("http");
-const {sendTodaysRoutineEvents} = require("./notifications/sendTodaysRoutineEvents");
+const {getCurrentDay} = require("./utils/date-parser");
+const Routine = require('./model/Routine');
+const RoutineNotification = require('./model/RoutineNotification');
+const {DateTime} = require('luxon');
 
 mongoose.connect(process.env.DB_CONNECT, {
     useUnifiedTopology: true,
@@ -37,16 +40,52 @@ const io = require("socket.io")(server, {
 
 let interval;
 
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
     console.log("New client connected");
     if (interval) {
         clearInterval(interval);
     }
-    interval = setInterval(() => sendTodaysRoutineEvents(socket), 10000);
-    socket.on("disconnect", () => {
+    interval = setInterval( async () => await sendTodaysRoutineEvents(socket), 10000);
+    socket.on("disconnect", async () => {
         console.log("Client disconnected");
         clearInterval(interval);
     });
 });
+
+
+const sendTodaysRoutineEvents = async (socket) => {
+  try {
+    const now = new Date();
+    const currentDay = getCurrentDay();
+    const routines = await Routine.find({
+      days: {$in: currentDay},
+      activateNotification: true,
+      userEmail: {$ne: null}
+    }).exec();
+    const currentHours = DateTime.local()
+      .toFormat("T");
+    for (const routine of routines) {
+      const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const routineNotification = await RoutineNotification.findOne({
+        routineId: routine._id,
+        created: {$gte: startOfToday}
+      }).exec();
+
+      if (!routineNotification && currentHours === routine.startTime) {
+        socket.emit(`routine-notification/${routine.userEmail}`, routine);
+        const newRoutineNotification = new RoutineNotification({
+          routineId: routine._id,
+          routineName: routine.name,
+          created: new Date(),
+          userEmail: routine.userEmail,
+        });
+        await newRoutineNotification.save();
+      }
+    }
+  } catch (error) {
+    console.error("Error ", error);
+  }
+};
+
 
 server.listen(port, () => console.log(`Server listening to port ${port}!`));
