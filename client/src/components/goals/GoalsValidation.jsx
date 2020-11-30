@@ -1,8 +1,8 @@
 export const formValidation = (form, goal) => {
   let invalidInput = false;
   let index = 0;
-
-  const newGoalDetails = form.children[1].children;
+  
+  const newGoalDetails = form.children[2].children;
 
   for (const property in goal) {
     if (newGoalDetails[index].classList.contains('invalid-field')) {
