@@ -12,7 +12,7 @@ import RoutineDetails from "../../routine/RoutineDetails";
 const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
   const [displayModal, setDisplayModal] = useState(false);
   const timeRef = useRef(null);
-  const categoryColor = [{ home: '#a0a0ff' }, { work: '#ffff7d' }, { training: '#ff9898' }];
+  const categoryColor = [{ home: '#E6B6A9' }, { work: '#E6B6A9' }, { training: '#E6B6A9' }];
   const [open, setOpen] = useState(false);
   const [selectedRoutine, setSelectedRoutine] = useState(null);
 
