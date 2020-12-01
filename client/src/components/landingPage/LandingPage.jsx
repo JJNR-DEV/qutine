@@ -5,6 +5,10 @@ import {useSelector} from "react-redux";
 import {useHistory} from 'react-router-dom';
 import blob from '../../blob.png';
 import pic from '../../pic.png';
+import signupIcon from '../../signupIcon.png';
+import calendarIcon from '../../calendarIcon.png';
+import notificationIcon from '../../notificationIcon.png';
+import checkedIcon from '../../checkedIcon.png';
 
 const LandingPage = () => {
   const {isLoggedIn, user} = useSelector((state) => state.auth);
@@ -28,7 +32,24 @@ const LandingPage = () => {
         <img className='blob' src={blob}/>
         <img className='pic' src={pic}/>
       </div>
-      <div></div>
+      <div className="landingTutorial">
+        <div className="signupIcon">
+          <img src={signupIcon}/>
+          <p>Register to get started with your new routine.</p>
+        </div>
+        <div className="calendarIcon">
+          <img src={calendarIcon}/>
+          <p>Create new routines and goals.</p>
+        </div>
+        <div className="notificationIcon">
+          <img src={notificationIcon}/>
+          <p>Get notified before it's time to do your routine.</p>
+        </div>
+        <div className="checkedIcon">
+          <img src={checkedIcon}/>
+          <p>Track your completed goals.</p>
+        </div>
+      </div>
     </div>
   );
 };

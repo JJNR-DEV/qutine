@@ -98,3 +98,44 @@
   border-radius: 0px;
 }
 
+.landingTutorial {
+  color: #7A9D96;
+  font-size: x-large;
+}
+
+.landingTutorial > div > img {
+  padding: 0vh 2vh 2vh 0vh;
+}
+
+.signupIcon {
+  top: 55%;
+  left: 5%;
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+}
+
+.calendarIcon {
+  top: 65%;
+  right: 5%;
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+}
+
+.notificationIcon {
+  top: 75%;
+  left: 5%;
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+}
+
+.checkedIcon {
+  top: 85%;
+  right: 5%;
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+}
+
