@@ -9,12 +9,12 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
   const showHideClassName = show ? "addRoutine modal display-block" : "addRoutine modal display-none";
   const buttonStyle = {
     position: 'relative',
-    top: '-10px',
-    backgroundColor: '#fff',
-    borderRadius: '1em',
-    right: '-45%',
+    top: '3%',
+    right: '-42%',
+    border: 'none',
     fontWeight: 'bold',
-    padding: '2px 4px'
+    background: 'none',
+    fontSize: '18px'
   }
 
   const [name, setName] = useState('');
@@ -65,24 +65,36 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
     <div className={showHideClassName}>
       <form onSubmit={handleSubmit}>
         <button onClick={handleClose} style={buttonStyle} type="button">&#10005;</button>
-        <h1 className="addRoutineMessage">Enter a routine for your week</h1>
+        <h2 className="addRoutineMessage">New Habit to Routine</h2>
         <div className="newRoutineDetails">
-          <input id="routineName" type="text" placeholder="Name" onChange={handleNameChange} />
-          <input id="routineStime" type="time" placeholder="Start Time" onChange={handleSTime} />
-          <input id="routineDuration" type="time" placeholder="Duration" onChange={handleDuration} />
+          <label htmlFor="routinneName">Name</label>
+          <input id="routineName" type="text" onChange={handleNameChange} />
+          <br />
+          <label htmlFor="routineCategory">Category</label>
           <select id="routineCategory" onChange={handleCategoryChange}>
-            <option>Choose Category</option>
+            <option disabled defaultValue>Choose Category</option>
             <option value="home">Home</option>
             <option value="work">Work</option>
             <option value="training">Training</option>
           </select>
+          <label htmlFor="routineStime">Start Time</label>
+          <input id="routineStime" type="time" onChange={handleSTime} />
+          <br />
+
+          <label htmlFor="routineDuration">Duration</label>
+          <input id="routineDuration" type="time" placeholder="0" />
+          
+
+          {/* {<label htmlFor="routineDuration" className="routineDuration-label" >Duration
+            <div className="routineDuration-container">
+              <input id="routineDuration" type="number" placeholder="0" />
+              <span>Minutes</span>
+            </div>
+          </label>} */}
+
         </div>
-        <label className="checkbox-container">Enable notification
-          <input type="checkbox" checked={enableNotification} onChange={handleEnableNotification} />
-          <span className="checkmark"/>
-        </label>
         <div className="selectionDays">
-          <span>Choose Days: </span>
+          <span>Days</span>
           <ul>
             <li>
               <input type="checkbox" value="Monday" />
@@ -121,6 +133,10 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
             </li>
           </ul>
         </div>
+        <label className="checkbox-container">Enable notification
+          <input type="checkbox" checked={enableNotification} onChange={handleEnableNotification} />
+          <span className="checkmark"/>
+        </label>
         <button type="submit" className="submitRoutine">Save</button>
       </form>
     </div>
