@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
 const GoalsProgress = ({ goals }) => {
-console.log(goals)
-  let amountOfGoals;
-  let checkedGoals;
+  const [checkedGoals, setCheckedGoals] = useState(0);
+  const [amountOfGoals, setAmountOfGoals] = useState(0);
 
   const getProgress = () => {
     goals.forEach(goal => {
-      amountOfGoals += goal.amountOfTimes;
-      checkedGoals += goal.counterAmount;
+      setCheckedGoals(checkedGoals + goal.counterAmount);
+      setAmountOfGoals(amountOfGoals + parseInt(goal.amountOfTimes));
     });
-    return {checkedGoals, amountOfGoals}
+    console.log(amountOfGoals, checkedGoals, 'progress')
   }
 
   const createProgressBar = (checked, amount) => React.createElement(
@@ -18,16 +17,17 @@ console.log(goals)
     {
       className: 'progressBar2',
       style: {
+        backgroundImage: 'linear-gradient(45deg, #FFCF90, #E6B6A9)',
         backgroundSize: `${checked / amount * 100}% 100%`,
-        backgroundImage: 'black',
         height: '20px',
-        border: `1px solid black`,
+        width: '300px',
+        borderRadius: '20px'
       },
     },
   );
 
   useEffect(() => {
-    getProgress()
+    getProgress();
   }, [goals])
 
   return (
