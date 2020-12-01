@@ -56,10 +56,13 @@ const Goals = ({ handleClose, show, getAllUserGoals }) => {
         <div className="newGoalDetails">
           <input id="goalName" type="text" placeholder="Name" onChange={handleNameChange} />
           <select id="goalCategory" type="text" placeholder="Category" onChange={handleCategoryChange}>
-            <option>Choose Category</option>
+            <option disabled defaultValue>Choose Category</option>
             <option value="home">Home</option>
             <option value="work">Work</option>
-            <option value="training">Training</option>
+            <option value="exercise">Exercise</option>
+            <option value="leisure">Leisure</option>
+            <option value="education">Education</option>
+            <option value="other">Other</option>
           </select>
           <input type="number" placeholder="Amount of times" onChange={handleTimesChange} />
         </div>
