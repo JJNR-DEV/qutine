@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-
 import { getAllUserGoals } from '../../../actions/goals';
 import Goals from '../../goals/Goals';
 import Goal from './Goal';
@@ -26,8 +25,10 @@ const GoalsDesktop = ({ getAllUserGoals, goals }) => {
       <button className="createGoalBtn" onClick={() => setDisplayModal(!displayModal)}>Create Goal</button>
       <div className="weekGoalsContainer">
         Weekly Goals
+        <GoalsProgress goals={goals} />
         {appendGoalToBoard()}
       </div>
+
       <Goals show={displayModal} handleClose={() => setDisplayModal(false)} />
     </div>
   );
