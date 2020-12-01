@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: row;
   overflow-y: hidden;
-  max-height: 93vh;
+  max-height: 100%;
   background-image: linear-gradient(#F0EFEB, #ffffff);
 }
 
 .weekHabitsSection {
   position: relative;
   width: 70%;
-  margin: 2% 5% 0 0;
+  margin: 7% 5% 0 0;
   padding-bottom: 5%;
   display: flex;
   flex-direction: column;
@@ -20,11 +20,11 @@
   position: absolute;
   padding: 6px;
   color: white;
-  font-weight: bold;
+  font-size: 14px;
   background-color: #00303F;
   border: none;
   border-radius: 20em;
-  width: 120px;
+  width: 140px;
   height: 40px;
   align-self: flex-end;
   z-index: 40;
@@ -46,16 +46,17 @@
   min-height: 1500px;
   max-height: 1500px;
   margin-top: -30px;
-  padding: 0 0 0 5%;
+  padding: 0 0 20% 5%;
   display: flex;
 }
 
 .routineBackground {
   position: fixed;
-  background-image: linear-gradient(#DADED4 1%, white 99%);
+  background-image: linear-gradient(white 1%, white 99%);
   height: 100%;
   width: 66.5%;
-  margin-left: 3.5%
+  margin-left: 3.5%;
+  box-shadow: 0 0 7px #b9b9b9;
 }
 
 .timePole {
@@ -63,7 +64,7 @@
   text-align: left;
   min-height: 1500px;
   max-height: 1500px;
-  width: 68vw;
+  width: 69vw;
   padding-left: 20px;
   margin-top: 20px;
   display: flex;
@@ -74,7 +75,7 @@
 }
 
 .time {
-  border-bottom: #fff 1px solid;
+  border-bottom: #d6f5eb 1px solid;
   min-height: 16px;
   max-height: 16px;
   font-size: 12px;
@@ -87,7 +88,7 @@
   max-height: 1500px;
   display: flex;
   justify-content: center;
-  border: #fff 1px solid;
+  border: #d6f5eb .5px solid;
   border-bottom: none;
 }
 
@@ -97,12 +98,12 @@
 
 .weekdayName {
   position: fixed;
-  background-color: #00303F;
+  background-color: #CAE4DB;
   width: 9.4%;
   margin-top: -25px;
   padding: 15px 0 20px 0;
   border-radius: 10px 10px 0 0;
-  color: white;
+  color: #00303F;
   z-index: 20;
 }
 
@@ -159,16 +160,16 @@
 }
 
 .createGoalBtn {
-  color: #3C403D;
-  font-size: 16px;
-  min-height: 80px;
-  width: 90%;
-  margin: 10px;
-  padding: 15px;
-  background-color: #ffffff3b;
+  width: 140px;
+  height: 40px;
+  margin: 20px;
+  padding: 6px;
   border: none;
-  border-radius: 10px;
-  box-shadow: 0 0 7px #c9c9c9;
+  background-color: #00303F;
+  border-radius: 20px;
+  box-shadow: 0 0 7px #666666;
+  color: white;
+  font-size: 14px;
   z-index: 40;
 }
 
@@ -182,7 +183,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: linear-gradient(#CAE4DB 1%, white 99%);
+  background-color: #7A9D96;
+  border-radius: 20px;
+  box-shadow: 0 0 7px #666666;
+}
+
+.weekGoalsContainer h2 {
+  color: #00303F;
 }
 
 .goalModule {
@@ -193,9 +200,9 @@
   width: 80%;
   margin: 10px;
   padding: 15px;
-  background-color: #ffffffb2;
+  background-color: #ffffffce;
   border-radius: 10px;
-  box-shadow: 0 0 7px #c9c9c9;
+  box-shadow: 0 0 7px #666666;
 }
 
 .goalMain {
@@ -224,7 +231,7 @@
   min-width: 300px;
   background-repeat: no-repeat;
   border-radius: 20px;
-  background-image: linear-gradient(45deg, #FFCF90, #E6B6A9);
-  border: 1px solid #E6B6A9;
+  background-image: linear-gradient(45deg, #00303F , #00303F );
+  border: .5px solid #00303F ;
   margin: 20px 0;
 }
