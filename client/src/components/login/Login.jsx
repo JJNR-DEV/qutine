@@ -47,11 +47,7 @@ const Login = () => {
   return (
     <div className="login">
       <h1 className="loginGreetingMessage">
-        Log in
-        <span className="loginGreetingMessageSpan1">
-          <br />
-          and get started with your routine!
-        </span>
+        Log in and get started with your routine!
       </h1>
       <form onSubmit={handleSubmit}>
         <input
