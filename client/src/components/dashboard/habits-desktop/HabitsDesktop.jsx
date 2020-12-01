@@ -55,8 +55,8 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
       {
         className: `habitModule ${category}`,
         style: {
-          height: `${(parseInt(duration) * 57)}px`,
-          marginTop: `${(parseInt(startTime) * 57) + 100}px`,
+          height: `${(parseInt(duration) * 57) -5}px`,
+          marginTop: `${(parseInt(startTime) * 57) + 90}px`,
           overflow: 'hidden',
           backgroundColor: colorMatch,
         },
@@ -94,6 +94,7 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
       <button className="createRoutineBtn" onClick={() => setDisplayModal(!displayModal)}>Create Routine</button>
       <div className="weekHabitsContainer">
         <TimePole />
+        <div className='routineBackground'></div>
         <div className="weekHabits" >
           {createWeek()}
         </div>

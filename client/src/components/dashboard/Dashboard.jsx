@@ -5,8 +5,8 @@ import GoalsDesktop from './goals-desktop/GoalsDesktop';
 
 const Dashboard = () => (
   <div className="dashboard">
-    <HabitsDesktop />
     <GoalsDesktop />
+    <HabitsDesktop />
   </div>
 );
 
