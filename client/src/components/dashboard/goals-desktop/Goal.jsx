@@ -10,18 +10,6 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
 
   const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
 
-  const progressBar = (checked, amount, category) => React.createElement(
-    'div',
-    {
-      className: 'progressBar',
-      style: {
-        backgroundSize: `${checked / amount * 100}% 100%`,
-        backgroundImage: `linear-gradient(45deg, ${category}, ${category})`,
-        border: `1px solid ${category}`,
-      },
-    },
-  );
-
   const eraseBtn = () => {
     const { email } = JSON.parse(localStorage.getItem('user'));
 
@@ -84,7 +72,6 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
           {incrementBtn(counterAmount + 1)}
         </div>
         )}
-      {progressBar(counterAmount, amountOfTimes, colorMatch)}
     </div>
   );
 };
