@@ -37,3 +37,19 @@
   font-size: larger;
   font-weight: bold;
 }
+
+.logo {
+  margin: 0px 15px 0px 15px;
+  width: 40px;
+}
+
+.small-btn {
+  background-color: #CAE4DB;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #00303F;
+  font-size: larger;
+  font-weight: bold;
+  outline: none;
+}

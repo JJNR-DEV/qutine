@@ -1,5 +1,6 @@
 .landingPage {
-  background-color: #f8f8f8;
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(255,255,255,1) 50%, rgba(202,228,219,1) 50%);
   min-height: 100vh;
   overflow: hidden;
 }
@@ -10,43 +11,45 @@
   font-size: 70px;
 }
 
+.qutine {
+  color: #DCAE1D;
+}
+
 .welcomeMessage > p {
   background-clip: text;
   -webkit-background-clip: text;
   font-size: 20px;
+  color: #DCAE1D;
 }
 
 .welcomeMessage {
   overflow: hidden;
-  margin: 5% 2%;
-  background: linear-gradient(45deg, #CAE4DB, #00303F);
+  background: #7A9D96;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-}
-
-.logo {
-  margin: 40px 0 30px 0;
-  width: 70px;
+  text-align: left;
+  max-width: 40vh;
+  margin: 5vh 5vh 2vh 5vh;
 }
 
 .landingPageButtonsContainer {
-  margin: 5% 0;
   display: flex;
-  flex-direction: column;
   width: 100%;
-  justify-content: center;
-  align-items: center;
+  margin: 0vh 5vh 0vh 5vh;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .landingPageButtons {
-  width: 300px;
+  width: 170px;
   padding: 15px;
   background-color: white;
   border: none;
   border-radius: 20em;
   box-shadow: 0 0 4px #dfdfdf;
-  margin: 10px;
+  margin: 10px 10px 10px 0px;
   color: #00303F;
   font-size: large;
   text-decoration: none;
@@ -54,7 +57,7 @@
 
 .registerButton {
   font-weight: 500;
-  background-color: #F2B95A;
+  background-color: #DCAE1D;
 }
 
 @media (max-width: 500px) {
@@ -72,3 +75,26 @@
     width: 200px;
   }
 }
+
+.blob {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 15%;
+  bottom: 9.26%;
+  height: 400px;
+  width: 550px;
+  border-radius: 0px;
+}
+
+.pic {
+  position: absolute;
+  left: 48%;
+  right: 52%;
+  top: 8%;
+  bottom: 0%;
+  height: 400px;
+  width: 500px;
+  border-radius: 0px;
+}
+
