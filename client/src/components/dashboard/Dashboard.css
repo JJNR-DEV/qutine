@@ -8,47 +8,54 @@
 
 .weekHabitsSection {
   position: relative;
+  width: 70%;
+  margin: 2% 5% 0 0;
+  padding-bottom: 5%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  max-width: 75%;
-  width: 75%;
-  min-height: 60%;
-  max-height: 60%;
-  margin: 14% 0 5% 0;
+  overflow: hidden;
 }
 
 .createRoutineBtn {
   position: absolute;
   padding: 6px;
-  background-color: #f1f0ec;
+  color: white;
+  font-weight: bold;
+  background-color: #3C403D;
   border: none;
   border-radius: 20em;
-  width: 200px;
-  height: 50px;
+  width: 120px;
+  height: 40px;
   align-self: flex-end;
-  margin: -20% 0 0 0;
   z-index: 40;
 }
 
 .weekHabitsContainer {
   position: relative;
   min-height: 100%;
-  max-height: 100%;
-  display: flex;
-  justify-content: center;
+  margin: 150px 0 0 0;
   border-radius: 10px;
   color: #00303F;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-.weekHabits{
+.weekHabits {
   position: absolute;
-  width: 100%;
-  margin-top: -3%;
-  margin-left: 7%;
+  width: 95%;
+  min-height: 1500px;
+  max-height: 1500px;
+  margin-top: -30px;
+  padding: 0 0 0 5%;
   display: flex;
-  overflow-x: hide;
+}
+
+.routineBackground {
+  position: fixed;
+  background-image: linear-gradient(#DADED4 1%, white 99%);
+  height: 100%;
+  width: 66.5%;
+  margin-left: 3.5%
 }
 
 .timePole {
@@ -56,16 +63,14 @@
   text-align: left;
   min-height: 1500px;
   max-height: 1500px;
-  width: 80%;
-  padding: 1% 8% 0 0;
-  margin-top: 57px;
-  margin-left: -4%;
+  width: 68vw;
+  padding-left: 2%;
+  margin-top: 20px;
   display: flex;
-  justify-content: flex-start;
   flex-direction: column;
   pointer-events: none;
   z-index: 10;
-  overflow-x: hide;
+  overflow-x: hidden;
 }
 
 .time {
@@ -77,14 +82,13 @@
 }
 
 .weekday {
-  width: 12%;
+  width: 100%;
   min-height: 1500px;
   max-height: 1500px;
-  margin-top: 10px;
-  border-radius: 10px 10px 0 0;
   display: flex;
-  border: #fff 1px solid;
   justify-content: center;
+  border: #fff 1px solid;
+  border-bottom: none;
 }
 
 #Sunday {
@@ -93,9 +97,9 @@
 
 .weekdayName {
   position: fixed;
-  background-color: #00303F;
-  width: 9%;
-  margin-top: -1%;
+  background-color: #3C403D;
+  width: 9.4%;
+  margin-top: -25px;
   padding: 15px 0 20px 0;
   border-radius: 10px 10px 0 0;
   color: white;
@@ -107,7 +111,7 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 12%;
+  width: 13.3%;
   border-radius: 5px;
   background: white;
   box-shadow: 0 0 4px #c9c9c9;
@@ -156,27 +160,28 @@
 
 .weekGoalsSection {
   width: 20%;
-  margin: 5% 0 0 0;
+  margin: 0 5% 0 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .createGoalBtn {
+  position: absolute;
   padding: 6px;
-  background-color: #F2B95A;
+  color: #3C403D;
+  background-color: #DADED4;
   border: none;
   border-radius: 20em;
-  margin: 15px 0;
-  width: 100%;
-  font-size: large;
-  font-weight: bold;
+  width: 120px;
+  height: 40px;
+  z-index: 40;
 }
 
 .weekGoalsContainer {
   height: 1000px;
   min-height: 1000px;
-  margin: 9% 0 0 0;
   padding: 20px 0;
-  background: linear-gradient(#F2B95A, #ffffff);
-  border-radius: 10px 10px 0 0;
+  background-image: linear-gradient(#DADED4 1%, white 99%);
 }
 
 .goalModule {
@@ -185,9 +190,10 @@
   justify-content: space-between;
   min-height: 80px;
   margin: 10px;
-  padding: 5px;
+  padding: 15px;
   background-color: #ffffffb2;
-  border-radius: 5px;
+  border-radius: 10px;
+  box-shadow: 0 0 7px #c9c9c9;
 }
 
 .goalMain {

@@ -1,0 +1,88 @@
+@import 'https://fonts.googleapis.com/css?family=Prompt:400,700';
+
+.reset {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.qutine-modal {
+    margin: inherit;
+    padding: inherit;
+    box-sizing: inherit;
+    /* This way it could be display flex or grid or whatever also. */
+    display: block;
+
+    border-radius: 10px;
+
+    /* Probably need media queries here */
+    width: 600px;
+    max-width: 100%;
+
+    height: 400px;
+    max-height: 100%;
+
+    position: fixed;
+
+    z-index: 100;
+
+    left: 50%;
+    top: 50%;
+
+    /* Use this for centering if unknown width/height */
+    transform: translate(-50%, -50%);
+
+    /* If known, negative margins are probably better (less chance of blurry text). */
+    /* margin: -200px 0 0 -200px; */
+
+    background: white;
+}
+
+.closed {
+    display: none;
+}
+
+.modal-overlay {
+    box-sizing: inherit;
+    margin: inherit;
+    padding: inherit;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-guts {
+    box-sizing: inherit;
+    margin: inherit;
+    padding: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 80px;
+}
+
+.qutine-modal .modal-close {
+    position: absolute;
+    /* don't need to go crazy with z-index here, just sits over .modal-guts */
+    z-index: 1;
+    top: 10px;
+    /* needs to look OK with or without scrollbar */
+    right: 20px;
+    border: 0;
+    background-color: #F2B95A;
+    border-radius: 20px;
+    color: white;
+    padding: 8px 22px;
+    font-size: 16px;
+    margin: 4px 2px;
+    /*font-size: 1.3rem;*/
+}
+

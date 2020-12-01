@@ -5,12 +5,16 @@ import TimePole from '../TimePole';
 import { getAllUserRoutines } from '../../../actions/routines';
 import { deleteRoutine } from '../../../api/routines';
 import Routine from '../../routine/Routine';
-import Habit from './habit';
+import Habit from './Habit';
+import Modal from "../../modal/Modal";
+import RoutineDetails from "../../routine/RoutineDetails";
 
 const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
-  const [ displayModal, setDisplayModal ] = useState(false);
+  const [displayModal, setDisplayModal] = useState(false);
   const timeRef = useRef(null);
   const categoryColor = [{ home: '#a0a0ff' }, { work: '#ffff7d' }, { training: '#ff9898' }];
+  const [open, setOpen] = useState(false);
+  const [selectedRoutine, setSelectedRoutine] = useState(null);
 
   useEffect(() => {
     const { email } = JSON.parse(localStorage.getItem('user'));
@@ -51,10 +55,14 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
       {
         className: `habitModule ${category}`,
         style: {
-          height: `${(parseInt(duration) * 58 - 4)}px`,
-          marginTop: `${(parseInt(startTime) * 58) + 88}px`,
+          height: `${(parseInt(duration) * 57) -5}px`,
+          marginTop: `${(parseInt(startTime) * 57) + 90}px`,
           overflow: 'hidden',
           backgroundColor: colorMatch,
+        },
+        onClick: () => {
+          setSelectedRoutine(object);
+          setOpen(val => !val);
         },
         ref: firstHabit ? timeRef : null,
         key: Math.random(),
@@ -74,24 +82,23 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
 
   const createWeek = () => {
     const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    return weekDays.map((day) => <Habit day={day} appendHabitToWeek={appendHabitToWeek} key={day} />);
+    return weekDays.map((day) => <Habit day={day} appendHabitToWeek={appendHabitToWeek} key={day}/>);
   };
 
-  useEffect(() => {
-    const { email } = JSON.parse(localStorage.getItem('user'));
-    getAllUserRoutines(email);
-    // focus();
-  }, []);
 
   return (
     <div className="weekHabitsSection">
+      {selectedRoutine && <Modal open={open} toggle={setOpen}>
+        <RoutineDetails routine={selectedRoutine}/>
+      </Modal>}
       <button className="createRoutineBtn" onClick={() => setDisplayModal(!displayModal)}>Create Routine</button>
       <div className="weekHabitsContainer">
+        <TimePole />
+        <div className='routineBackground'></div>
         <div className="weekHabits" >
-          <TimePole />
           {createWeek()}
         </div>
-        <Routine show={displayModal} handleClose={() => setDisplayModal(false)} />
+        <Routine show={displayModal} handleClose={() => setDisplayModal(false)}/>
       </div>
     </div>
   );

@@ -1,30 +1,58 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Logout from '../logout/Logout';
 import './Navbar.css';
+import { useHistory } from 'react-router-dom';
+import { logout } from "../../actions/auth";
 
 const Navbar = () => {
-  const { isLoggedIn, user } = useSelector((state) => state.auth);
+    const {isLoggedIn, user} = useSelector((state) => state.auth);
+    const history = useHistory();
+    const dispatch = useDispatch();
 
-  return (
-    <div className="navBar">
-      <ul className="linkList">
-        <li>
-          {!isLoggedIn && <NavLink className="navLink" exact to="/">Home</NavLink>}
-        </li>
-        <li>
-          {isLoggedIn && <NavLink className="navLink" exact to="/dashboard">Dashboard</NavLink>}
-        </li>
-      </ul>
-      {isLoggedIn && (
-        <>
-          <span>{user.email}</span>
-          <Logout />
-        </>
-      )}
-    </div>
-  );
+    const handleLogout = async () => {
+        try {
+            await dispatch(logout());
+            return history.push('/login');
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    return (
+        <div className="navBar">
+            <ul style={{marginLeft: '30px'}}>
+                {!isLoggedIn && <li><NavLink className="navLink" exact to="/">Home</NavLink></li>}
+                {isLoggedIn && <li><NavLink className="navLink" exact to="/dashboard">Dashboard</NavLink></li>}
+
+            </ul>
+
+            <ul style={{marginRight: '30px'}}>
+                {isLoggedIn ? (
+                    <li style={{float: 'right'}}>
+                        <span>{user.email}</span>
+                        <button className="small-btn"
+                                type="button"
+                                onClick={handleLogout}
+                        >
+                            Logout
+                        </button>
+                    </li>
+                ) : (
+                    <button className="small-btn"
+                            type="button"
+                            onClick={() => {
+                                history.push('/login');
+                            }}
+                    >
+                        Login
+                    </button>
+                )}
+
+            </ul>
+        </div>
+    );
 };
 
 export default Navbar;

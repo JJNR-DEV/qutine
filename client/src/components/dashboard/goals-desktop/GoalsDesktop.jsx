@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getAllUserGoals } from '../../../actions/goals';
 import Goals from '../../goals/Goals';
 import Goal from './Goal';
+import GoalsProgress from '../GoalsProgress';
+
 
 const GoalsDesktop = ({ getAllUserGoals, goals }) => {
   const [ displayModal, setDisplayModal ] = useState(false);
@@ -14,9 +16,9 @@ const GoalsDesktop = ({ getAllUserGoals, goals }) => {
   }, [])
 
   const appendGoalToBoard = () => goals?.map(goal => <Goal 
-    key={Math.random()} 
-    goalElements={goal} 
-    getAllUserGoals={getAllUserGoals} 
+    key={Math.random()}
+    goalElements={goal}
+    getAllUserGoals={getAllUserGoals}
   /> );
 
   return (
@@ -26,7 +28,6 @@ const GoalsDesktop = ({ getAllUserGoals, goals }) => {
         Weekly Goals
         {appendGoalToBoard()}
       </div>
-
       <Goals show={displayModal} handleClose={() => setDisplayModal(false)} />
     </div>
   );
