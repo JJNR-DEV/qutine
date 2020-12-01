@@ -1,0 +1,10 @@
+.day-routine-task {
+  border: 1px solid #fff;
+  background-color: #fff;
+  padding: 10px;
+  min-width: 125px;
+  max-width: 150px;
+  margin: 10px 0;
+  border-radius: 15px;
+  font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+}

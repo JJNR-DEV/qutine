@@ -10,7 +10,7 @@ export const getAllUserRoutines = (email) => (dispatch) => {
   });
 };
 
-export const getAllUserDayRoutines = (today, email) => (dispatch) => {
+export const getAllUserDayRoutines = (today, email) => dispatch => {
   allDayRoutines(today, email).then((data) => {
     dispatch({
       type: GET_USER_DAY_ROUTINES,
