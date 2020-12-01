@@ -21,7 +21,7 @@
   padding: 6px;
   color: white;
   font-weight: bold;
-  background-color: #3C403D;
+  background-color: #00303F;
   border: none;
   border-radius: 20em;
   width: 120px;
@@ -64,7 +64,7 @@
   min-height: 1500px;
   max-height: 1500px;
   width: 68vw;
-  padding-left: 2%;
+  padding-left: 20px;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -97,7 +97,7 @@
 
 .weekdayName {
   position: fixed;
-  background-color: #3C403D;
+  background-color: #00303F;
   width: 9.4%;
   margin-top: -25px;
   padding: 15px 0 20px 0;
@@ -158,30 +158,31 @@
   font-size: 16px;
 }
 
-.weekGoalsSection {
-  width: 20%;
-  margin: 0 5% 0 0;
-  display: flex;
-  flex-direction: column;
-}
-
 .createGoalBtn {
-  position: absolute;
-  padding: 6px;
   color: #3C403D;
-  background-color: #DADED4;
+  font-size: 16px;
+  min-height: 80px;
+  width: 90%;
+  margin: 10px;
+  padding: 15px;
+  background-color: #ffffff3b;
   border: none;
-  border-radius: 20em;
-  width: 120px;
-  height: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 7px #c9c9c9;
   z-index: 40;
 }
 
 .weekGoalsContainer {
+  position: relative;
   height: 1000px;
   min-height: 1000px;
   padding: 20px 0;
-  background-image: linear-gradient(#DADED4 1%, white 99%);
+  margin: 0 5% 0 0;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(#CAE4DB 1%, white 99%);
 }
 
 .goalModule {
@@ -189,6 +190,7 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 80px;
+  width: 80%;
   margin: 10px;
   padding: 15px;
   background-color: #ffffffb2;
@@ -219,7 +221,10 @@
 .progressBar {
   min-height: 20px;
   max-height: 20px;
+  min-width: 300px;
   background-repeat: no-repeat;
   border-radius: 20px;
-  color: #ff9898;
+  background-image: linear-gradient(45deg, #FFCF90, #E6B6A9);
+  border: 1px solid #E6B6A9;
+  margin: 20px 0;
 }
