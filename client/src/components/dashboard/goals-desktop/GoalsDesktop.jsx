@@ -33,7 +33,11 @@ const GoalsDesktop = ({ getAllUserGoals, goals }) => {
 };
 
 const mapStateToProps = state => {
-  return { goals: state.allUserGoals }
+  console.log('NEW GOAL MESSAGE', state.newGoalMessage)
+  return { 
+    goals: state.allUserGoals,
+    newGoalSuccessMsg: state.newGoalMessage
+  }
 }
 
 export default connect(mapStateToProps, { getAllUserGoals })(GoalsDesktop);

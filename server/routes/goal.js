@@ -10,11 +10,17 @@ router.post('/new-goal', async (req, res) => {
     userEmail: req.body.userEmail
   });
 
+  const allGoals = await Goal.find({ name: req.body.name, userEmail: req.body.userEmail });
+
   try {
-    await goal.save();
-    res.status(201).send(`You goal "${req.body.name}" has been successfully added!`);
+    if (allGoals.length === 0) {
+      await goal.save();
+      return res.status(201).send(`You goal "${req.body.name}" has been successfully added!`);
+    } else {
+      throw new Error('You already have a Goal with the same name!')
+    }
   } catch({ message }) {
-    res.status(500).send(`Something went wrong: ${message}`);
+    return res.status(400).send({ message: `Something went wrong: ${message}` });
   }
 })
 

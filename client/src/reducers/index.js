@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import auth from './auth';
 import { getAllUserRoutinesReducer } from './routines';
-import { getAllUserGoalsReducer } from './goals';
+import { getAllUserGoalsReducer, createNewGoalReducer } from './goals';
 import snackbar from './snackbar';
 
 export default combineReducers({
@@ -9,4 +9,5 @@ export default combineReducers({
   snackbar,
   allUserRoutines: getAllUserRoutinesReducer,
   allUserGoals: getAllUserGoalsReducer,
+  newGoalMessage: createNewGoalReducer
 });

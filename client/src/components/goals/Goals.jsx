@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { getAllUserGoals } from '../../actions/goals';
-import { createGoal } from '../../api/goals';
+import { getAllUserGoals, createNewGoal } from '../../actions/goals';
 import { formValidation } from './GoalsValidation';
 import './Goals.css';
 
-const Goals = ({ handleClose, show, getAllUserGoals }) => {
+const Goals = ({ handleClose, show, getAllUserGoals, createNewGoal }) => {
   const showHideClassName = show ? "addGoal modal display-block" : " addGoal modal display-none";
   const buttonStyle = {
     position: 'relative',
@@ -40,7 +39,7 @@ const Goals = ({ handleClose, show, getAllUserGoals }) => {
 
     try {
       const { email } = JSON.parse(localStorage.getItem('user'));
-      await createGoal(goal);
+      createNewGoal(goal);
       getAllUserGoals(email);
       handleClose();
     } catch (err) {
@@ -69,4 +68,4 @@ const Goals = ({ handleClose, show, getAllUserGoals }) => {
   );
 };
 
-export default connect(null, { getAllUserGoals })(Goals);
+export default connect(null, { getAllUserGoals, createNewGoal })(Goals);

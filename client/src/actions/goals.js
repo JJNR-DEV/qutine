@@ -1,5 +1,5 @@
-import { GET_USER_GOALS } from './actionTypes';
-import { allGoals } from '../api/goals';
+import { GET_USER_GOALS, NEW_GOAL, HIDE_SNACKBAR, SHOW_SNACKBAR } from './actionTypes';
+import { allGoals, createGoal } from '../api/goals';
 
 export const getAllUserGoals = email => dispatch => {
   allGoals(email).then(data => {
@@ -9,3 +9,13 @@ export const getAllUserGoals = email => dispatch => {
     });
   });
 };
+
+export const createNewGoal = goal => dispatch => {
+  createGoal(goal).then(data => {
+    console.log(data);
+    dispatch({
+      type: NEW_GOAL,
+      payload: data,
+    })
+  })
+}
