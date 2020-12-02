@@ -66,7 +66,10 @@ const Goals = ({ handleClose, show, getAllUserGoals }) => {
             <option disabled defaultValue>Choose Category</option>
             <option value="home">Home</option>
             <option value="work">Work</option>
-            <option value="training">Training</option>
+            <option value="exercise">Exercise</option>
+            <option value="leisure">Leisure</option>
+            <option value="education">Education</option>
+            <option value="other">Other</option>
           </select>
 
           <label htmlFor="amountOfTimes">Amount of times</label>

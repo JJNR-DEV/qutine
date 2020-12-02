@@ -1,6 +1,6 @@
 .landingPage {
-  background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,1) 50%, rgba(202,228,219,1) 50%);
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 50%, rgba(202, 228, 219, 1) 50%);
   min-height: 100vh;
   overflow: hidden;
 }
@@ -8,7 +8,7 @@
 .welcomeMessage > h1 {
   background-clip: text;
   -webkit-background-clip: text;
-  font-size: 70px;
+  font-size: 5vh;
 }
 
 .qutine {
@@ -30,34 +30,38 @@
   color: transparent;
   text-align: left;
   max-width: 40vh;
-  margin: 5vh 5vh 2vh 5vh;
+  margin: 5vh 5vh 0vh 10vh;
 }
 
 .landingPageButtonsContainer {
   display: flex;
   width: 100%;
-  margin: 0vh 5vh 0vh 5vh;
   display: flex;
   flex-direction: row;
   width: 100%;
 }
 
 .landingPageButtons {
-  width: 170px;
+  width: 12vh;
   padding: 15px;
   background-color: white;
   border: none;
   border-radius: 20em;
   box-shadow: 0 0 4px #dfdfdf;
-  margin: 10px 10px 10px 0px;
   color: #00303F;
   font-size: large;
   text-decoration: none;
+  margin-top: 3vh;
 }
 
 .registerButton {
   font-weight: 500;
   background-color: #DCAE1D;
+  margin-left: 10vh;
+}
+
+.logInButton {
+  margin-left: 3vh;
 }
 
 @media (max-width: 500px) {
@@ -68,7 +72,7 @@
   }
 
   .welcomeMessage > h1 {
-    font-size: 55px;
+    font-size: 5vh;
   }
 
   .landingPageButton {
@@ -80,21 +84,63 @@
   position: absolute;
   left: 50%;
   right: 50%;
-  top: 15%;
+  top: 10%;
   bottom: 9.26%;
-  height: 400px;
-  width: 550px;
+  width: 60vh;
+  height: auto;
   border-radius: 0px;
 }
 
 .pic {
   position: absolute;
-  left: 48%;
-  right: 52%;
-  top: 8%;
+  left: 50%;
+  right: 50%;
+  top: 3%;
   bottom: 0%;
-  height: 400px;
-  width: 500px;
-  border-radius: 0px;
+  width: 50vh;
+  height: auto;
+}
+
+.landingTutorial {
+  color: #7A9D96;
+  font-size: x-large;
+}
+
+.landingTutorial > div > img {
+  padding: 0vh 2vh 2vh 0vh;
+  width: 10vh;
+  height: auto;
+}
+
+.signupIcon {
+  top: 55%;
+  left: 5%;
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+}
+
+.calendarIcon {
+  top: 65%;
+  right: 5%;
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+}
+
+.notificationIcon {
+  top: 75%;
+  left: 5%;
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+}
+
+.checkedIcon {
+  top: 85%;
+  right: 5%;
+  display: flex;
+  position: absolute;
+  flex-direction: row;
 }
 

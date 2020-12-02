@@ -25,7 +25,7 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
 
   const handleNameChange = e => setName(e.target.value);
   const handleCategoryChange = e => setCategory(e.target.value);
-  const handleSTime = e => setSTime(e.target.value); 
+  const handleSTime = e => setSTime(e.target.value);
   const handleDuration = e => setDuration(e.target.value);
   const handleEnableNotification = e => setEnableNotification(val => !val);
 
@@ -73,7 +73,10 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
             <option disabled defaultValue>Choose Category</option>
             <option value="home">Home</option>
             <option value="work">Work</option>
-            <option value="training">Training</option>
+            <option value="exercise">Exercise</option>
+            <option value="leisure">Leisure</option>
+            <option value="education">Education</option>
+            <option value="other">Other</option>
           </select>
           <label htmlFor="routineStime">Start Time</label>
           <input id="routineStime" type="time" onChange={handleSTime} />

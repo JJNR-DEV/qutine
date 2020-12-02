@@ -5,11 +5,13 @@ import './Navbar.css';
 import {useHistory} from 'react-router-dom';
 import {logout} from "../../actions/auth";
 import logo from '../../logo.png';
+import {useLocation} from "react-router";
 
 const Navbar = () => {
   const {isLoggedIn, user} = useSelector((state) => state.auth);
   const history = useHistory();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleLogout = async () => {
     try {
@@ -20,17 +22,28 @@ const Navbar = () => {
     }
   };
 
-  return (
-    <div className="navBar">
-      <img className="logo" src={logo} alt="logo"/>
-      <ul style={{marginLeft: '30px'}}>
+  const parseColor = (isLoggedIn) => {
+    if (isLoggedIn) {
+      return {
+        backgroundColor: 'transparent'
+      };
+    }
+    return {
+      backgroundColor: '#CAE4DB'
+    };
+  };
 
-        {!isLoggedIn && <li><NavLink className="navLink" exact to="/">Home</NavLink></li>}
+  return (
+    <div className="navBar" style={parseColor(isLoggedIn)}>
+      <img className="logo" src={logo} alt="logo"/>
+      <ul>
+        {!isLoggedIn && location.pathname !== '/'
+          ? <li><NavLink className="navLink" exact to="/">Home</NavLink></li>
+          : null
+        }
         {isLoggedIn && <li><NavLink className="navLink" exact to="/dashboard">Dashboard</NavLink></li>}
-      </ul>
-      <ul style={{marginRight: '30px'}}>
         {isLoggedIn ? (
-          <li style={{float: 'right'}}>
+          <li>
             <span>{user.email}</span>
             <button className="small-btn"
                     type="button"
@@ -39,7 +52,7 @@ const Navbar = () => {
               Logout
             </button>
           </li>
-        ) : (
+        ) : !isLoggedIn && location.pathname === '/register' ? (
           <button className="small-btn"
                   type="button"
                   onClick={() => {
@@ -48,10 +61,9 @@ const Navbar = () => {
           >
             Login
           </button>
-        )}
+        ) : null
+        }
       </ul>
-
-
     </div>
   );
 };
