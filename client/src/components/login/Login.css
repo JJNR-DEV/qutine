@@ -1,7 +1,7 @@
 .login {
   width: 100%;
   min-height: 100vh;
-  background: #CAE4DB;
+  background: linear-gradient(320deg, #FFF , #7A9D96);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -10,18 +10,16 @@
 }
 
 .loginGreetingMessage {
-  max-width: 450px;
+  max-width: 400px;
   font-size: xxx-large;
-  text-align: left;
-  color: #7A9D96;
-  position: relative;
-  left: 2%;
+  text-align: center;
+  color: #FFF;
 }
 
 .login > form {
   display: flex;
   flex-direction: column;
-  width: 410px;
+  width: 400px;
 }
 
 .login > form input,
@@ -31,23 +29,41 @@
   background-color: white;
   border: none;
   border-radius: 20em;
-  box-shadow: 0 0 4px #afafaf;
-  margin: 10px;
   color: #00303F;
+}
+
+
+.login > form input {
+  background: none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 2px solid #00303F;
+  color: #fff;
+  border-radius: 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.login > form input::placeholder {
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .login > form input:focus,
 .loginButton:focus {
-  box-shadow: 0 0 0 2pt #F2B95A;
   outline: none;
 }
 
 .loginButton {
-  margin-top: 20px;
+  margin: 60px auto 0;
   color: white;
   background-color: #00303F;
   font-size: 16px;
+  font-weight: bold;
   text-decoration: none;
+  min-width: 200px;
 }
 
 .invalid-field {
