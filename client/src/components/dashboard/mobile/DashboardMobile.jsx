@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './DashboardMobile.css';
-import { connect } from 'react-redux';
 import TimePole from '../TimePole';
 import getWeekDay from './helper/getWeekDay';
-import { getAllUserDayRoutines } from '../../../actions/routines';
 import { deleteRoutine } from '../../../api/routines';
+import { getAllUserDayRoutines } from "../../../actions/routines";
 
-const DashboardMobile = ({ getAllUserDayRoutines, routines }) => {
+const DashboardMobile = ({  routines }) => {
   const today = getWeekDay();
 
   useEffect(() => {
@@ -70,6 +69,4 @@ const DashboardMobile = ({ getAllUserDayRoutines, routines }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ routines: state.allUserRoutines });
-
-export default connect(mapStateToProps, { getAllUserDayRoutines })(DashboardMobile);
+export default DashboardMobile;

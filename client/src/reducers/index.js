@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux';
 import auth from './auth';
-import { getAllUserRoutinesReducer, getAllUserDayRoutinesReducer } from './routines';
-import { getAllUserGoalsReducer } from './goals';
+import goals from './goals';
 import snackbar from './snackbar';
+import routines from "./routines";
 
 export default combineReducers({
   auth,
   snackbar,
-  allUserRoutines: getAllUserRoutinesReducer,
-  allUserDayRoutines: getAllUserDayRoutinesReducer,
-  allUserGoals: getAllUserGoalsReducer,
+  routines,
+  goals,
 });

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from "react-redux";
 
-const GoalsProgress = ({ goals }) => {
+const GoalsProgress = () => {
+  const { goals } = useSelector(state => state.goals);
   const [checkedGoals, setCheckedGoals] = useState(0);
   const [amountOfGoals, setAmountOfGoals] = useState(0);
 
@@ -12,9 +14,9 @@ const GoalsProgress = ({ goals }) => {
       amount += parseInt(goal.amountOfTimes);
     });
     setCheckedGoals(checked);
-    setAmountOfGoals(amount)
-    console.log(amountOfGoals, checkedGoals, goals, 'progress')
-  }
+    setAmountOfGoals(amount);
+    console.log(amountOfGoals, checkedGoals, goals, 'progress');
+  };
 
   const createProgressBar = (checked, amount) => React.createElement(
     'div',
@@ -28,13 +30,13 @@ const GoalsProgress = ({ goals }) => {
 
   useEffect(() => {
     getProgress();
-  }, [goals])
+  }, [goals]);
 
   return (
     <div className="goalProgressContainer">
       {createProgressBar(checkedGoals, amountOfGoals)}
     </div>
   );
-}
+};
 
 export default GoalsProgress;

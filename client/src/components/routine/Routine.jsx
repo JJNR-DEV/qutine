@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './Routine.css';
 import { createRoutine } from '../../api/routines';
 import { formValidation } from './RoutineValidation';
-import { getAllUserRoutines } from '../../actions/routines';
+import { weekDays } from "../../common/routine-utils";
+import { getAllUserRoutines } from "../../actions/routines";
 
-const Routine = ({ handleClose, show, getAllUserRoutines }) => {
+const Routine = ({ handleClose, show }) => {
   const showHideClassName = show ? "addRoutine modal display-block" : "addRoutine modal display-none";
   const buttonStyle = {
     position: 'relative',
@@ -15,13 +16,19 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
     fontWeight: 'bold',
     background: 'none',
     fontSize: '18px'
-  }
-
+  };
+  const { routines } = useSelector((state) => state.routines);
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [sTime, setSTime] = useState('');
   const [duration, setDuration] = useState('');
   const [enableNotification, setEnableNotification] = useState(false);
+  const [selectedDays, setSelectedDays] = useState(weekDays.map(day => {
+    return {
+      day: day,
+      checked: false
+    };
+  }));
 
   const handleNameChange = e => setName(e.target.value);
   const handleCategoryChange = e => setCategory(e.target.value);
@@ -34,7 +41,7 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
     const weekDays = [...document.querySelectorAll('.selectionDays li input')];
     const selectedDays = weekDays.filter((day) => day.checked);
 
-    const valid = formValidation({ name, category, sTime, duration  }, selectedDays);
+    const valid = formValidation({ name, category, sTime, duration }, selectedDays);
     if (valid) return;
 
     const { email } = JSON.parse(localStorage.getItem('user'));
@@ -52,11 +59,23 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
     try {
       const { email } = JSON.parse(localStorage.getItem('user'));
       await createRoutine(routine);
-      getAllUserRoutines(email);
+      await getAllUserRoutines(email);
       handleClose();
     } catch (err) {
       console.error(err.message);
     }
+  };
+
+  const handleOnDaysChecked = (e) => {
+    const day = e.target.value;
+    const checked = e.target.checked;
+    setSelectedDays(selectedDays => selectedDays.map(selectedDay => {
+      if (selectedDay.day === day) {
+        selectedDay.checked = checked;
+        return selectedDay;
+      }
+      return selectedDay;
+    }));
   };
 
   return (
@@ -66,8 +85,8 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
         <h2 className="addRoutineMessage">New Habit to Routine</h2>
         <div className="newRoutineDetails">
           <label htmlFor="routinneName">Name</label>
-          <input id="routineName" type="text" onChange={handleNameChange} />
-          <br />
+          <input id="routineName" type="text" onChange={handleNameChange}/>
+          <br/>
           <label htmlFor="routineCategory">Category</label>
           <select id="routineCategory" onChange={handleCategoryChange}>
             <option disabled defaultValue>Choose Category</option>
@@ -79,54 +98,32 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
             <option value="other">Other</option>
           </select>
           <label htmlFor="routineStime">Start Time</label>
-          <input id="routineStime" type="time" onChange={handleSTime} />
-          <br />
+          <input id="routineStime" type="time" onChange={handleSTime}/>
+          <br/>
 
           <label htmlFor="routineDuration">Duration</label>
-          <input id="routineDuration" type="time" placeholder="0" onChange={handleDuration} />
+          <input id="routineDuration" type="time" placeholder="0" onChange={handleDuration}/>
         </div>
         <div className="selectionDays">
           <span>Days</span>
           <ul>
-            <li>
-              <input type="checkbox" value="Monday" />
-              {' '}
-              M
-            </li>
-            <li>
-              <input type="checkbox" value="Tuesday" />
-              {' '}
-              T
-            </li>
-            <li>
-              <input type="checkbox" value="Wednesday" />
-              {' '}
-              W
-            </li>
-            <li>
-              <input type="checkbox" value="Thursday" />
-              {' '}
-              T
-            </li>
-            <li>
-              <input type="checkbox" value="Friday" />
-              {' '}
-              F
-            </li>
-            <li>
-              <input type="checkbox" value="Saturday" />
-              {' '}
-              S
-            </li>
-            <li>
-              <input type="checkbox" value="Sunday" />
-              {' '}
-              S
-            </li>
+            {selectedDays.map(selectedDay => {
+              return (
+                <li key={selectedDay.day}
+                >
+                  <input type="checkbox"
+                         checked={selectedDay.checked}
+                         value={selectedDay.day}
+                         onChange={handleOnDaysChecked}
+                  />
+                  {selectedDay.day.charAt(0)}
+                </li>
+              );
+            })}
           </ul>
         </div>
         <label className="checkbox-container">Enable notification
-          <input type="checkbox" checked={enableNotification} onChange={handleEnableNotification} />
+          <input type="checkbox" checked={enableNotification} onChange={handleEnableNotification}/>
           <span className="checkmark"/>
         </label>
         <button type="submit" className="submitRoutine">Save</button>
@@ -135,4 +132,4 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
   );
 };
 
-export default connect(null, { getAllUserRoutines })(Routine);
+export default Routine;

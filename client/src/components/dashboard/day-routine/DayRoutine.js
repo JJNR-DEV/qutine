@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
 
 import { getAllUserDayRoutines } from '../../../actions/routines';
 import getWeekDay from '../mobile/helper/getWeekDay';
 import './DayRoutine.css';
 
-const DayRoutine = ({ getAllUserDayRoutines, routines }) => {
+const DayRoutine = ({ routines }) => {
   const today = getWeekDay();
 
   useEffect(() => {
@@ -18,9 +17,7 @@ const DayRoutine = ({ getAllUserDayRoutines, routines }) => {
       <h2>Your Day</h2>
       {routines?.map(habit => <div className="day-routine-task">{habit.startTime} {habit.name}</div>)}
     </div>
-  )
-}
+  );
+};
 
-const mapStateToProps = state => ({ routines: state.allUserDayRoutines });
-
-export default connect(mapStateToProps, { getAllUserDayRoutines })(DayRoutine);
+export default DayRoutine;
