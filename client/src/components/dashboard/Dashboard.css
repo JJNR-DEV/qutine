@@ -16,8 +16,22 @@
   overflow: hidden;
 }
 
+.routineTopDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5% 0 0 5%;
+  width: 95%;
+}
+
+.todaysDate {
+  margin: 0;
+  padding: 0;
+}
+
 .createRoutineBtn {
-  position: absolute;
+  position: relative;
   padding: 6px;
   color: white;
   font-size: 14px;
@@ -26,14 +40,13 @@
   border-radius: 20em;
   width: 140px;
   height: 40px;
-  align-self: flex-end;
-  z-index: 40;
+  z-index: 10;
 }
 
 .weekHabitsContainer {
   position: relative;
   min-height: 100%;
-  margin: 150px 0 0 0;
+  margin: 100px 0 0 0;
   border-radius: 10px;
   color: #00303F;
   overflow-y: scroll;
@@ -160,17 +173,17 @@
 }
 
 .createGoalBtn {
-  width: 140px;
-  height: 40px;
-  margin: 20px;
+  position: relative;
   padding: 6px;
-  border: none;
-  background-color: #DCAE1D;
-  border-radius: 20px;
-  box-shadow: 0 0 9px #c4c4c4;
+  margin: 20px 0;
   color: white;
   font-size: 14px;
-  z-index: 40;
+  background-color: #DCAE1D;
+  border: none;
+  border-radius: 20em;
+  width: 140px;
+  height: 40px;
+  z-index: 10;
 }
 
 .weekGoalsContainer {
