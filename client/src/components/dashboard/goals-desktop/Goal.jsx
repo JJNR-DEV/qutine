@@ -1,28 +1,27 @@
 import React from 'react';
 import { deleteGoal, updateIncrement } from '../../../api/goals';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllUserGoals } from "../../../actions/goals";
 
 const Goal = ({ goalElements }) => {
   const dispatch = useDispatch();
+  const { user } = useSelector(state => state.auth);
   const categoryColor = [{ home: '#a0a0ff' }, { work: '#ffff7d' }, { training: '#ff9898' }];
 
   const {
-    name, category, amountOfTimes, counterAmount,
+    _id, name, category, amountOfTimes, counterAmount,
   } = goalElements;
 
   const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
 
   const eraseBtn = () => {
-    const { email } = JSON.parse(localStorage.getItem('user'));
-
     return React.createElement(
       'button',
       {
         className: 'eraseBtn',
         onClick: async () => {
-          await deleteGoal(name, email);
-          await dispatch(getAllUserGoals(email));
+          await deleteGoal(name, user.email);
+          await dispatch(getAllUserGoals(user.email));
         },
         key: Math.random(),
       },
@@ -31,7 +30,6 @@ const Goal = ({ goalElements }) => {
   };
 
   const incrementBtn = (newCounter) => {
-    const { email } = JSON.parse(localStorage.getItem('user'));
 
     if (newCounter > amountOfTimes) {
       return React.createElement(
@@ -39,8 +37,8 @@ const Goal = ({ goalElements }) => {
         {
           className: 'incrementBtn',
           onClick: async () => {
-            await updateIncrement(name, email, newCounter);
-            getAllUserGoals(email);
+            await updateIncrement(_id, name, user.email, newCounter);
+            await dispatch(getAllUserGoals(user.email));
           },
           key: Math.random(),
         },
@@ -53,8 +51,8 @@ const Goal = ({ goalElements }) => {
       {
         className: 'incrementBtn',
         onClick: async () => {
-          await updateIncrement(name, email, newCounter);
-          getAllUserGoals(email);
+          await updateIncrement(_id, name, user.email, newCounter);
+          await dispatch(getAllUserGoals(user.email));
         },
         key: Math.random(),
       },

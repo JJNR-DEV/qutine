@@ -3,13 +3,16 @@ import React, { useEffect } from 'react';
 import { getAllUserDayRoutines } from '../../../actions/routines';
 import getWeekDay from '../mobile/helper/getWeekDay';
 import './DayRoutine.css';
+import { useDispatch, useSelector } from "react-redux";
 
-const DayRoutine = ({ routines }) => {
+const DayRoutine = () => {
   const today = getWeekDay();
+  const dispatch = useDispatch();
+  const { routines } = useSelector(state => state.routines)
 
   useEffect(() => {
     const { email } = JSON.parse(localStorage.getItem('user'));
-    getAllUserDayRoutines(today, email);
+    dispatch(getAllUserDayRoutines(today, email));
   }, []);
 
   return (
