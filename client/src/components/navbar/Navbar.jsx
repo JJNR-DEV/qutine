@@ -8,7 +8,7 @@ import logo from '../../logo.png';
 import {useLocation} from "react-router";
 
 const Navbar = () => {
-  const {isLoggedIn, user} = useSelector((state) => state.auth);
+  const {isLoggedIn} = useSelector((state) => state.auth);
   const history = useHistory();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -41,10 +41,8 @@ const Navbar = () => {
           ? <li><NavLink className="navLink" exact to="/">Home</NavLink></li>
           : null
         }
-        {isLoggedIn && <li><NavLink className="navLink" exact to="/dashboard">Dashboard</NavLink></li>}
         {isLoggedIn ? (
           <li>
-            <span>{user.email}</span>
             <button className="small-btn"
                     type="button"
                     onClick={handleLogout}
