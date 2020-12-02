@@ -3,8 +3,11 @@ const Routine = require('../model/Routine');
 const RoutineNotification = require('../model/RoutineNotification');
 const { verifyToken } = require("./verifyToken");
 
-router.post('/new-routine', verifyToken, async (req, res) => {
-  const routine = new Routine({
+/**
+ * Updates or Creates new routine
+ */
+router.post('/routine', verifyToken, async (req, res) => {
+  const routine = {
     name: req.body.name,
     category: req.body.category,
     startTime: req.body.sTime,
@@ -12,10 +15,12 @@ router.post('/new-routine', verifyToken, async (req, res) => {
     days: req.body.days,
     userEmail: req.body.userEmail,
     activateNotification: req.body.activateNotification,
-  });
+  };
+
+  const query = { _id: req.body.id };
 
   try {
-    await routine.save();
+    await Routine.findOneAndUpdate(query, routine, { upsert: true });
     res.status(201).send(`You routine task "${req.body.name}" has been successfully added!`);
   } catch ({ message }) {
     res.status(500).send(`Something went wrong: ${message}`);

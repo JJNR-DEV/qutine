@@ -58,7 +58,7 @@ const HabitsDesktop = () => {
         },
         onClick: () => {
           setSelectedRoutine(object);
-          setOpen(val => !val);
+          setDisplayModal(val => !val);
         },
         ref: firstHabit ? timeRef : null,
         key: Math.random(),
@@ -140,7 +140,12 @@ const HabitsDesktop = () => {
     <div className="weekHabitsSection">
       <div className='routineTopDiv'>
         <h2 className='todaysDate'>{getToday()}</h2>
-        <button className="createRoutineBtn" onClick={() => setDisplayModal(!displayModal)}>Create Routine</button>
+        <button className="createRoutineBtn" onClick={() => {
+          setSelectedRoutine(null);
+          setDisplayModal(val => !val);
+        }}>
+          Create Routine
+        </button>
       </div>
       <div className="weekHabitsContainer">
         <TimePole/>
@@ -148,7 +153,12 @@ const HabitsDesktop = () => {
         <div className="weekHabits">
           {createWeek()}
         </div>
-        <Routine show={displayModal} handleClose={() => setDisplayModal(false)}/>
+        {displayModal &&
+        <Routine show={displayModal}
+                 selectedRoutine={selectedRoutine}
+                 handleClose={() => setDisplayModal(false)}/>
+        }
+
       </div>
     </div>
   );

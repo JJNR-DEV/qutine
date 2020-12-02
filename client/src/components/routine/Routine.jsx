@@ -6,7 +6,11 @@ import { formValidation } from './RoutineValidation';
 import { routineCategories, weekDays } from "../../common/routine-utils";
 import { getAllUserRoutines } from "../../actions/routines";
 
-const Routine = ({ handleClose, show }) => {
+const Routine = ({
+                   handleClose,
+                   show,
+                   selectedRoutine = null
+                 }) => {
   const showHideClassName = show ? "addRoutine modal display-block" : "addRoutine modal display-none";
   const buttonStyle = {
     position: 'relative',
@@ -19,22 +23,33 @@ const Routine = ({ handleClose, show }) => {
   };
   const dispatch = useDispatch();
   const { routines } = useSelector((state) => state.routines);
-  const { user } = useSelector((state ) => state.auth);
-  const [name, setName] = useState('');
-  const [category, setCategory] = useState('home');
-  const [sTime, setSTime] = useState('');
-  const [duration, setDuration] = useState('');
-  const [enableNotification, setEnableNotification] = useState(false);
-  const [selectedDays, setSelectedDays] = useState(weekDays.map(day => {
-    return {
-      day: day,
-      checked: false
-    };
-  }));
+  const { user } = useSelector((state) => state.auth);
+  const id = selectedRoutine ? selectedRoutine._id : null;
+  const [name, setName] = useState(selectedRoutine ? selectedRoutine.name : '');
+  const [category, setCategory] = useState(selectedRoutine ? selectedRoutine.category : 'home');
+  const [startTime, setStartTime] = useState(selectedRoutine ? selectedRoutine.startTime : '');
+  const [duration, setDuration] = useState(selectedRoutine ? selectedRoutine.duration : '');
+  const [enableNotification, setEnableNotification] = useState(selectedRoutine ? selectedRoutine.activateNotification : false);
+  const [selectedDays, setSelectedDays] = useState(
+    selectedRoutine ?
+      weekDays.map(day => {
+        return {
+          day: day,
+          checked: selectedRoutine.days.some(r => r === day),
+        };
+      })
+      :
+      weekDays.map(day => {
+        return {
+          day: day,
+          checked: false
+        };
+      }));
+
 
   const handleNameChange = e => setName(e.target.value);
   const handleCategoryChange = e => setCategory(e.target.value);
-  const handleStartTime = e => setSTime(e.target.value);
+  const handleStartTime = e => setStartTime(e.target.value);
   const handleDuration = e => setDuration(e.target.value);
   const handleEnableNotification = e => setEnableNotification(val => !val);
 
@@ -44,13 +59,14 @@ const Routine = ({ handleClose, show }) => {
       .filter(selectedDay => selectedDay.checked)
       .map(selectedDay => selectedDay.day);
 
-    const valid = formValidation({ name, category, sTime, duration }, days);
+    const valid = formValidation({ name, category, sTime: startTime, duration }, days);
     if (valid) return;
 
     const routine = {
+      id: id,
       name,
       category,
-      sTime,
+      sTime: startTime,
       duration,
       days: days,
       userEmail: user.email,
@@ -85,7 +101,7 @@ const Routine = ({ handleClose, show }) => {
         <h2 className="addRoutineMessage">New Habit to Routine</h2>
         <div className="newRoutineDetails">
           <label htmlFor="routinneName">Name</label>
-          <input id="routineName" type="text" onChange={handleNameChange}/>
+          <input id="routineName" type="text" value={name} onChange={handleNameChange}/>
           <br/>
           <label htmlFor="routineCategory">Category</label>
           <select id="routineCategory" value={category} onChange={handleCategoryChange}>
@@ -97,11 +113,11 @@ const Routine = ({ handleClose, show }) => {
             <option value="other">Other</option>
           </select>
           <label htmlFor="routineStime">Start Time</label>
-          <input id="routineStime" type="time" onChange={handleStartTime}/>
+          <input id="routineStime" type="time" value={startTime} onChange={handleStartTime}/>
           <br/>
 
           <label htmlFor="routineDuration">Duration</label>
-          <input id="routineDuration" type="time" placeholder="0" onChange={handleDuration}/>
+          <input id="routineDuration" type="time" placeholder="0" value={duration} onChange={handleDuration}/>
         </div>
         <div className="selectionDays">
           <span>Days</span>

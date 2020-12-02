@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const createRoutine = (routine) => axios.post('/routines/new-routine', routine)
+export const createRoutine = (routine) => axios.post('/routines/routine', routine)
   .then((res) => res.data)
   .catch((err) => console.error(`${err.message}`));
 
