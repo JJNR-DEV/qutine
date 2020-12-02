@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Routine.css';
 import { createRoutine } from '../../api/routines';
 import { formValidation } from './RoutineValidation';
-import { weekDays } from "../../common/routine-utils";
+import { routineCategories, weekDays } from "../../common/routine-utils";
 import { getAllUserRoutines } from "../../actions/routines";
 
 const Routine = ({ handleClose, show }) => {
@@ -17,9 +17,11 @@ const Routine = ({ handleClose, show }) => {
     background: 'none',
     fontSize: '18px'
   };
+  const dispatch = useDispatch();
   const { routines } = useSelector((state) => state.routines);
+  const { user } = useSelector((state ) => state.auth);
   const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('home');
   const [sTime, setSTime] = useState('');
   const [duration, setDuration] = useState('');
   const [enableNotification, setEnableNotification] = useState(false);
@@ -32,34 +34,32 @@ const Routine = ({ handleClose, show }) => {
 
   const handleNameChange = e => setName(e.target.value);
   const handleCategoryChange = e => setCategory(e.target.value);
-  const handleSTime = e => setSTime(e.target.value);
+  const handleStartTime = e => setSTime(e.target.value);
   const handleDuration = e => setDuration(e.target.value);
   const handleEnableNotification = e => setEnableNotification(val => !val);
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const weekDays = [...document.querySelectorAll('.selectionDays li input')];
-    const selectedDays = weekDays.filter((day) => day.checked);
+    const days = selectedDays
+      .filter(selectedDay => selectedDay.checked)
+      .map(selectedDay => selectedDay.day);
 
-    const valid = formValidation({ name, category, sTime, duration }, selectedDays);
+    const valid = formValidation({ name, category, sTime, duration }, days);
     if (valid) return;
-
-    const { email } = JSON.parse(localStorage.getItem('user'));
 
     const routine = {
       name,
       category,
       sTime,
       duration,
-      days: selectedDays.map((day) => day.value),
-      userEmail: email,
+      days: days,
+      userEmail: user.email,
       activateNotification: enableNotification
     };
 
     try {
-      const { email } = JSON.parse(localStorage.getItem('user'));
       await createRoutine(routine);
-      await getAllUserRoutines(email);
+      dispatch(getAllUserRoutines(user.email));
       handleClose();
     } catch (err) {
       console.error(err.message);
@@ -88,8 +88,7 @@ const Routine = ({ handleClose, show }) => {
           <input id="routineName" type="text" onChange={handleNameChange}/>
           <br/>
           <label htmlFor="routineCategory">Category</label>
-          <select id="routineCategory" onChange={handleCategoryChange}>
-            <option disabled defaultValue>Choose Category</option>
+          <select id="routineCategory" value={category} onChange={handleCategoryChange}>
             <option value="home">Home</option>
             <option value="work">Work</option>
             <option value="exercise">Exercise</option>
@@ -98,7 +97,7 @@ const Routine = ({ handleClose, show }) => {
             <option value="other">Other</option>
           </select>
           <label htmlFor="routineStime">Start Time</label>
-          <input id="routineStime" type="time" onChange={handleSTime}/>
+          <input id="routineStime" type="time" onChange={handleStartTime}/>
           <br/>
 
           <label htmlFor="routineDuration">Duration</label>

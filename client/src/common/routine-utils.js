@@ -17,3 +17,5 @@ export const findCategoryColor = (category) => {
 };
 
 export const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+export const routineCategories = ['Home', 'Work', 'Exercise', 'Leisure', 'Education', 'Other'];
