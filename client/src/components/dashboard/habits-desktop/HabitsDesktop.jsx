@@ -35,9 +35,10 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
       'button',
       {
         className: 'eraseBtn',
-        onClick: async () => {
-          await deleteRoutine(name, day);
-          getAllUserRoutines(email);
+        onClick:  () => {
+           deleteRoutine(name, day)
+             .finally(() => getAllUserRoutines(email));
+          // await getAllUserRoutines(email);
         },
         key: Math.random(),
       },
