@@ -12,8 +12,7 @@ const GoalsDesktop = ({ getAllUserGoals, goals }) => {
   const [ displayModal, setDisplayModal ] = useState(false);
 
   useEffect(() => {
-    const { email } = JSON.parse(localStorage.getItem('user'));
-    getAllUserGoals(email);
+    getAllUserGoals(user.email);
   }, [])
 
   const appendGoalToBoard = () => goals?.map(goal => <Goal

@@ -1,28 +1,29 @@
 const router = require('express').Router();
 const Routine = require('../model/Routine');
 const RoutineNotification = require('../model/RoutineNotification');
+const { verifyToken } = require("./verifyToken");
 
-router.post('/new-routine', async (req, res) => {
-    const routine = new Routine({
-        name: req.body.name,
-        category: req.body.category,
-        startTime: req.body.sTime,
-        duration: req.body.duration,
-        days: req.body.days,
-        userEmail: req.body.userEmail,
-        activateNotification: req.body.activateNotification,
-    })
+router.post('/new-routine', verifyToken, async (req, res) => {
+  const routine = new Routine({
+    name: req.body.name,
+    category: req.body.category,
+    startTime: req.body.sTime,
+    duration: req.body.duration,
+    days: req.body.days,
+    userEmail: req.body.userEmail,
+    activateNotification: req.body.activateNotification,
+  });
 
-    try {
-        await routine.save();
-        res.status(201).send(`You routine task "${req.body.name}" has been successfully added!`)
-    } catch({ message }) {
-        res.status(500).send(`Something went wrong: ${message}`)
-    }
-})
+  try {
+    await routine.save();
+    res.status(201).send(`You routine task "${req.body.name}" has been successfully added!`);
+  } catch ({ message }) {
+    res.status(500).send(`Something went wrong: ${message}`);
+  }
+});
 
-router.post('/notification', async (req, res) => {
-  const {_id, name, userEmail} = req.body;
+router.post('/notification', verifyToken, async (req, res) => {
+  const { _id, name, userEmail } = req.body;
   const newRoutineNotification = new RoutineNotification({
     routineId: _id,
     routineName: name,
@@ -32,49 +33,51 @@ router.post('/notification', async (req, res) => {
 
   try {
     await newRoutineNotification.save();
-    res.status(201).send(`You routine task "${req.body.name}" has been successfully added!`)
-  } catch({ message }) {
-    res.status(500).send(`Something went wrong: ${message}`)
+    res.status(201).send(`You routine task "${req.body.name}" has been successfully added!`);
+  } catch ({ message }) {
+    res.status(500).send(`Something went wrong: ${message}`);
   }
-})
+});
 
 // GET all routines
 
-router.get('/all-routines', async (req, res) => {
-    const { userEmail } = req.query;
-    const allRoutines = await Routine.find({ userEmail });
-    res.json(allRoutines);
-})
+router.get('/all-routines', verifyToken, async (req, res) => {
+  const { email } = req.user;
+  const allRoutines = await Routine.find({ userEmail: email });
+  res.json(allRoutines);
+});
 
 // GET all day routines
 
-router.get('/all-day-routines', async (req, res) => {
-    const { today, userEmail } = req.query;
-    const allDayRoutines = await Routine.find({ days: today, userEmail });
-    res.json(allDayRoutines);
-})
+router.get('/all-day-routines', verifyToken, async (req, res) => {
+  const { today, userEmail } = req.query;
+  const allDayRoutines = await Routine.find({ days: today, userEmail });
+  res.json(allDayRoutines);
+});
 
 // GET specific routine
 
-router.get('/get-selected-routine', async (req, res) => {
-    const { routine } = req.query;
-    const selectedRoutine = await Routine.find({ name: routine });
-    res.json(selectedRoutine);
-})
+router.get('/get-selected-routine', verifyToken, async (req, res) => {
+  const { routine } = req.query;
+  const { email } = req.user;
+  const selectedRoutine = await Routine.find({ name: routine, userEmail: email });
+  res.json(selectedRoutine);
+});
 
 // PUT a routine
 
-router.put('/update-routine', async (req, res) => {
-    const { name, days } = req.body;
-    await Routine.findOneAndUpdate({ name }, { days });
-    res.status(204).send({ message: 'Successfuly deleted task for selected day!' })
-})
+router.put('/update-routine', verifyToken, async (req, res) => {
+  const { name, days } = req.body;
+  await Routine.findOneAndUpdate({ name }, { days });
+  res.status(204).send({ message: 'Successfuly deleted task for selected day!' });
+});
 
 // DELETE one routine
 
-router.delete('/delete-routine', (req, res) => {
-    const { name, userEmail } = req.query;
-    Routine.findOneAndDelete({ name, userEmail }, () => res.status(204).send());
-})
+router.delete('/delete-routine', verifyToken, (req, res) => {
+  const { name } = req.query;
+  const { email } = req.user;
+  Routine.findOneAndDelete({ name, userEmail: email }, () => res.status(204).send());
+});
 
 module.exports = router;
