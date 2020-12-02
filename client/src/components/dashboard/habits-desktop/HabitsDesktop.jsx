@@ -69,7 +69,7 @@ const HabitsDesktop = () => {
     return newModule;
   };
 
-  const appendHabitToWeek = (divDay) => routines.map((routine) => routine.days.map((day) => {
+  const appendHabitToWeek = (divDay) => routines?.map((routine) => routine.days.map((day) => {
     if (day === divDay) {
       return createHabit(routine, day);
     }
