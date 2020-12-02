@@ -30,10 +30,10 @@ const Goal = ({ goalElements }) => {
     const { email } = JSON.parse(localStorage.getItem('user'));
     if (e.target.checked) {
       await updateIncrement(name, email, counterAmount + 1);
-      await dispatch(getAllUserGoals(email));
+      return getAllUserGoals(email);
     } else {
       await updateIncrement(name, email, counterAmount - 1);
-      await dispatch(getAllUserGoals(email));
+      return getAllUserGoals(email);
     }
   }
 
