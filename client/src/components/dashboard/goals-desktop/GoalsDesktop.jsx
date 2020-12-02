@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {connect, useSelector} from 'react-redux';
+import { connect } from 'react-redux';
 import { getAllUserGoals } from '../../../actions/goals';
 import Goals from '../../goals/Goals';
 import Goal from './Goal';
-import DayRoutine from '../day-routine/DayRoutine';
-import GoalsProgress from '../GoalsProgress';
-
+import GoalsProgress from './GoalsProgress';
 
 const GoalsDesktop = ({ getAllUserGoals, goals }) => {
-  const {user} = useSelector((state) => state.auth);
   const [ displayModal, setDisplayModal ] = useState(false);
 
   useEffect(() => {
@@ -24,13 +21,11 @@ const GoalsDesktop = ({ getAllUserGoals, goals }) => {
 
   return (
     <div className="weekGoalsContainer">
-      <span>{user.email}</span>
       <h2>Weekly Goals</h2>
       <GoalsProgress goals={goals} />
-      {appendGoalToBoard()}
       <button className="createGoalBtn" onClick={() => setDisplayModal(!displayModal)}>Add Goal</button>
+      {appendGoalToBoard()}
       <Goals show={displayModal} handleClose={() => setDisplayModal(false)} />
-      <DayRoutine />
     </div>
   );
 };

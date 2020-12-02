@@ -6,6 +6,7 @@
 }
 
 .welcomeMessage > h1 {
+  margin-top: 40px;
   background-clip: text;
   -webkit-background-clip: text;
   font-size: 5vh;
@@ -107,9 +108,9 @@
 }
 
 .landingTutorial > div > img {
-  padding: 0vh 2vh 2vh 0vh;
+  /* padding: 0vh 2vh 2vh 0vh; */
   width: 10vh;
-  height: auto;
+  height: 10vh;
 }
 
 .signupIcon {

@@ -7,7 +7,6 @@ import './DayRoutine.css';
 
 const DayRoutine = ({ getAllUserDayRoutines, routines }) => {
   const today = getWeekDay();
-
   useEffect(() => {
     const { email } = JSON.parse(localStorage.getItem('user'));
     getAllUserDayRoutines(today, email);
@@ -16,7 +15,13 @@ const DayRoutine = ({ getAllUserDayRoutines, routines }) => {
   return (
     <div className="day-routine-container">
       <h2>Your Day</h2>
-      {routines?.map(habit => <div className="day-routine-task">{habit.startTime} {habit.name}</div>)}
+      {routines?.map(habit =>
+        <div
+          className={`day-routine-task`}
+          id={habit.category}>
+            {habit.startTime}
+            {habit.name}
+      </div>)}
     </div>
   )
 }

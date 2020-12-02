@@ -4,7 +4,6 @@ import {NavLink} from 'react-router-dom';
 import './Navbar.css';
 import {useHistory} from 'react-router-dom';
 import {logout} from "../../actions/auth";
-import logo from '../../logo.png';
 import {useLocation} from "react-router";
 
 const Navbar = () => {
@@ -35,7 +34,6 @@ const Navbar = () => {
 
   return (
     <div className="navBar" style={parseColor(isLoggedIn)}>
-      <img className="logo" src={logo} alt="logo"/>
       <ul>
         {!isLoggedIn && location.pathname !== '/'
           ? <li><NavLink className="navLink" exact to="/">Home</NavLink></li>

@@ -2,13 +2,9 @@ import React from 'react';
 import { deleteGoal, updateIncrement } from '../../../api/goals';
 
 const Goal = ({ goalElements, getAllUserGoals }) => {
-  const categoryColor = [{ home: '#a0a0ff' }, { work: '#ffff7d' }, { training: '#ff9898' }];
-
   const {
     name, category, amountOfTimes, counterAmount,
   } = goalElements;
-
-  const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
 
   const eraseBtn = () => {
     const { email } = JSON.parse(localStorage.getItem('user'));
@@ -27,37 +23,69 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
     );
   };
 
-  const incrementBtn = (newCounter) => {
+  const incrementCheckedGoal = async (e) => {
     const { email } = JSON.parse(localStorage.getItem('user'));
+    if (e.target.checked) {
+      await updateIncrement(name, email, counterAmount + 1);
+      return getAllUserGoals(email);
+    } else {
+      await updateIncrement(name, email, counterAmount - 1);
+      return getAllUserGoals(email);
+    }
+  }
 
-    if (newCounter > amountOfTimes) {
-      return React.createElement(
-        'button',
-        {
-          className: 'incrementBtn',
-          onClick: async () => {
-            await updateIncrement(name, email, newCounter);
-            getAllUserGoals(email);
-          },
-          key: Math.random(),
-        },
-        <p>&#10003;</p>,
+  const handleCheckedGoals = (i) => {
+    if(counterAmount > i) {
+      return true
+    };
+    return false;
+  };
+
+  const createGoalCheckButtons = () => {
+    let checkArr = [];
+    for (let i = 0; i < parseInt(amountOfTimes); i++) {
+      checkArr.push(
+        <input 
+          key={i} 
+          type='checkbox'
+          id={`checkedGoal${i}`} 
+          className='checkGoal'
+          checked={handleCheckedGoals(i)}
+          onChange={incrementCheckedGoal}>
+        </input> 
       );
     }
-
-    return React.createElement(
-      'button',
-      {
-        className: 'incrementBtn',
-        onClick: async () => {
-          await updateIncrement(name, email, newCounter);
-          getAllUserGoals(email);
-        },
-        key: Math.random(),
-      },
-      <p>&#43;</p>,
-    );
+    return checkArr;
   };
+    // amountOfTimes, counterAmount
+
+    // if (newCounter > amountOfTimes) {
+    //   return React.createElement(
+    //     'button',
+    //     {
+    //       className: 'incrementBtn',
+    //       onClick: async () => {
+    //         await updateIncrement(name, email, newCounter);
+    //         getAllUserGoals(email);
+    //       },
+    //       key: Math.random(),
+    //     },
+    //     <p>&#10003;</p>,
+    //   );
+    // }
+
+    // return React.createElement(
+    //   'button',
+    //   {
+    //     className: 'incrementBtn',
+    //     onClick: async () => {
+    //       await updateIncrement(name, email, newCounter);
+    //       getAllUserGoals(email);
+    //     },
+    //     key: Math.random(),
+    //   },
+    //   <p>&#43;</p>,
+    // );
 
   return (
     <div className={`${category} goalModule`}>
@@ -68,8 +96,7 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
       { amountOfTimes !== ''
         && (
         <div className="goalAmount">
-          {`${counterAmount} out of ${amountOfTimes} done this week.`}
-          {incrementBtn(counterAmount + 1)}
+          {createGoalCheckButtons()}
         </div>
         )}
     </div>

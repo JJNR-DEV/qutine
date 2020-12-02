@@ -18,7 +18,7 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
   }
 
   const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('Home');
   const [sTime, setSTime] = useState('');
   const [duration, setDuration] = useState('');
   const [enableNotification, setEnableNotification] = useState(false);
@@ -70,7 +70,7 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
           <br />
           <label htmlFor="routineCategory">Category</label>
           <select id="routineCategory" onChange={handleCategoryChange}>
-            <option disabled defaultValue>Choose Category</option>
+            <option defaultValue disabled>Choose Category</option>
             <option value="home">Home</option>
             <option value="work">Work</option>
             <option value="exercise">Exercise</option>
@@ -83,7 +83,7 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
           <br />
 
           <label htmlFor="routineDuration">Duration</label>
-          <input id="routineDuration" type="time" placeholder="0" onChange={handleDuration} />
+          <input id="routineDuration" type="time" placeholder="How many hours?" onChange={handleDuration} />
         </div>
         <div className="selectionDays">
           <span>Days</span>
