@@ -102,16 +102,14 @@
 .addRoutine > form input,
 .addRoutine #routineCategory,
 .submitRoutine {
-  margin: 5px auto;
-  width: 90%;
-  padding: 0 20px 10px;
+  margin: 5px 20px;
+  width: 89%;
+  padding: 0 0 5px;
   background-color: white;
   border-top: none;
   border-right: none;
   border-left: none;
   border-bottom: 1px solid #6D6D6D;
-  /* border-radius: 20em; */
-  /* box-shadow: 0 0 4px 0 #afafaf; */
   color: #00303F;
 }
 

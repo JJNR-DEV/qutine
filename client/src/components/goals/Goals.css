@@ -51,7 +51,7 @@
 .newGoalDetails {
   text-align: left;
   width: 100%;
-  padding-top: 20px;
+  padding-top: 25px;
 }
 
 .newGoalDetails label {
@@ -63,9 +63,9 @@
 .addGoal > form input,
 .addGoal #goalCategory,
 .submitGoal {
-  margin: 5px auto;
-  width: 90%;
-  padding: 0 20px 10px;
+  margin: 5px 20px;
+  width: 89%;
+  padding: 0 0 5px;
   background-color: white;
   border-top: none;
   border-right: none;
