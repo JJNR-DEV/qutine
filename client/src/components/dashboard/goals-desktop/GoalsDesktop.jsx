@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getAllUserGoals } from '../../../actions/goals';
 import Goals from '../../goals/Goals';
 import Goal from './Goal';
+import DayRoutine from '../day-routine/DayRoutine';
 import GoalsProgress from '../GoalsProgress';
 
 
@@ -22,12 +23,13 @@ const GoalsDesktop = ({ getAllUserGoals, goals }) => {
 
   return (
     <div className="weekGoalsContainer">
-        <h2>Weekly Goals</h2>
-        <GoalsProgress goals={goals} />
-        {appendGoalToBoard()}
+      <h2>Weekly Goals</h2>
+      <GoalsProgress goals={goals} />
+      {appendGoalToBoard()}
       <button className="createGoalBtn" onClick={() => setDisplayModal(!displayModal)}>Add Goal</button>
       <Goals show={displayModal} handleClose={() => setDisplayModal(false)} />
-      </div>
+      <DayRoutine />
+    </div>
   );
 };
 
