@@ -60,10 +60,10 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
           overflow: 'hidden',
           backgroundColor: colorMatch,
         },
-        onClick: () => {
-          setSelectedRoutine(object);
-          setOpen(val => !val);
-        },
+        // onClick: () => {
+        //   setSelectedRoutine(object);
+        //   setOpen(val => !val);
+        // },
         ref: firstHabit ? timeRef : null,
         key: Math.random(),
       },
@@ -85,13 +85,69 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
     return weekDays.map((day) => <Habit day={day} appendHabitToWeek={appendHabitToWeek} key={day}/>);
   };
 
+  const convertToDay = () => {
+    const today = new Date();
+    const weekDay = String(today.getDay());
+      let day = '';
+      switch(weekDay) {
+        case '1':
+          day = 'Monday';
+          break;
+        case '2':
+          day = 'Tuesday';
+          break;
+        case '3':
+          day = 'Wednesday';
+          break;
+        case '4':
+          day = 'THursday';
+          break;
+        case '5':
+          day = 'Friday';
+          break;
+        case '6':
+          day = 'Saturday';
+          break;
+        case '0':
+          day = 'Sunday';
+          break;
+        default:
+          break;
+      }
+      return day;
+  };
+
+  const dateName = (num) => {
+    const parsedNum = parseInt(num);
+    let date;
+    if (parsedNum === 1) {
+      date = `${num}st`;
+    } else if (parsedNum === 2) {
+      date = `${num}nd`;
+    } else if (parsedNum === 3) {
+      date = `${num}rd`;
+    } else {
+      date = `${num}th`;
+    };
+    return date;
+  };
+
+  const getToday = () => {
+    const today = new Date();
+    const date = String(today.getDate());
+    const day = convertToDay();
+    return `${day} ${dateName(date)}`;
+  };
 
   return (
     <div className="weekHabitsSection">
       {selectedRoutine && <Modal open={open} toggle={setOpen}>
         <RoutineDetails routine={selectedRoutine}/>
       </Modal>}
-      <button className="createRoutineBtn" onClick={() => setDisplayModal(!displayModal)}>Create Routine</button>
+      <div className='routineTopDiv'>
+        <h2 className='todaysDate'>{getToday()}</h2>
+        <button className="createRoutineBtn" onClick={() => setDisplayModal(!displayModal)}>Create Routine</button>
+      </div>
       <div className="weekHabitsContainer">
         <TimePole />
         <div className='routineBackground'></div>

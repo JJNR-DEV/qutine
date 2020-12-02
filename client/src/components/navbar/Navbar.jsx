@@ -43,10 +43,8 @@ const Navbar = () => {
           ? <li><NavLink className="navLink" exact to="/">Home</NavLink></li>
           : null
         }
-        {isLoggedIn && <li><NavLink className="navLink" exact to="/dashboard">Dashboard</NavLink></li>}
         {isLoggedIn ? (
           <li>
-            <span>{user.email}</span>
             <button className="small-btn"
                     type="button"
                     onClick={handleLogout}
