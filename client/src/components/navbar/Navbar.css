@@ -2,19 +2,21 @@
   position: fixed;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   height: 80px;
-  width: 50%;
-  margin-left: 50%;
-  left: -20px;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .navBar ul {
+  position: relative;
   list-style: none;
-  margin: 0 auto;
+  width: 100%;
   padding: 0;
+  margin-right: 5%;
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
 }
 
 .linkList {
@@ -27,12 +29,13 @@
 
 .navBar > ul > li {
   margin: 0;
+  padding: 0;
   text-decoration: none;
   color: #00303F;
-  padding: 5vh;
 }
 
 .navLink {
+  margin: 0;
   text-decoration: none;
   color: #00303F;
   font-size: larger;
@@ -40,14 +43,16 @@
 }
 
 .logo {
-  width: 40px;
+  position: absolute;
+  width: 60px;
 }
 
 .small-btn {
   padding: 6px;
-  color: white;
+  margin: 0;
+  color: #00303F;
   font-size: 14px;
-  background-color: #DCAE1D;
+  background-color: #CAE4DB;
   border: none;
   border-radius: 20em;
   width: 100px;

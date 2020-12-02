@@ -13,18 +13,20 @@ const GoalsProgress = ({ goals }) => {
     });
     setCheckedGoals(checked);
     setAmountOfGoals(amount)
-    console.log(amountOfGoals, checkedGoals, goals, 'progress')
   }
 
-  const createProgressBar = (checked, amount) => React.createElement(
-    'div',
-    {
-      className: 'progressBar',
-      style: {
-        backgroundSize: `${checked / amount * 100}% 100%`,
+  const createProgressBar = (checked, amount) => {
+    if (amountOfGoals === 0) { return <p>Add some weekly goals to help you stay active and keep a good routine.</p>};
+    return React.createElement(
+      'div',
+      {
+        className: 'progressBar',
+        style: {
+          backgroundSize: `${checked / amount * 100}% 100%`,
+        },
       },
-    },
-  );
+    )
+  }
 
   useEffect(() => {
     getProgress();
