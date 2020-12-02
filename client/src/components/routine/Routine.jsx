@@ -29,14 +29,12 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
   const handleDuration = e => setDuration(e.target.value);
   const handleEnableNotification = e => setEnableNotification(val => !val);
 
-  // const history = useHistory();
-
   const handleSubmit = async e => {
     e.preventDefault();
     const weekDays = [...document.querySelectorAll('.selectionDays li input')];
     const selectedDays = weekDays.filter((day) => day.checked);
 
-    const valid = formValidation(e.target, { name, sTime, duration, category }, selectedDays);
+    const valid = formValidation({ name, category, sTime, duration  }, selectedDays);
     if (valid) return;
 
     const { email } = JSON.parse(localStorage.getItem('user'));
@@ -82,16 +80,7 @@ const Routine = ({ handleClose, show, getAllUserRoutines }) => {
           <br />
 
           <label htmlFor="routineDuration">Duration</label>
-          <input id="routineDuration" type="time" placeholder="0" />
-          
-
-          {/* {<label htmlFor="routineDuration" className="routineDuration-label" >Duration
-            <div className="routineDuration-container">
-              <input id="routineDuration" type="number" placeholder="0" />
-              <span>Minutes</span>
-            </div>
-          </label>} */}
-
+          <input id="routineDuration" type="time" placeholder="0" onChange={handleDuration} />
         </div>
         <div className="selectionDays">
           <span>Days</span>

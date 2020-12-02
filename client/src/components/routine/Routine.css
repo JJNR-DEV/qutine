@@ -88,15 +88,6 @@
   padding-top: 15px;
 }
 
-
-/* Different Format */
-/* #routineDuration {
-  border-bottom: none;
-  padding: 0 0 15px;
-  width: 100%;
-  margin: 2px 0 0;
-} */
-
 .routineDuration-label {
   display: flex;
   flex-direction: column;
@@ -107,7 +98,6 @@
   position: relative;
   right: 250px;
 }
-
 
 .addRoutine > form input,
 .addRoutine #routineCategory,

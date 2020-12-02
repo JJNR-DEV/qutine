@@ -11,9 +11,13 @@ const Goals = ({ handleClose, show, getAllUserGoals }) => {
     position: 'relative',
     backgroundColor: '#fff',
     borderRadius: '1em',
-    right: '-45%',
+    top: '3%',
+    right: '-42%',
     fontWeight: 'bold',
-    padding: '2px 5px'
+    padding: '2px 5px',
+    border: 'none',
+    background: 'none',
+    fontSize: '18px'
   }
 
   const [name, setName] = useState('');
@@ -25,9 +29,8 @@ const Goals = ({ handleClose, show, getAllUserGoals }) => {
   const handleTimesChange = e => setAmountOfTimes(e.target.value);
 
   const handleSubmit = async e => {
-    console.log('got here')
     e.preventDefault();
-    const valid = formValidation(e.target, { name, category });
+    const valid = formValidation({ name, category });
     if (valid) return;
 
     const { email } = JSON.parse(localStorage.getItem('user'));
@@ -52,16 +55,22 @@ const Goals = ({ handleClose, show, getAllUserGoals }) => {
     <div className={showHideClassName}>
       <form onSubmit={handleSubmit}>
       <button onClick={handleClose} style={buttonStyle} type="button">&#10005;</button>
-        <h1 className="addGoalMessage">Enter a new weekly goal</h1>
+        <h2 className="addGoalMessage">New Goal</h2>
         <div className="newGoalDetails">
-          <input id="goalName" type="text" placeholder="Name" onChange={handleNameChange} />
-          <select id="goalCategory" type="text" placeholder="Category" onChange={handleCategoryChange}>
-            <option>Choose Category</option>
+          <label htmlFor="goalName">Name</label>
+          <input id="goalName" type="text" onChange={handleNameChange} />
+          <br />
+
+          <label htmlFor="goalCategory">Category</label>
+          <select id="goalCategory" onChange={handleCategoryChange}>
+            <option disabled defaultValue>Choose Category</option>
             <option value="home">Home</option>
             <option value="work">Work</option>
             <option value="training">Training</option>
           </select>
-          <input type="number" placeholder="Amount of times" onChange={handleTimesChange} />
+
+          <label htmlFor="amountOfTimes">Amount of times</label>
+          <input id="amountOfTimes" type="number" placeholder="0" onChange={handleTimesChange} />
         </div>
         <button type="submit" className="submitGoal">Save</button>
       </form>
