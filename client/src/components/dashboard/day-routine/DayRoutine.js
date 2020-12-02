@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
 
 import { getAllUserDayRoutines } from '../../../actions/routines';
 import getWeekDay from '../mobile/helper/getWeekDay';
 import './DayRoutine.css';
+import { useDispatch, useSelector } from "react-redux";
 
-const DayRoutine = ({ getAllUserDayRoutines, routines }) => {
+const DayRoutine = () => {
   const today = getWeekDay();
+  const dispatch = useDispatch();
+  const { routines } = useSelector(state => state.routines)
+
   useEffect(() => {
     const { email } = JSON.parse(localStorage.getItem('user'));
-    getAllUserDayRoutines(today, email);
+    dispatch(getAllUserDayRoutines(today, email));
   }, []);
 
   return (
@@ -23,9 +26,7 @@ const DayRoutine = ({ getAllUserDayRoutines, routines }) => {
             {habit.name}
       </div>)}
     </div>
-  )
-}
+  );
+};
 
-const mapStateToProps = state => ({ routines: state.allUserDayRoutines });
-
-export default connect(mapStateToProps, { getAllUserDayRoutines })(DayRoutine);
+export default DayRoutine;

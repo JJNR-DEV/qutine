@@ -22,7 +22,7 @@ router.post('/register', async (req, res) => {
   });
   try {
     const savedUser = await user.save();
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+    const token = jwt.sign({_id: user._id, email: req.body.email}, process.env.TOKEN_SECRET);
     res.header('auth-token', token).send({user: user._id});
   } catch(err) {
     console.error("Failed to register user", err)
@@ -40,7 +40,7 @@ router.post('/login', async (req, res) => {
   const validPass = await bcrypt.compare(req.body.password, user.password);
   if(!validPass) return res.status(400).send('Email or password is wrong')
 
-  const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+  const token = jwt.sign({_id: user._id, email: req.body.email}, process.env.TOKEN_SECRET);
   res.header('auth-token', token).send(token);
 });
 

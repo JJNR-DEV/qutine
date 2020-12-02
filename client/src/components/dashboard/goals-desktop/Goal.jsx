@@ -1,21 +1,24 @@
 import React from 'react';
 import { deleteGoal, updateIncrement } from '../../../api/goals';
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUserGoals } from "../../../actions/goals";
 
-const Goal = ({ goalElements, getAllUserGoals }) => {
+const Goal = ({ goalElements }) => {
+  const dispatch = useDispatch();
+  const { user } = useSelector(state => state.auth);
+
   const {
-    name, category, amountOfTimes, counterAmount,
+    _id, name, category, amountOfTimes, counterAmount,
   } = goalElements;
 
   const eraseBtn = () => {
-    const { email } = JSON.parse(localStorage.getItem('user'));
-
     return React.createElement(
       'button',
       {
         className: 'eraseBtn',
         onClick: async () => {
-          await deleteGoal(name, email);
-          getAllUserGoals(email);
+          await deleteGoal(name, user.email);
+          await dispatch(getAllUserGoals(user.email));
         },
         key: Math.random(),
       },
@@ -27,10 +30,10 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
     const { email } = JSON.parse(localStorage.getItem('user'));
     if (e.target.checked) {
       await updateIncrement(name, email, counterAmount + 1);
-      return getAllUserGoals(email);
+      await dispatch(getAllUserGoals(email));
     } else {
       await updateIncrement(name, email, counterAmount - 1);
-      return getAllUserGoals(email);
+      await dispatch(getAllUserGoals(email));
     }
   }
 
@@ -56,36 +59,7 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
       );
     }
     return checkArr;
-  };
-    // amountOfTimes, counterAmount
-
-    // if (newCounter > amountOfTimes) {
-    //   return React.createElement(
-    //     'button',
-    //     {
-    //       className: 'incrementBtn',
-    //       onClick: async () => {
-    //         await updateIncrement(name, email, newCounter);
-    //         getAllUserGoals(email);
-    //       },
-    //       key: Math.random(),
-    //     },
-    //     <p>&#10003;</p>,
-    //   );
-    // }
-
-    // return React.createElement(
-    //   'button',
-    //   {
-    //     className: 'incrementBtn',
-    //     onClick: async () => {
-    //       await updateIncrement(name, email, newCounter);
-    //       getAllUserGoals(email);
-    //     },
-    //     key: Math.random(),
-    //   },
-    //   <p>&#43;</p>,
-    // );
+  }
 
   return (
     <div className={`${category} goalModule`}>
@@ -93,12 +67,12 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
         {name}
         {eraseBtn(name)}
       </div>
-      { amountOfTimes !== ''
-        && (
+      {amountOfTimes !== ''
+      && (
         <div className="goalAmount">
           {createGoalCheckButtons()}
         </div>
-        )}
+      )}
     </div>
   );
 };

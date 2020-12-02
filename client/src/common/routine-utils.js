@@ -15,3 +15,7 @@ const categoryColorMap = [
 export const findCategoryColor = (category) => {
   return categoryColorMap.filter(val => val.type === category).map(val => val.color);
 };
+
+export const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+export const routineCategories = ['Home', 'Work', 'Exercise', 'Leisure', 'Education', 'Other'];

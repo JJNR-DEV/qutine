@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { getAllUserGoals } from '../../../actions/goals';
+
+import React, { useState } from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Goals from '../../goals/Goals';
 import Goal from './Goal';
 import GoalsProgress from './GoalsProgress';
 
-const GoalsDesktop = ({ getAllUserGoals, goals }) => {
-  const [ displayModal, setDisplayModal ] = useState(false);
+const GoalsDesktop = () => {
+  const { goals } = useSelector(state => state.goals);
+  const { user } = useSelector((state) => state.auth);
+  const [displayModal, setDisplayModal] = useState(false);
 
-  useEffect(() => {
-    const { email } = JSON.parse(localStorage.getItem('user'));
-    getAllUserGoals(email);
-  }, [])
-
-  const appendGoalToBoard = () => goals?.map(goal => <Goal
-    key={Math.random()}
-    goalElements={goal}
-    getAllUserGoals={getAllUserGoals}
-  /> );
+  const appendGoalToBoard = () => goals?.map(goal =>
+    <Goal
+      key={Math.random()}
+      goalElements={goal}
+    />);
 
   return (
     <div className="weekGoalsContainer">
@@ -30,8 +28,4 @@ const GoalsDesktop = ({ getAllUserGoals, goals }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return { goals: state.allUserGoals }
-}
-
-export default connect(mapStateToProps, { getAllUserGoals })(GoalsDesktop);
+export default GoalsDesktop;

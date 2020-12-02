@@ -12,6 +12,7 @@ const {getCurrentDay} = require("./utils/date-parser");
 const Routine = require('./model/Routine');
 const RoutineNotification = require('./model/RoutineNotification');
 const {DateTime} = require('luxon');
+const jwt = require('express-jwt');
 
 mongoose.connect(process.env.DB_CONNECT, {
     useUnifiedTopology: true,
@@ -21,13 +22,34 @@ mongoose.connect(process.env.DB_CONNECT, {
     .catch(err => console.log(`Error occurred! ${err.message}`));
 
 mongoose.set('useFindAndModify', false);
+mongoose.set('debug', process.env.ENABLE_MONGOOSE_DEBUG);
 
 app.use(express.json());
+
+app.use(jwt({
+  secret: process.env.TOKEN_SECRET,
+  algorithms: ['HS256'],
+  credentialsRequired: false,
+  getToken: function fromHeaderOrQuerystring (req) {
+    console.log('trying to decode token...')
+    if (!req.headers.authorization || req.headers.authorization === 'undefined') {
+      return null;
+    }
+    if (req.headers.authorization) {
+      return req.headers.authorization;
+    } else if (req.query && req.query.token) {
+      return req.query.token;
+    }
+    return null;
+  }
+}));
 
 app.use('/api/user', authRoute);
 app.use('/goals', goal);
 app.use('/routines', routine);
 app.use('/routine/progress', routineProgress);
+
+
 
 const server = http.createServer(app);
 
@@ -40,17 +62,17 @@ const io = require("socket.io")(server, {
 
 let interval;
 
-io.on("connection", async (socket) => {
-    console.log("New client connected");
-    if (interval) {
-        clearInterval(interval);
-    }
-    interval = setInterval(async () => await sendTodaysRoutineEvents(socket), 10000);
-    socket.on("disconnect", async () => {
-        console.log("Client disconnected");
-        clearInterval(interval);
-    });
-});
+// io.on("connection", async (socket) => {
+//     console.log("New client connected");
+//     if (interval) {
+//         clearInterval(interval);
+//     }
+//     interval = setInterval(async () => await sendTodaysRoutineEvents(socket), 10000);
+//     socket.on("disconnect", async () => {
+//         console.log("Client disconnected");
+//         clearInterval(interval);
+//     });
+// });
 
 
 const sendTodaysRoutineEvents = async (socket) => {

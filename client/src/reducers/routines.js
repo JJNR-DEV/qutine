@@ -1,17 +1,19 @@
-export const getAllUserRoutinesReducer = (state = [], action) => {
-  const { type, payload } = action;
-  if (type === 'GET_USER_ROUTINES') {
-    return payload;
-  }
-  
-  return state;
+import { GET_USER_ROUTINES } from "../actions/actionTypes";
+
+const initialState = {
+  routines: []
 };
 
-export const getAllUserDayRoutinesReducer = (state = [], action) => {
+export default function (state = initialState, action) {
   const { type, payload } = action;
-  if (type === 'GET_USER_DAY_ROUTINES') {
-    return payload;
+
+  switch (type) {
+    case GET_USER_ROUTINES:
+      return {
+        ...state,
+        routines: payload,
+      };
+    default:
+      return state;
   }
-  
-  return state;
-};
+}

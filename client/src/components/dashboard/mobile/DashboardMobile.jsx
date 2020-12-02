@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './DashboardMobile.css';
-import { connect } from 'react-redux';
 import TimePole from '../TimePole';
 import getWeekDay from './helper/getWeekDay';
-import { getAllUserDayRoutines } from '../../../actions/routines';
 import { deleteRoutine } from '../../../api/routines';
+import { getAllUserDayRoutines } from "../../../actions/routines";
+import { useDispatch, useSelector } from "react-redux";
 
-const DashboardMobile = ({ getAllUserDayRoutines, routines }) => {
+const DashboardMobile = ( ) => {
   const today = getWeekDay();
+  const dispatch = useDispatch();
+  const {routines} = useSelector(state => routines);
 
   useEffect(() => {
     const { email } = JSON.parse(localStorage.getItem('user'));
-    getAllUserDayRoutines(today, email);
+    dispatch(getAllUserDayRoutines(today, email));
   }, []);
 
   const [categoryColor, setCategoryColor] = useState([{ home: 'blue' }, { work: 'yellow' }, { training: 'red' }]);
@@ -27,7 +29,7 @@ const DashboardMobile = ({ getAllUserDayRoutines, routines }) => {
         className: 'erase-btn',
         onClick: async () => {
           await deleteRoutine(name, today);
-          getAllUserDayRoutines(today);
+          await dispatch(getAllUserDayRoutines(today));
         },
         key: Math.random(),
       },
@@ -70,6 +72,4 @@ const DashboardMobile = ({ getAllUserDayRoutines, routines }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ routines: state.allUserRoutines });
-
-export default connect(mapStateToProps, { getAllUserDayRoutines })(DashboardMobile);
+export default DashboardMobile;

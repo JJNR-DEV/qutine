@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const createRoutine = (routine) => axios.post('/routines/new-routine', routine)
+export const createRoutine = (routine) => axios.post('/routines/routine', routine)
   .then((res) => res.data)
   .catch((err) => console.error(`${err.message}`));
 
@@ -17,13 +17,9 @@ export const deleteRoutine = async (name, today) => {
   const newDays = days.data[0].days.filter((day) => day !== today);
 
   if (days.data[0].days.length > 1) {
-    axios.put('/routines/update-routine/', { name, days: newDays })
-      .then(() => 'Successfully updated task removing it from the day!')
-      .catch((err) => console.error(`${err.message}`));
+    await axios.put('/routines/update-routine/', { name, days: newDays });
   } else {
-    axios.delete(`/routines/delete-routine/?name=${name}&day=${today}`)
-      .then(() => 'Successfully deleted task for specified day!')
-      .catch((err) => console.error(`${err.message}`));
+    await axios.delete(`/routines/delete-routine/?name=${name}&day=${today}`);
   }
 };
 
