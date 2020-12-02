@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { getAllUserGoals } from '../../actions/goals';
 import { createGoal } from '../../api/goals';
 import { formValidation } from './GoalsValidation';
 import './Goals.css';
 
-const Goals = ({ handleClose, show, getAllUserGoals }) => {
+const Goals = ({ handleClose, show }) => {
+  const dispatch = useDispatch();
   const showHideClassName = show ? "addGoal modal display-block" : " addGoal modal display-none";
   const buttonStyle = {
     position: 'relative',
@@ -21,7 +22,7 @@ const Goals = ({ handleClose, show, getAllUserGoals }) => {
   }
 
   const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('Home');
   const [amountOfTimes, setAmountOfTimes] = useState('');
 
   const handleNameChange = e => setName(e.target.value);
@@ -44,7 +45,7 @@ const Goals = ({ handleClose, show, getAllUserGoals }) => {
     try {
       const { email } = JSON.parse(localStorage.getItem('user'));
       await createGoal(goal);
-      getAllUserGoals(email);
+      dispatch(getAllUserGoals(email));
       handleClose();
     } catch (err) {
       console.error(err.message);
@@ -62,8 +63,7 @@ const Goals = ({ handleClose, show, getAllUserGoals }) => {
           <br />
 
           <label htmlFor="goalCategory">Category</label>
-          <select id="goalCategory" onChange={handleCategoryChange}>
-            <option disabled defaultValue>Choose Category</option>
+          <select id="goalCategory" value={category} onChange={handleCategoryChange}>
             <option value="home">Home</option>
             <option value="work">Work</option>
             <option value="exercise">Exercise</option>
@@ -81,4 +81,4 @@ const Goals = ({ handleClose, show, getAllUserGoals }) => {
   );
 };
 
-export default connect(null, { getAllUserGoals })(Goals);
+export default Goals;

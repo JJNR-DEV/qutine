@@ -1,7 +1,10 @@
 import React from 'react';
 import { deleteGoal, updateIncrement } from '../../../api/goals';
+import { useDispatch } from "react-redux";
+import { getAllUserGoals } from "../../../actions/goals";
 
-const Goal = ({ goalElements, getAllUserGoals }) => {
+const Goal = ({ goalElements }) => {
+  const dispatch = useDispatch();
   const categoryColor = [{ home: '#a0a0ff' }, { work: '#ffff7d' }, { training: '#ff9898' }];
 
   const {
@@ -19,7 +22,7 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
         className: 'eraseBtn',
         onClick: async () => {
           await deleteGoal(name, email);
-          getAllUserGoals(email);
+          await dispatch(getAllUserGoals(email));
         },
         key: Math.random(),
       },
@@ -65,13 +68,13 @@ const Goal = ({ goalElements, getAllUserGoals }) => {
         {name}
         {eraseBtn(name)}
       </div>
-      { amountOfTimes !== ''
-        && (
+      {amountOfTimes !== ''
+      && (
         <div className="goalAmount">
           {`${counterAmount} out of ${amountOfTimes} done this week.`}
           {incrementBtn(counterAmount + 1)}
         </div>
-        )}
+      )}
     </div>
   );
 };
