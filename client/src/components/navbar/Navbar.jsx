@@ -21,18 +21,16 @@ const Navbar = () => {
     }
   };
 
-  // const parseColor = isLoggedIn => {
-  //   if (isLoggedIn) {
-  //     return {
-  //       backgroundColor: 'transparent'
-  //     };
-  //   }
-  //   return {
-  //     backgroundColor: '#CAE4DB'
-  //   };
-  // };
-
-  // style={parseColor(isLoggedIn)}
+  const parseColor = isLoggedIn => {
+    if (isLoggedIn) {
+      return {
+        backgroundColor: 'transparent'
+      };
+    }
+    return {
+      backgroundColor: '#CAE4DB'
+    };
+  };
 
   return (
     <div className="navBar" style={parseColor(isLoggedIn)}>

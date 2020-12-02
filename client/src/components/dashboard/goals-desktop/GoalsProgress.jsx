@@ -9,7 +9,7 @@ const GoalsProgress = () => {
   const getProgress = () => {
     let checked = 0;
     let amount = 0;
-    goals.forEach(goal => {
+    goals?.forEach(goal => {
       checked += goal.counterAmount;
       amount += parseInt(goal.amountOfTimes);
     });
