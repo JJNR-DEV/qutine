@@ -60,10 +60,10 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
           overflow: 'hidden',
           backgroundColor: colorMatch,
         },
-        onClick: () => {
-          setSelectedRoutine(object);
-          setOpen(val => !val);
-        },
+        // onClick: () => {
+        //   setSelectedRoutine(object);
+        //   setOpen(val => !val);
+        // },
         ref: firstHabit ? timeRef : null,
         key: Math.random(),
       },
