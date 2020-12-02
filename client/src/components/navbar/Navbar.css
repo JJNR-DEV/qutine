@@ -47,7 +47,7 @@
 }
 
 .small-btn {
-  background-color: #CAE4DB;
+  background: none;
   border: none;
   cursor: pointer;
   text-decoration: none;
