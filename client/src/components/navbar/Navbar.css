@@ -5,7 +5,6 @@
   justify-content: center;
   height: 80px;
   width: 100%;
-  margin-top: 10px;
 }
 
 .navBar ul {
@@ -13,7 +12,7 @@
   list-style: none;
   width: 100%;
   padding: 0;
-  margin-right: 5%;
+  margin-right: 1%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -42,19 +41,13 @@
   font-weight: bold;
 }
 
-.logo {
-  position: absolute;
-  width: 60px;
-}
-
 .small-btn {
-  padding: 6px;
+  padding: 0;
   margin: 0;
   color: #00303F;
   font-size: 14px;
-  background-color: #CAE4DB;
+  background-color: transparent;
   border: none;
-  border-radius: 20em;
   width: 100px;
   height: 40px;
 }

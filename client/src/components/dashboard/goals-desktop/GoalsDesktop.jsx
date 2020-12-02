@@ -23,8 +23,8 @@ const GoalsDesktop = ({ getAllUserGoals, goals }) => {
     <div className="weekGoalsContainer">
       <h2>Weekly Goals</h2>
       <GoalsProgress goals={goals} />
-      {appendGoalToBoard()}
       <button className="createGoalBtn" onClick={() => setDisplayModal(!displayModal)}>Add Goal</button>
+      {appendGoalToBoard()}
       <Goals show={displayModal} handleClose={() => setDisplayModal(false)} />
     </div>
   );

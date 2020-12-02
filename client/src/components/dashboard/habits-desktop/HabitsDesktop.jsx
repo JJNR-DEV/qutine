@@ -49,6 +49,7 @@ const HabitsDesktop = ({ getAllUserRoutines, routines }) => {
     const {
       name, startTime, duration, category,
     } = object;
+    console.log(typeof parseInt(duration), isNaN(duration), 'duration')
     const newModule = React.createElement(
       'div',
       {
