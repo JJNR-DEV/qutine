@@ -4,13 +4,16 @@ import TimePole from '../TimePole';
 import getWeekDay from './helper/getWeekDay';
 import { deleteRoutine } from '../../../api/routines';
 import { getAllUserDayRoutines } from "../../../actions/routines";
+import { useDispatch, useSelector } from "react-redux";
 
-const DashboardMobile = ({  routines }) => {
+const DashboardMobile = ( ) => {
   const today = getWeekDay();
+  const dispatch = useDispatch();
+  const {routines} = useSelector(state => routines);
 
   useEffect(() => {
     const { email } = JSON.parse(localStorage.getItem('user'));
-    getAllUserDayRoutines(today, email);
+    dispatch(getAllUserDayRoutines(today, email));
   }, []);
 
   const [categoryColor, setCategoryColor] = useState([{ home: 'blue' }, { work: 'yellow' }, { training: 'red' }]);
@@ -26,7 +29,7 @@ const DashboardMobile = ({  routines }) => {
         className: 'erase-btn',
         onClick: async () => {
           await deleteRoutine(name, today);
-          getAllUserDayRoutines(today);
+          await dispatch(getAllUserDayRoutines(today));
         },
         key: Math.random(),
       },

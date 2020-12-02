@@ -6,10 +6,15 @@
   background-image: linear-gradient(#F0EFEB, #ffffff);
 }
 
+button {
+  cursor: pointer;
+  outline: none;
+}
+
 .weekHabitsSection {
   position: relative;
   width: 70%;
-  margin: 7% 5% 0 0;
+  margin: 5% 0 0 0;
   padding-bottom: 5%;
   display: flex;
   flex-direction: column;
@@ -28,6 +33,7 @@
 .todaysDate {
   margin: 0;
   padding: 0;
+  font-size: 38px;
 }
 
 .createRoutineBtn {
@@ -38,8 +44,9 @@
   background-color: #00303F;
   border: none;
   border-radius: 20em;
-  width: 140px;
+  width: 130px;
   height: 40px;
+  box-shadow: 0 0 5px #c4c4c4;
   z-index: 10;
 }
 
@@ -53,13 +60,37 @@
   overflow-x: hidden;
 }
 
+#home {
+  background-color: #7a9d96;
+}
+
+#work {
+  background-color: #e6b6a9;
+}
+
+#exercise {
+  background-color: #e6b6a9;
+}
+
+#leisure {
+  background-color: #ffcf90;
+}
+
+#education {
+  background-color: #a2b08d;
+}
+
+#other {
+  background-color: #cae4db;
+}
+
 .weekHabits {
   position: absolute;
   width: 95%;
   min-height: 1500px;
   max-height: 1500px;
   margin-top: -30px;
-  padding: 0 0 20% 5%;
+  padding: 0 0 30% 5%;
   display: flex;
 }
 
@@ -77,8 +108,8 @@
   text-align: left;
   min-height: 1500px;
   max-height: 1500px;
-  width: 69vw;
-  padding-left: 20px;
+  width: 100%;
+  padding-left: 1%;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -125,20 +156,20 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 13.3%;
+  width: 13.4%;
   border-radius: 5px;
-  background: white;
-  box-shadow: 0 0 4px #c4c4c4;
+  box-shadow: 0 0 5px #949494;
   color: #00303F;
-  font-size: 16px;
-  font-weight: 500;
   word-wrap: break-word;
   z-index: 15;
+  overflow: hidden;
 }
 
 .habitModule h3 {
   margin: 15px 5px;
   padding: 0;
+  font-size: 16px;
+  font-weight: 400;
   word-wrap: break-word;
 }
 
@@ -155,6 +186,109 @@
   padding: 0;
   font-size: 12px;
   color: #b6b6b6;
+}
+
+.sideBar {
+  position: relative;
+  height: 100%;
+  min-height: 1000px;
+  padding: 0 20px;
+  margin: 0 3% 0 0;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e0f5ed;
+  border-radius: 20px;
+  box-shadow: 0 0 9px #c4c4c4;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.sideBarScrollContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 40%;
+  padding-top: 170px;
+  position: absolute;
+}
+
+.logo {
+  position: fixed;
+  width: 60px;
+  margin-top: 10px;
+  z-index: 15;
+}
+
+.sideBar .borderBottomSpan {
+  width: 75%;
+  border-bottom: 1px solid #7A9D96;
+}
+
+.borderBottomSpanFixed {
+  position: fixed;
+  width: 17%;
+  margin-top: 170px;
+  z-index: 12;
+  border-bottom: 1px solid #7A9D96;
+}
+
+.sideBar h2 {
+  color: #00303F;
+}
+
+.profile {
+  position: fixed;
+  width: 22%;
+  height: 70px;
+  padding: 100px 0 0 0;
+  z-index: 10;
+  background-color: #e0f5ed;
+}
+
+.weekGoalsContainer h2 {
+  color: #7A9D96;
+  margin: 20 0 10px 0;
+}
+
+.weekGoalsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 60vh;
+  padding-bottom: 20px;
+}
+
+.goalModule {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 80px;
+  width: 80%;
+  margin: 10px;
+  padding: 15px;
+  background-color: #ffffffce;
+  border-radius: 10px;
+  box-shadow: 0 0 9px #c4c4c4;
+}
+
+.goalModule input[type="checkbox"] {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  border: 1px solid #7A9D96;
+  margin: 6px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.goalModule input[type="checkbox"]:checked {
+  background-color: #7A9D96;
 }
 
 .goalModule .eraseBtn {
@@ -175,58 +309,30 @@
 .createGoalBtn {
   position: relative;
   padding: 6px;
-  margin: 20px 0;
-  color: white;
+  margin: 20px 0 10px 0;
+  color: #7A9D96;
   font-size: 14px;
-  background-color: #DCAE1D;
-  border: none;
-  border-radius: 20em;
-  width: 140px;
-  height: 40px;
-  z-index: 10;
-}
-
-.weekGoalsContainer {
-  position: relative;
-  height: 1000px;
-  min-height: 1000px;
-  padding: 20px 0;
-  margin: 0 5% 0 0;
-  width: 20%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: #e0f5ed;
-  border-radius: 20px;
-  box-shadow: 0 0 9px #c4c4c4;
-}
+  border: none;
+  border: 1px solid #7A9D96;
+  border-radius: 20em;
+  width: 120px;
+  height: 35px;
+  justify-self: flex-end;
+  box-shadow: 0 0 5px #c4c4c4;
 
-.weekGoalsContainer h2 {
-  color: #DCAE1D;
-}
-
-.goalModule {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 80px;
-  width: 80%;
-  margin: 10px;
-  padding: 15px;
-  background-color: #ffffffce;
-  border-radius: 10px;
-  box-shadow: 0 0 9px #c4c4c4;
 }
 
 .goalMain {
   display: flex;
   justify-content: space-between;
+  font-size: 20px;
 }
 
 .goalAmount {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .incrementBtn {
@@ -237,15 +343,26 @@
   background: transparent;
   border: none;
 }
-  
+
+.goalProgressContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.goalProgressContainer p {
+  color: #8a8a8a;
+  margin: 17.5px 1.5vw;
+}
+
 .progressBar {
-  min-height: 20px;
-  max-height: 20px;
-  min-width: 300px;
+  min-height: 30px;
+  max-height: 30px;
+  width: 100%;
   background-repeat: no-repeat;
   border-radius: 20px;
-  background-image: linear-gradient(45deg, #e0c772, #DCAE1D );
-  border: .5px solid #DCAE1D ;
-  margin: 20px 0;
+  background-image: linear-gradient(45deg, #7A9D96, #99bbb4 );
+  border: .5px solid #7A9D96 ;
+  margin: 20px 1.5vw;
   transition: .5s;
 }

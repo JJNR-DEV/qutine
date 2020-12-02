@@ -2,10 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
-import { useHistory } from 'react-router-dom';
-import { logout } from "../../actions/auth";
-import logo from '../../logo.png';
-import { useLocation } from "react-router";
+import {useHistory} from 'react-router-dom';
+import {logout} from "../../actions/auth";
+import {useLocation} from "react-router";
 
 const Navbar = () => {
   const { isLoggedIn, user } = useSelector((state) => state.auth);
@@ -36,8 +35,7 @@ const Navbar = () => {
   // style={parseColor(isLoggedIn)}
 
   return (
-    <div className="navBar" >
-      <img className="logo" src={logo} alt="logo"/>
+    <div className="navBar" style={parseColor(isLoggedIn)}>
       <ul>
         {!isLoggedIn && location.pathname !== '/'
           ? <li><NavLink className="navLink" exact to="/">Home</NavLink></li>

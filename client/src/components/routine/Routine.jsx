@@ -46,6 +46,11 @@ const Routine = ({
         };
       }));
 
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('Home');
+  const [sTime, setSTime] = useState('');
+  const [duration, setDuration] = useState('');
+  const [enableNotification, setEnableNotification] = useState(false);
 
   const handleNameChange = e => setName(e.target.value);
   const handleCategoryChange = e => setCategory(e.target.value);
@@ -104,7 +109,12 @@ const Routine = ({
           <input id="routineName" type="text" value={name} onChange={handleNameChange}/>
           <br/>
           <label htmlFor="routineCategory">Category</label>
+<<<<<<< HEAD
+          <select id="routineCategory" onChange={handleCategoryChange}>
+            <option defaultValue disabled>Choose Category</option>
+=======
           <select id="routineCategory" value={category} onChange={handleCategoryChange}>
+>>>>>>> 23ad913d94112cf13d442a9a6e409db10b13aa1b
             <option value="home">Home</option>
             <option value="work">Work</option>
             <option value="exercise">Exercise</option>
@@ -117,7 +127,11 @@ const Routine = ({
           <br/>
 
           <label htmlFor="routineDuration">Duration</label>
+<<<<<<< HEAD
+          <input id="routineDuration" type="time" placeholder="How many hours?" onChange={handleDuration} />
+=======
           <input id="routineDuration" type="time" placeholder="0" value={duration} onChange={handleDuration}/>
+>>>>>>> 23ad913d94112cf13d442a9a6e409db10b13aa1b
         </div>
         <div className="selectionDays">
           <span>Days</span>

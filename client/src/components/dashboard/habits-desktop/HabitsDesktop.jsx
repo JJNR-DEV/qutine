@@ -45,16 +45,16 @@ const HabitsDesktop = () => {
     const {
       name, startTime, duration, category,
     } = object;
-    const colorMatch = categoryColor.map((color) => color[category]).filter((color) => color);
+    console.log(typeof parseInt(duration), isNaN(duration), 'duration')
     const newModule = React.createElement(
       'div',
       {
-        className: `habitModule ${category}`,
+        className: 'habitModule',
+        id: category,
         style: {
-          height: `${(parseInt(duration) * 57) - 5}px`,
-          marginTop: `${(parseInt(startTime) * 57) + 90}px`,
+          height: `${(parseInt(duration) * 57)}px`,
+          marginTop: `${(parseInt(startTime) * 57) + 86}px`,
           overflow: 'hidden',
-          backgroundColor: colorMatch,
         },
         onClick: () => {
           setSelectedRoutine(object);
@@ -113,27 +113,9 @@ const HabitsDesktop = () => {
     return day;
   };
 
-  const dateName = (num) => {
-    const parsedNum = parseInt(num);
-    let date;
-    if (parsedNum === 1) {
-      date = `${num}st`;
-    } else if (parsedNum === 2) {
-      date = `${num}nd`;
-    } else if (parsedNum === 3) {
-      date = `${num}rd`;
-    } else {
-      date = `${num}th`;
-    }
-    ;
-    return date;
-  };
-
   const getToday = () => {
-    const today = new Date();
-    const date = String(today.getDate());
     const day = convertToDay();
-    return `${day} ${dateName(date)}`;
+    return `Happy ${day}!`;
   };
 
   return (
@@ -154,11 +136,11 @@ const HabitsDesktop = () => {
           {createWeek()}
         </div>
         {displayModal &&
-        <Routine show={displayModal}
-                 selectedRoutine={selectedRoutine}
-                 handleClose={() => setDisplayModal(false)}/>
+        <Routine 
+          show={displayModal}
+          selectedRoutine={selectedRoutine}
+          handleClose={() => setDisplayModal(false)}/>
         }
-
       </div>
     </div>
   );

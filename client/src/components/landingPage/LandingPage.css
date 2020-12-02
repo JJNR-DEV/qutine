@@ -12,6 +12,7 @@
 }
 
 .welcomeMessage > h1 {
+  margin-top: 40px;
   background-clip: text;
   -webkit-background-clip: text;
   font-size: 5vh;
