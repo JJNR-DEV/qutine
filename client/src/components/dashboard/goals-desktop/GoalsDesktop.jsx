@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getAllUserGoals } from '../../../actions/goals';
 import Goals from '../../goals/Goals';
 import Goal from './Goal';
