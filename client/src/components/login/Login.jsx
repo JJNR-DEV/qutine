@@ -47,7 +47,7 @@ const Login = () => {
   return (
     <div className="login">
       <h1 className="loginGreetingMessage">
-        Log in and get started with your routine!
+        Login and get started with your routine!
       </h1>
       <form onSubmit={handleSubmit}>
         <input
@@ -64,7 +64,7 @@ const Login = () => {
           onChange={handleChangePassword}
           className={`password ${passwordValidation ? '' : 'invalid-field'}`}
         />
-        <button type="submit" className="loginButton">Sign in</button>
+        <button type="submit" className="loginButton">Login</button>
       </form>
     </div>
   );
