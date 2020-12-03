@@ -28,6 +28,7 @@ button {
   align-items: center;
   margin: 5% 0 0 5%;
   width: 95%;
+  min-height: 100px;
 }
 
 .weekdayAndCategoryDescription {
@@ -391,7 +392,7 @@ button {
 
 .goalProgressContainer p {
   color: #8a8a8a;
-  margin: 17.5px 1.5vw;
+  margin: 18px 1.5vw;
 }
 
 .progressBar {
