@@ -8,6 +8,6 @@
   "license": "MIT",
   "scripts": {
     "build": "(cd client react-scripts build) && (cd server && yarn install)",
-    "start": "cd server && yarn start-prod"
+    "start": "cd server && yarn start"
   }
 }
