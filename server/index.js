@@ -15,6 +15,8 @@ const RoutineNotification = require('./model/RoutineNotification');
 const {DateTime} = require('luxon');
 const jwt = require('express-jwt');
 
+console.log("Environment variables: ", process.env);
+
 mongoose.connect(process.env.DB_CONNECT, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
