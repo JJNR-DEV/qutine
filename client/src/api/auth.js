@@ -3,10 +3,7 @@ import axios from 'axios';
 export const registerUser = (user) => axios.post('/api/user/register', user)
   .then((res) => {
     if (res.data) {
-      localStorage.setItem('user', JSON.stringify({
-        email: user.email,
-        accessToken: res.data,
-      }));
+      localStorage.setItem('user', JSON.stringify(res.data));
     }
     return res.data;
   })
@@ -18,10 +15,7 @@ export const registerUser = (user) => axios.post('/api/user/register', user)
 export const loginUser = (user) => axios.post('/api/user/login', user)
   .then((res) => {
     if (res.data) {
-      localStorage.setItem('user', JSON.stringify({
-        email: user.email,
-        accessToken: res.data,
-      }));
+      localStorage.setItem('user', JSON.stringify(res.data));
     }
     return res.data;
   })

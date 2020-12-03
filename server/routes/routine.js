@@ -7,13 +7,15 @@ const {verifyToken} = require("./verifyToken");
  * Updates or Creates new routine
  */
 router.post('/routine', verifyToken, async (req, res) => {
+    const {email } = req.user;
+
     const routine = new Routine({
         name: req.body.name,
         category: req.body.category,
         startTime: req.body.sTime,
         duration: req.body.duration,
         days: req.body.days,
-        userEmail: req.body.userEmail,
+        userEmail: email,
         activateNotification: req.body.activateNotification,
     });
 
@@ -27,7 +29,7 @@ router.post('/routine', verifyToken, async (req, res) => {
                 startTime: req.body.sTime,
                 duration: req.body.duration,
                 days: req.body.days,
-                userEmail: req.body.userEmail,
+                userEmail: email,
                 activateNotification: req.body.activateNotification,
             }, {upsert: true});
         } else {
