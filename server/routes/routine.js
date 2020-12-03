@@ -20,10 +20,12 @@ router.post('/routine', verifyToken, async (req, res) => {
   const query = { _id: req.body.id };
 
   try {
+    const existing = await Routine.find({ name: req.body.name });
+    if (existing.length > 0) throw Error('Already exists')
     await Routine.findOneAndUpdate(query, routine, { upsert: true });
     res.status(201).send(`You routine task "${req.body.name}" has been successfully added!`);
   } catch ({ message }) {
-    res.status(500).send(`Something went wrong: ${message}`);
+    res.status(500).send(`${message}`);
   }
 });
 
