@@ -26,12 +26,12 @@ router.get('/all-goals', verifyToken, async (req, res) => {
 });
 
 router.put('/increment-goal', verifyToken, async (req, res) => {
-  const { _id, name, email, newCounter } = req.body;
-  const goal = await Goal.find({ _id, name, userEmail: email });
+  const { name, email, newCounter } = req.body;
+  const goal = await Goal.find({ name, userEmail: email });
 
   try {
     if (newCounter <= goal[0].amountOfTimes) {
-      await Goal.findOneAndUpdate({ _id, name }, { counterAmount: newCounter });
+      await Goal.findOneAndUpdate({ name }, { counterAmount: newCounter });
       return res.status(204).send({ message: 'Successfuly incremented counter for goal!' });
     }
   } catch ({ message }) {
