@@ -79,7 +79,7 @@ const HabitsDesktop = () => {
 
   const createWeek = () => {
     const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    return weekDays.map(day => <Habit day={day} appendHabitToWeek={appendHabitToWeek} key={day}/>);
+    return weekDays.map((day) => <Habit day={day} appendHabitToWeek={appendHabitToWeek} convertToDay={convertToDay} key={day}/>);
   };
 
   const convertToDay = () => {
@@ -97,7 +97,7 @@ const HabitsDesktop = () => {
         day = 'Wednesday';
         break;
       case '4':
-        day = 'THursday';
+        day = 'Thursday';
         break;
       case '5':
         day = 'Friday';
@@ -146,6 +146,5 @@ const HabitsDesktop = () => {
     </div>
   );
 };
-
 
 export default HabitsDesktop;
