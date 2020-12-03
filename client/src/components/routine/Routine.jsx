@@ -46,12 +46,6 @@ const Routine = ({
         };
       }));
 
-  // const [name, setName] = useState('');
-  // const [category, setCategory] = useState('Home');
-  // const [sTime, setSTime] = useState('');
-  // const [duration, setDuration] = useState('');
-  // const [enableNotification, setEnableNotification] = useState(false);
-
   const handleNameChange = e => setName(e.target.value);
   const handleCategoryChange = e => setCategory(e.target.value);
   const handleStartTime = e => setStartTime(e.target.value);
