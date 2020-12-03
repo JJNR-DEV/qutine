@@ -22,6 +22,7 @@ import RoutineNotification from './components/notifications/routineNotifications
 import { aknowledgeNotification } from "./api/routines";
 import { getAllUserRoutines } from "./actions/routines";
 import { getAllUserGoals } from "./actions/goals";
+import axios from "axios";
 
 const ENDPOINT = 'http://localhost:4000';
 
@@ -31,7 +32,9 @@ const App = () => {
 
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT);
-    if (isLoggedIn) {
+    if (isLoggedIn && user.email) {
+      // update authorization header with latest token
+      axios.defaults.headers.common['Authorization'] = user.accessToken;
       dispatch(getAllUserRoutines(user.email));
       dispatch(getAllUserGoals(user.email));
       socket.on(`routine-notification/${user.email}`, (routine) => {
@@ -41,7 +44,7 @@ const App = () => {
     }
 
     return () => socket.disconnect();
-  }, []);
+  }, [isLoggedIn, user]);
 
   return (
     <Router>
