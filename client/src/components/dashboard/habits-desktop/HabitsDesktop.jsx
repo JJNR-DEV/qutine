@@ -46,6 +46,8 @@ const HabitsDesktop = () => {
   const makeTimeDecimal = (string) => {
     const split = string.split(/[.:]/);
     const decimal = parseFloat(split[1]) / 60;
+    console.log(parseFloat(split[0]) + decimal)
+
     return parseFloat(split[0]) + decimal;
   }
 
@@ -59,7 +61,7 @@ const HabitsDesktop = () => {
         className: 'habitModule',
         id: category,
         style: {
-          height: `${(parseFloat(duration) * 57)}px`,
+          height: `${(makeTimeDecimal(duration) * 57)}px`,
           marginTop: `${(makeTimeDecimal(startTime) * 57) + 86}px`,
           overflow: 'hidden',
         },
