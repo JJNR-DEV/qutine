@@ -4,6 +4,9 @@ During the pandemic people are more isolated which, in many cases, leads to lack
 
 The problems our target audience is facing is lack of structure and routine. Our solution is an application where you in a simple and visual way can structure your daily routines. You will also be able to add weekly goals. To visually represent your weekly structure will help you creating and maintaining your routine. Our goal is to help people stay healthy in times where maintaining a daily structure is more difficult.
 
+### Environment
+
+Production link = https://qutine.herokuapp.com/dashboard
 
 ### Installation
 
@@ -20,4 +23,4 @@ https://devcenter.heroku.com/articles/heroku-cli
 
 (3) heroku login
 
-(4) git push heroku amster
+(4) git push heroku master
