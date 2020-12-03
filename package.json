@@ -1,0 +1,13 @@
+{
+  "name": "qutine-parent",
+  "version": "1.0.0",
+  "description": "qutine",
+  "main": "index.js",
+  "repository": "https://github.com/jrodri06/qutine.git",
+  "author": "Therese Abrahamsson <therese.abra@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "(cd client react-scripts build) && (cd server && yarn install)",
+    "start": "cd server && yarn run"
+  }
+}
