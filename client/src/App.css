@@ -83,3 +83,7 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+.notification {
+  color: #00303F;
+}

@@ -35,7 +35,7 @@ const App = () => {
       dispatch(getAllUserRoutines(user.email));
       dispatch(getAllUserGoals(user.email));
       socket.on(`routine-notification/${user.email}`, (routine) => {
-        toast(<RoutineNotification routine={routine}/>);
+        toast(<RoutineNotification className="notification" routine={routine}/>);
         aknowledgeNotification(routine);
       });
     }
