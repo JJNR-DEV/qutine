@@ -33,32 +33,32 @@ app.use(express.static(buildPath));
 app.use(express.json());
 
 app.use(jwt({
-  secret: process.env.TOKEN_SECRET,
-  algorithms: ['HS256'],
-  credentialsRequired: false,
-  getToken: function fromHeaderOrQuerystring (req) {
-    if (!req.headers.authorization || req.headers.authorization === 'undefined') {
-      return null;
+    secret: process.env.TOKEN_SECRET,
+    algorithms: ['HS256'],
+    credentialsRequired: false,
+    getToken: function fromHeaderOrQuerystring(req) {
+        if (!req.headers.authorization || req.headers.authorization === 'undefined') {
+            return null;
+        }
+        if (req.headers.authorization) {
+            return req.headers.authorization;
+        } else if (req.query && req.query.token) {
+            return req.query.token;
+        }
+        return null;
     }
-    if (req.headers.authorization) {
-      return req.headers.authorization;
-    } else if (req.query && req.query.token) {
-      return req.query.token;
-    }
-    return null;
-  }
 }));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'../client/build/index.html'));
-});
+if (process.env.QUTINE_ENV === 'PRODUCTION') {
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname + '/../client/build/index.html'));
+    });
+}
 
 app.use('/api/user', authRoute);
 app.use('/goals', goal);
 app.use('/routines', routine);
 app.use('/routine/progress', routineProgress);
-
-
 
 const server = http.createServer(app);
 
@@ -82,7 +82,6 @@ io.on("connection", async (socket) => {
         clearInterval(interval);
     });
 });
-
 
 const sendTodaysRoutineEvents = async (socket) => {
     try {
@@ -110,6 +109,5 @@ const sendTodaysRoutineEvents = async (socket) => {
         console.error("Error ", error);
     }
 };
-
 
 server.listen(port, () => console.log(`Server listening to port ${port}!`));
