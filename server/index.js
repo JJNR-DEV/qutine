@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const app = express();
 const port = 4000;
@@ -23,6 +24,9 @@ mongoose.connect(process.env.DB_CONNECT, {
 
 mongoose.set('useFindAndModify', false);
 mongoose.set('debug', process.env.ENABLE_MONGOOSE_DEBUG);
+
+const buildPath = path.join(__dirname, '../client', 'build');
+app.use(express.static(buildPath));
 
 app.use(express.json());
 
