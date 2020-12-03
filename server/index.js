@@ -93,6 +93,7 @@ io.on("connection", async (socket) => {
 
 const sendTodaysRoutineEvents = async (socket) => {
     try {
+        console.log('starting...');
         const now = new Date();
         const currentDay = getCurrentDay();
         const routines = await Routine.find({
@@ -109,6 +110,10 @@ const sendTodaysRoutineEvents = async (socket) => {
                 created: {$gte: startOfToday}
             }).exec();
 
+            console.log('currentHours: ' + currentHours
+                + " routineStartTime: " + routine.startTime
+                + " user: " + routine.userEmail
+            );
             if (!routineNotification && currentHours === routine.startTime) {
                 socket.emit(`routine-notification/${routine.userEmail}`, routine);
             }
