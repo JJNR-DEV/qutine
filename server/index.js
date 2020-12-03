@@ -15,8 +15,6 @@ const {DateTime} = require('luxon');
 const jwt = require('express-jwt');
 const port = process.env.PORT || 4000;
 
-console.log("Environment variables: ", process.env);
-
 mongoose.connect(process.env.DB_CONNECT, {
     useUnifiedTopology: true,
     useNewUrlParser: true,

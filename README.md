@@ -14,7 +14,10 @@ Frontend port = 3001
 ### Deploy
 
 (1) install heroku cli
+https://devcenter.heroku.com/articles/heroku-cli
 
 (2) cd into qutine
 
-(2) 
+(3) heroku login
+
+(4) git push heroku amster
