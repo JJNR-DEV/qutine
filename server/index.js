@@ -2,7 +2,6 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 4000;
 const mongoose = require('mongoose');
 const authRoute = require('./routes/auth');
 const goal = require('./routes/goal');
@@ -14,6 +13,7 @@ const Routine = require('./model/Routine');
 const RoutineNotification = require('./model/RoutineNotification');
 const {DateTime} = require('luxon');
 const jwt = require('express-jwt');
+const port = process.env.PORT || 4000;
 
 console.log("Environment variables: ", process.env);
 
