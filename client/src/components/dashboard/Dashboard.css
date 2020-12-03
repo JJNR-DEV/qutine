@@ -46,7 +46,9 @@ button {
 
 .createRoutineBtn {
   position: relative;
+  align-self: flex-start;
   padding: 6px;
+  margin-top: 1%;
   color: white;
   font-size: 14px;
   background-color: #00303F;
