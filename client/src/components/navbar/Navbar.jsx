@@ -39,13 +39,6 @@ const Navbar = () => {
           }}>
             <button className="small-btn"
                     type="button"
-                    style={{ 
-                      top: '45px',
-                      margin: '0 auto',
-                      textDecoration: 'underline',
-                      position: 'relative',
-                      fontWeight: 'bold'
-                    }}
                     onClick={handleLogout}
             >
               Logout
