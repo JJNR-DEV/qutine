@@ -49,12 +49,6 @@ app.use(jwt({
     }
 }));
 
-if (process.env.QUTINE_ENV === 'PRODUCTION') {
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname + '/../client/build/index.html'));
-    });
-}
-
 app.use('/api/user', authRoute);
 app.use('/goals', goal);
 app.use('/routines', routine);
@@ -62,12 +56,25 @@ app.use('/routine/progress', routineProgress);
 
 const server = http.createServer(app);
 
-const io = require("socket.io")(server, {
-    cors: {
-        origin: "http://localhost:3001",
-        methods: ["GET", "POST", "PUT"]
-    }
-});
+let io;
+if (process.env.QUTINE_ENV === 'PRODUCTION') {
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname + '/../client/build/index.html'));
+    });
+    io = require("socket.io")(server, {
+        cors: {
+            origin: "http://localhost",
+            methods: ["GET", "POST", "PUT"]
+        }
+    });
+} else {
+    io = require("socket.io")(server, {
+        cors: {
+            origin: "http://localhost:3001",
+            methods: ["GET", "POST", "PUT"]
+        }
+    });
+}
 
 let interval;
 
