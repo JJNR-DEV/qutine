@@ -13,7 +13,7 @@ const HabitsDesktop = () => {
   const { user } = useSelector(state => state.auth);
   const [displayModal, setDisplayModal] = useState(false);
   const timeRef = useRef(null);
-  const categoryColor = [{ home: '#7a9d96' }, { work: '#e6b6a9' }, { exercise: '#00303f' }, { leisure: '#ffcf90' }, { education: 'a2b08d' }, { other: '#cae4db' }];
+  // const categoryColor = [{ home: '#7a9d96' }, { work: '#e6b6a9' }, { exercise: '#00303f' }, { leisure: '#ffcf90' }, { education: 'a2b08d' }, { other: '#cae4db' }];
   const [open, setOpen] = useState(false);
   const [selectedRoutine, setSelectedRoutine] = useState(null);
 
@@ -41,20 +41,25 @@ const HabitsDesktop = () => {
       <p>&#10005;</p>,
     );
   };
+ 
+  const makeTimeDecimal = (string) => {
+    const split = string.split(/[.:]/);
+    const decimal = parseFloat(split[1]) / 60;
+    return parseFloat(split[0]) + decimal;
+  }
 
   const createHabit = (object, day, firstHabit) => {
     const {
       name, startTime, duration, category,
     } = object;
-    console.log(typeof parseInt(duration), isNaN(duration), 'duration')
     const newModule = React.createElement(
       'div',
       {
         className: 'habitModule',
         id: category,
         style: {
-          height: `${(parseInt(duration) * 57)}px`,
-          marginTop: `${(parseInt(startTime) * 57) + 86}px`,
+          height: `${(parseFloat(duration) * 57)}px`,
+          marginTop: `${(makeTimeDecimal(startTime) * 57) + 86}px`,
           overflow: 'hidden',
         },
         onClick: () => {
