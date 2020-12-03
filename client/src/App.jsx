@@ -26,7 +26,14 @@ import { getAllUserGoals } from "./actions/goals";
 import axios from "axios";
 const PORT = process.env.PORT || process.env.REACT_APP_PORT || 4000;
 
-let ENDPOINT = `http://localhost:${PORT}`;
+let ENDPOINT;
+
+if (process.env.NODE_ENV === 'development') {
+  ENDPOINT = `http://localhost:${PORT}`;
+} else {
+  // If production we don't need to specify port
+  ENDPOINT = 'http://localhost';
+}
 
 const App = () => {
   const { isLoggedIn, user } = useSelector((state) => state.auth);
