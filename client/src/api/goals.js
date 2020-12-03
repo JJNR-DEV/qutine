@@ -12,9 +12,12 @@ export const deleteGoal = (name, email) => axios.delete(`/goals/delete-goal/?use
   .then(() => console.log('Successfully deleted taks!'))
   .catch((err) => console.error(`${err.message}`));
 
-export const updateIncrement = (_id, name, email, newCounter) => {
-  var temp = "";
-  return axios.put('/goals/increment-goal', { _id, name, email, newCounter })
+export const updateIncrement = (name, email, newCounter) => {
+  // param _id was not receiving the right data
+  // it was containing the goal name 
+  console.log(name, email, newCounter)
+  // var temp = "";
+  return axios.put('/goals/increment-goal', { name, email, newCounter })
     .then(() => console.log(newCounter, 'Successfully updated counter!'))
     .catch((err) => console.error(`${err.message}`));
 };

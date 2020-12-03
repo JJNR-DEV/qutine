@@ -13,7 +13,6 @@ import Navbar from './components/navbar/Navbar';
 import Dashboard from './components/dashboard/Dashboard';
 import Snackbar from './components/snackbar/Snackbar';
 import Goals from './components/goals/Goals';
-import Routine from './components/routine/Routine';
 import DashboardMobile from './components/dashboard/mobile/DashboardMobile';
 import LandingPage from './components/landingPage/LandingPage';
 import Login from './components/login/Login';
@@ -75,9 +74,6 @@ const App = () => {
             <DashboardMobile/>
           </PrivateRoute>
 
-          <PrivateRoute path="/routine">
-            <Routine/>
-          </PrivateRoute>
           <PrivateRoute path="/goal">
             <Goals/>
           </PrivateRoute>

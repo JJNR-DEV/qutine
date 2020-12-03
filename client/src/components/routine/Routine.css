@@ -113,6 +113,12 @@
   color: #00303F;
 }
 
+.selectionDays.invalid-field {
+  padding: 0;
+  background-position-y: top;
+  background-position-x: right;
+}
+
 .addRoutine > form > input:focus,
 .addRoutine > form > select:focus {
 box-shadow: 0 0 0 2pt #F2B95A;

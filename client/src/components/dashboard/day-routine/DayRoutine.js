@@ -20,6 +20,7 @@ const DayRoutine = () => {
       <h2>Your Day</h2>
       {routines?.map(habit =>
         <div
+        key={Math.random()}
           className={`day-routine-task`}
           id={habit.category}>
             {habit.startTime}

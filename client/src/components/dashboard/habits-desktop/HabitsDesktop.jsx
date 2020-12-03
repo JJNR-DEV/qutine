@@ -58,7 +58,8 @@ const HabitsDesktop = () => {
         },
         onClick: () => {
           setSelectedRoutine(object);
-          setDisplayModal(val => !val);
+          // This seems to be here by mistake I believe
+          // {setDisplayModal(val => !val)};
         },
         ref: firstHabit ? timeRef : null,
         key: Math.random(),
@@ -69,7 +70,7 @@ const HabitsDesktop = () => {
     return newModule;
   };
 
-  const appendHabitToWeek = (divDay) => routines?.map((routine) => routine.days.map((day) => {
+  const appendHabitToWeek = divDay => routines?.map((routine) => routine.days.map((day) => {
     if (day === divDay) {
       return createHabit(routine, day);
     }
@@ -78,7 +79,7 @@ const HabitsDesktop = () => {
 
   const createWeek = () => {
     const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    return weekDays.map((day) => <Habit day={day} appendHabitToWeek={appendHabitToWeek} key={day}/>);
+    return weekDays.map(day => <Habit day={day} appendHabitToWeek={appendHabitToWeek} key={day}/>);
   };
 
   const convertToDay = () => {
