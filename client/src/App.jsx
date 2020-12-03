@@ -23,8 +23,9 @@ import { aknowledgeNotification } from "./api/routines";
 import { getAllUserRoutines } from "./actions/routines";
 import { getAllUserGoals } from "./actions/goals";
 import axios from "axios";
+const PORT = process.env.PORT || 4000;
 
-const ENDPOINT = 'http://localhost:4000';
+const ENDPOINT = `http://localhost:${PORT}`;
 
 const App = () => {
   const { isLoggedIn, user } = useSelector((state) => state.auth);
