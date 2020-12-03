@@ -41,7 +41,12 @@ const App = () => {
 
   useEffect(() => {
     console.log("Env variables", process.env);
-    const socket = socketIOClient(ENDPOINT);
+    let socket;
+    if (process.env.NODE_ENV === 'development') {
+      socket = socketIOClient(ENDPOINT);
+    } else {
+      socket = socketIOClient();
+    }
     if (isLoggedIn && user.email) {
       // update authorization header with latest token
       axios.defaults.headers.common['Authorization'] = user.accessToken;
