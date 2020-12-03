@@ -13,7 +13,8 @@ const HabitsDesktop = () => {
   const { user } = useSelector(state => state.auth);
   const [displayModal, setDisplayModal] = useState(false);
   const timeRef = useRef(null);
-  // const categoryColor = [{ home: '#7a9d96' }, { work: '#e6b6a9' }, { exercise: '#00303f' }, { leisure: '#ffcf90' }, { education: 'a2b08d' }, { other: '#cae4db' }];
+  const categoryArr = ['home', 'work', 'exercise', 'leisure', 'education', 'other'];
+  const categoryColor = [{ home: '#7a9d96' }, { work: '#e6b6a9' }, { exercise: '#00303f' }, { leisure: '#ffcf90' }, { education: 'a2b08d' }, { other: '#cae4db' }];
   const [open, setOpen] = useState(false);
   const [selectedRoutine, setSelectedRoutine] = useState(null);
 
@@ -124,10 +125,26 @@ const HabitsDesktop = () => {
     return `Happy ${day}!`;
   };
 
+  const createCategoryCircles = () => {
+    return categoryArr.map(category => {
+      return(
+        <div className='categoryBubbleContainer'>
+          <div className='categoryBubble' id={category}></div>
+          <p>{category}</p>
+        </div>
+      )
+    })
+  }
+
   return (
     <div className="weekHabitsSection">
       <div className='routineTopDiv'>
-        <h2 className='todaysDate'>{getToday()}</h2>
+        <div className='weekdayAndCategoryDescription'>
+          <h2 className='todaysDate'>{getToday()}</h2>
+          <div className='categoryDescription'>
+            {createCategoryCircles()}
+          </div>
+        </div>
         <button className="createRoutineBtn" onClick={() => {
           setSelectedRoutine(null);
           setDisplayModal(val => !val);

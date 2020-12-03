@@ -30,6 +30,14 @@ button {
   width: 95%;
 }
 
+.weekdayAndCategoryDescription {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-start;
+  width: 60%;
+}
+
 .todaysDate {
   margin: 0;
   padding: 0;
@@ -53,7 +61,7 @@ button {
 .weekHabitsContainer {
   position: relative;
   min-height: 100%;
-  margin: 100px 0 0 0;
+  margin: 50px 0 0 0;
   border-radius: 10px;
   color: #00303F;
   overflow-y: scroll;
@@ -82,6 +90,30 @@ button {
 
 #other {
   background-color: #cae4db;
+}
+
+.categoryDescription {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  color: #868686;
+}
+
+.categoryBubbleContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.categoryBubble {
+  min-width: 15px;
+  min-height: 15px;
+  max-width: 15px;
+  max-height: 15px;
+  border-radius: 50%;
+  margin: 0 7px;
 }
 
 .weekHabits {
@@ -246,6 +278,7 @@ button {
   padding: 100px 0 0 0;
   z-index: 10;
   background-color: #e0f5ed;
+  word-wrap: break-word;
 }
 
 .profile span {
