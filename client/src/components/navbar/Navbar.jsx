@@ -24,20 +24,30 @@ const Navbar = () => {
   return (
     <div className="navBar">
       <ul>
-        {!isLoggedIn && location.pathname !== '/'
-          ? <li><NavLink className="navLink" exact to="/">Home</NavLink></li>
+        {!isLoggedIn && location.pathname === '/login'
+          ? <li style={{ padding: '0 20px '}}><NavLink className="navLink" exact to="/" style={{color: '#fff'}}>Home</NavLink></li>
           : null
         }
-        {isLoggedIn ? (
+        {!isLoggedIn && location.pathname === '/register'
+          ? <li style={{ padding: '0 20px '}}><NavLink className="navLink" exact to="/" style={{color: '#00303F'}}>Home</NavLink></li>
+          : null
+        }
+        {isLoggedIn && location.pathname === '/dashboard' ? (
           <li>
             <button className="small-btn"
                     type="button"
+                    style={{ 
+                      display: 'flex',
+                      alignItems: 'flex-end',
+                      paddingLeft: '20px',
+                      fontWeight: 'bold'
+                    }}
                     onClick={handleLogout}
             >
-              Log out
+              Logout
             </button>
           </li>
-        ) : !isLoggedIn && location.pathname === '/register' ? (
+        ) : null} {/* !isLoggedIn && location.pathname === '/register' ? (
           <button className="small-btn"
                   type="button"
                   onClick={() => {
@@ -47,7 +57,7 @@ const Navbar = () => {
             Login
           </button>
         ) : null
-        }
+        } */}
       </ul>
     </div>
   );
