@@ -8,10 +8,8 @@ const Habit = (props) => {
     console.log(today, weekday)
     if (weekday === today) {
       setWeekDayStyle({
-        borderLeft: '2px solid #DCAE1D',
-        borderRight: '2px solid #DCAE1D',
-        borderTop: '2px solid #DCAE1D',
-        marginTop: '-14px',
+        backgroundColor: '#00303F',
+        color: 'white'
     });
   }
 }
@@ -21,7 +19,7 @@ useEffect(() => {
 }, [])
 
   return (
-    <div className='weekday' id={props.day} key={props.day} style={weekdayStyle}>
+    <div className='weekday' id={props.day} key={props.day}>
       <div className='weekdayName' key={`${props.day}2`} style={weekdayStyle}>
         {props.day}
       </div>
