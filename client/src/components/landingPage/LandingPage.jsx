@@ -20,7 +20,7 @@ const LandingPage = () => {
 
   return (
     <div className="landingPage">
-      <div class="primary">
+      <div className="primary">
         <div className="welcomeMessage">
           <h1>Track your day with <span className="qutine">Qutine!</span></h1>
           <p>Routine for your quarantine.</p>

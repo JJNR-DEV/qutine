@@ -37,9 +37,10 @@ const Navbar = () => {
             <button className="small-btn"
                     type="button"
                     style={{ 
-                      display: 'flex',
-                      alignItems: 'flex-end',
-                      paddingLeft: '20px',
+                      top: '45px',
+                      left: '60px',
+                      textDecoration: 'underline',
+                      position: 'relative',
                       fontWeight: 'bold'
                     }}
                     onClick={handleLogout}
