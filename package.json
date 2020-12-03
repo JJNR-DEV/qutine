@@ -7,8 +7,8 @@
   "author": "Therese Abrahamsson <therese.abra@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "heroku-postbuild": "(cd client react-scripts build) && (cd server && yarn install)",
-    "build": "(cd client react-scripts build) && (cd server && yarn install)",
+    "heroku-postbuild": "(cd client && react-scripts build) && (cd server && yarn install)",
+    "build": "(cd client && react-scripts build) && (cd server && yarn install)",
     "start": "cd server && yarn start"
   }
 }
