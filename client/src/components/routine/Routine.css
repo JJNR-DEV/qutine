@@ -121,7 +121,7 @@
 
 .addRoutine > form > input:focus,
 .addRoutine > form > select:focus {
-box-shadow: 0 0 0 2pt #F2B95A;
+box-shadow: 0 0 0 2pt #DCAE1D;
 outline: none;
 }
 
@@ -160,6 +160,10 @@ outline: none;
   width: 20px;
   margin: 0px;
   box-shadow: none;
+}
+
+.selectionDays > ul > li > input:checked {
+  background-color: #00303F;
 }
 
 .invalid-field {

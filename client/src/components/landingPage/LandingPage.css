@@ -113,13 +113,14 @@
   font-size: x-large;
   grid-template-columns: 50% 50%;
   grid-template-rows: repeat(4, 70px);
-  grid-template-areas: 
+  grid-template-areas:
     "row-1-left row-1-right"
     "row-2-left row-2-right"
     "row-3-left row-3-right"
     "row-4-left row-4-right";
   display: grid;
-  padding: 20px
+  padding: 20px;
+  margin: 5vh 10vh;
 }
 
 .landingTutorial > div > img {
