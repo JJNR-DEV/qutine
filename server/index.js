@@ -14,6 +14,8 @@ const RoutineNotification = require('./model/RoutineNotification');
 const {DateTime} = require('luxon');
 const jwt = require('express-jwt');
 const port = process.env.PORT || 4000;
+const socketIO = require('socket.io');
+const INDEX = '/index.html';
 
 mongoose.connect(process.env.DB_CONNECT, {
     useUnifiedTopology: true,
@@ -61,9 +63,13 @@ const server = http.createServer(app);
 
 let io;
 if (process.env.QUTINE_ENV === 'PRODUCTION') {
-    io = require("socket.io")(server);
+    console.log('Starting socket.io for production...');
+    app.use((req, res) => res.sendFile(INDEX,
+        {root: path.join(__dirname + '/../client/build/')}));
+    io = socketIO(server);
 } else {
-    io = require("socket.io")(server, {
+    console.log('Starting socket.io for development...');
+    io = socketIO(server, {
         cors: {
             origin: "http://localhost:3001",
             methods: ["GET", "POST", "PUT"]
