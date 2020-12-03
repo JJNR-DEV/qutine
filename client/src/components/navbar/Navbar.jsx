@@ -45,7 +45,7 @@ const Navbar = () => {
                     type="button"
                     onClick={handleLogout}
             >
-              Logout
+              Log out
             </button>
           </li>
         ) : !isLoggedIn && location.pathname === '/register' ? (
