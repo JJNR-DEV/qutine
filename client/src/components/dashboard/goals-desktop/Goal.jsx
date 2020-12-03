@@ -18,7 +18,7 @@ const Goal = ({ goalElements }) => {
         className: 'eraseBtn',
         onClick: async () => {
           await deleteGoal(name, user.email);
-          await dispatch(getAllUserGoals(user.email));
+          dispatch(getAllUserGoals(user.email));
         },
         key: Math.random(),
       },
@@ -27,13 +27,14 @@ const Goal = ({ goalElements }) => {
   };
 
   const incrementCheckedGoal = async (e) => {
-    const { email } = JSON.parse(localStorage.getItem('user'));
     if (e.target.checked) {
-      await updateIncrement(name, email, counterAmount + 1);
-      return getAllUserGoals(email);
+      await updateIncrement(name, user.email, counterAmount + 1);
+      dispatch(getAllUserGoals(user.email));
+      return;
     } else {
-      await updateIncrement(name, email, counterAmount - 1);
-      return getAllUserGoals(email);
+      await updateIncrement(name, user.email, counterAmount - 1);
+      dispatch(getAllUserGoals(user.email));
+      return;
     }
   }
 
