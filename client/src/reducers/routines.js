@@ -4,7 +4,7 @@ const initialState = {
   routines: []
 };
 
-export default function (state = initialState, action) {
+export const getUserRoutinesReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -16,4 +16,12 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
+}
+
+export const createRoutineFbReducer = (state = '', action) => {
+  if (action.type === 'CREATE_ROUTINE_FB') {
+    return action.payload;
+  }
+
+  return state
 }

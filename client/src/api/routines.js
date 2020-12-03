@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const createRoutine = (routine) => axios.post('/routines/routine', routine)
   .then((res) => res.data)
-  .catch((err) => console.error(`${err.message}`));
+  .catch((err) => err.response.data);
 
 export const allRoutines = (email) => axios.get(`/routines/all-routines/?userEmail=${email}`)
   .then((res) => res.data)

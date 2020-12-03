@@ -2,11 +2,12 @@ import { combineReducers } from 'redux';
 import auth from './auth';
 import goals from './goals';
 import snackbar from './snackbar';
-import routines from "./routines";
+import { getUserRoutinesReducer, createRoutineFbReducer } from "./routines";
 
 export default combineReducers({
   auth,
   snackbar,
-  routines,
+  routines: getUserRoutinesReducer,
+  newRoutineFb: createRoutineFbReducer,
   goals,
 });

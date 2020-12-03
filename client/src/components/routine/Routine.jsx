@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './Routine.css';
-import { createRoutine } from '../../api/routines';
+// import { createRoutine } from '../../api/routines';
 import { formValidation } from './RoutineValidation';
 import { routineCategories, weekDays } from "../../common/routine-utils";
-import { getAllUserRoutines } from "../../actions/routines";
+import { getAllUserRoutines, createRoutineAction } from "../../actions/routines";
 
 const Routine = ({
                    handleClose,
@@ -22,6 +22,7 @@ const Routine = ({
     fontSize: '18px'
   };
   const dispatch = useDispatch();
+  const { newRoutineFb } = useSelector(state => state);
   const { routines } = useSelector((state) => state.routines);
   const { user } = useSelector((state) => state.auth);
   const id = selectedRoutine ? selectedRoutine._id : null;
@@ -79,7 +80,21 @@ const Routine = ({
     };
 
     try {
-      await createRoutine(routine);
+      await dispatch(createRoutineAction(routine));
+      console.log('newRoutineFb', newRoutineFb)
+      dispatch({
+        type: 'SHOW_SNACKBAR',
+        payload: {
+          message: newRoutineFb,
+        },
+      });
+  
+      setTimeout(() => {
+        dispatch({
+          type: 'HIDE_SNACKBAR',
+        });
+      }, 2900);
+      console.log('All the way')
       dispatch(getAllUserRoutines(user.email));
       handleClose();
     } catch (err) {

@@ -9,3 +9,4 @@ export const GET_USER_GOALS = 'GET_USER_GOALS';
 export const SHOW_SNACKBAR = 'SHOW_SNACKBAR';
 export const HIDE_SNACKBAR = 'HIDE_SNACKBAR';
 export const NEW_GOAL = 'NEW_GOAL';
+export const CREATE_ROUTINE_FB = 'CREATE_ROUTINE_FB';
