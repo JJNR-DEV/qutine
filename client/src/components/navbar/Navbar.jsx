@@ -21,19 +21,8 @@ const Navbar = () => {
     }
   };
 
-  const parseColor = isLoggedIn => {
-    if (isLoggedIn) {
-      return {
-        backgroundColor: 'transparent'
-      };
-    }
-    return {
-      backgroundColor: '#CAE4DB'
-    };
-  };
-
   return (
-    <div className="navBar" style={parseColor(isLoggedIn)}>
+    <div className="navBar">
       <ul>
         {!isLoggedIn && location.pathname !== '/'
           ? <li><NavLink className="navLink" exact to="/">Home</NavLink></li>

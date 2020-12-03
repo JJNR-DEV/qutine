@@ -6,6 +6,7 @@
   height: 80px;
   width: 100%;
   z-index: 20;
+  background-color: transparent;
 }
 
 .navBar ul {
