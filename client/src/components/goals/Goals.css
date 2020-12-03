@@ -83,7 +83,7 @@
 
 .addGoal > form > input:focus,
 .addGoal > form > select:focus {
-  box-shadow: 0 0 0 2pt #F2B95A;
+  box-shadow: 0 0 0 2pt #DCAE1D;
   outline: none;
 }
 
