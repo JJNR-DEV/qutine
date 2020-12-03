@@ -21,7 +21,7 @@ const sendTodaysRoutineEvents = async (socket) => {
         created: {$gte: startOfToday}
       }).exec();
 
-      // const currentHours = DateTime.local().toFormat("T");
+      const currentHours = DateTime.local().toFormat("T");
       const startTime = routine.startTime;
 
       if (!routineNotification && currentHours === routine.startTime) {
@@ -35,7 +35,7 @@ const sendTodaysRoutineEvents = async (socket) => {
           userEmail: routine.userEmail,
         });
         await newRoutineNotification.save();
-        // console.log("Sent notification", newRoutineNotification);
+        console.log("Sent notification", newRoutineNotification);
       }
     }
   } catch (error) {

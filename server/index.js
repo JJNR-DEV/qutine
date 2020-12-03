@@ -62,17 +62,17 @@ const io = require("socket.io")(server, {
 
 let interval;
 
-// io.on("connection", async (socket) => {
-//     console.log("New client connected");
-//     if (interval) {
-//         clearInterval(interval);
-//     }
-//     interval = setInterval(async () => await sendTodaysRoutineEvents(socket), 10000);
-//     socket.on("disconnect", async () => {
-//         console.log("Client disconnected");
-//         clearInterval(interval);
-//     });
-// });
+io.on("connection", async (socket) => {
+    console.log("New client connected");
+    if (interval) {
+        clearInterval(interval);
+    }
+    interval = setInterval(async () => await sendTodaysRoutineEvents(socket), 10000);
+    socket.on("disconnect", async () => {
+        console.log("Client disconnected");
+        clearInterval(interval);
+    });
+});
 
 
 const sendTodaysRoutineEvents = async (socket) => {
