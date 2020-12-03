@@ -1,5 +1,5 @@
 import React from 'react';
-import DayRoutine from './day-routine/DayRoutine';
+// import DayRoutine from './day-routine/DayRoutine';
 import GoalsDesktop from './goals-desktop/GoalsDesktop';
 import Profile from './Profile';
 import logo from '../../logo.png';
@@ -13,9 +13,9 @@ const SideBar = () => {
       <span className='borderBottomSpanFixed'></span>
       <div className='sideBarScrollContainer'>
       <GoalsDesktop />
-      <span className='borderBottomSpan'></span>
-      <DayRoutine />
-      <span className='borderBottomSpan'></span>
+      {/* <span className='borderBottomSpan'></span>
+      {<DayRoutine />
+      <span className='borderBottomSpan'></span>} */}
       </div>
     </div>
   );
