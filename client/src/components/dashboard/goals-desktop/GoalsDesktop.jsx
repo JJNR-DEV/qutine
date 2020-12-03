@@ -9,11 +9,12 @@ const GoalsDesktop = () => {
   const { user } = useSelector((state) => state.auth);
   const [displayModal, setDisplayModal] = useState(false);
 
-  const appendGoalToBoard = () => goals?.map(goal =>
-    <Goal
+  const appendGoalToBoard = () => goals?.map(goal => {
+    return (<Goal
       key={Math.random()}
       goalElements={goal}
-    />);
+    />)
+  });
 
   return (
     <div className="weekGoalsContainer">

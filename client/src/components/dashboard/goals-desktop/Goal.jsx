@@ -37,7 +37,7 @@ const Goal = ({ goalElements }) => {
     }
   }
 
-  const handleCheckedGoals = (i) => {
+  const handleCheckedGoals = i => {
     if(counterAmount > i) {
       return true
     };
