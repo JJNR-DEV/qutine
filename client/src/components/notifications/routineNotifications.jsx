@@ -4,7 +4,7 @@ const RoutineNotification = ({ routine }) => {
 
   return (
     <div className="notification">
-      It's time for
+      It's time to
       {' '}
       {routine.name}
       !
