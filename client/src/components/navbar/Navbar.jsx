@@ -33,12 +33,15 @@ const Navbar = () => {
           : null
         }
         {isLoggedIn && location.pathname === '/dashboard' ? (
-          <li>
+          <li style={{
+            display: 'flex',
+            width: '230px'
+          }}>
             <button className="small-btn"
                     type="button"
                     style={{ 
                       top: '45px',
-                      left: '60px',
+                      margin: '0 auto',
                       textDecoration: 'underline',
                       position: 'relative',
                       fontWeight: 'bold'
