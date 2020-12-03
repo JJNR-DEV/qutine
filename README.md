@@ -9,3 +9,12 @@ The problems our target audience is facing is lack of structure and routine. Our
 
 Backend port = 4000
 Frontend port = 3001
+
+
+### Deploy
+
+(1) install heroku cli
+
+(2) cd into qutine
+
+(2) 

@@ -9,5 +9,8 @@
   "scripts": {
     "build": "(cd client && yarn install && yarn build) && (cd server && yarn install)",
     "start": "cd server && yarn start"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
