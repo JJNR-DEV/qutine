@@ -49,6 +49,10 @@ app.use(jwt({
   }
 }));
 
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname+'../client/build/index.html'));
+// });
+
 app.use('/api/user', authRoute);
 app.use('/goals', goal);
 app.use('/routines', routine);
