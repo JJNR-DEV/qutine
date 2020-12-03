@@ -31,7 +31,6 @@ app.use(jwt({
   algorithms: ['HS256'],
   credentialsRequired: false,
   getToken: function fromHeaderOrQuerystring (req) {
-    console.log('trying to decode token...')
     if (!req.headers.authorization || req.headers.authorization === 'undefined') {
       return null;
     }
