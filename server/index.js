@@ -51,20 +51,17 @@ app.use('/api/user', authRoute);
 app.use('/goals', goal);
 app.use('/routines', routine);
 app.use('/routine/progress', routineProgress);
+if (process.env.QUTINE_ENV === 'PRODUCTION') {
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname + '/../client/build/index.html'));
+    });
+}
 
 const server = http.createServer(app);
 
 let io;
 if (process.env.QUTINE_ENV === 'PRODUCTION') {
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname + '/../client/build/index.html'));
-    });
-    io = require("socket.io")(server, {
-        cors: {
-            origin: "http://localhost",
-            methods: ["GET", "POST", "PUT"]
-        }
-    });
+    io = require("socket.io")(server);
 } else {
     io = require("socket.io")(server, {
         cors: {
