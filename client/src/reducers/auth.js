@@ -32,7 +32,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isLoggedIn: true,
-                user: payload.user,
+                user: payload,
             };
         case USER_REGISTER_FAIL:
             return {
@@ -43,7 +43,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isLoggedIn: true,
-                user: payload.user,
+                user: payload,
             };
         case USER_LOGIN_FAIL:
             return {
