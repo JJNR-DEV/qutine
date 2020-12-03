@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import TimePole from '../TimePole';
 import { deleteRoutine } from '../../../api/routines';
@@ -31,7 +31,8 @@ const HabitsDesktop = () => {
       'button',
       {
         className: 'eraseBtn',
-        onClick: () => {
+        onClick: (e) => {
+          e.stopPropagation();
           deleteRoutine(name, day)
             .finally(() => dispatch(getAllUserRoutines(email)));
         },
@@ -58,8 +59,7 @@ const HabitsDesktop = () => {
         },
         onClick: () => {
           setSelectedRoutine(object);
-          // This seems to be here by mistake I believe
-          // {setDisplayModal(val => !val)};
+          {setDisplayModal(val => !val)};
         },
         ref: firstHabit ? timeRef : null,
         key: Math.random(),
@@ -137,7 +137,7 @@ const HabitsDesktop = () => {
           {createWeek()}
         </div>
         {displayModal &&
-        <Routine 
+        <Routine
           show={displayModal}
           selectedRoutine={selectedRoutine}
           handleClose={() => setDisplayModal(false)}/>
