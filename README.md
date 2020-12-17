@@ -1,10 +1,10 @@
 # Qutine
 
-![Landing page](landing.png)
+![Landing page](images/landing.png)
 
-![Login page](login.png)
+![Login page](images/login.png)
 
-![Dashboard page](dashboard.png)
+![Dashboard page](images/dashboard.png)
 
 ### What is Qutine?
 During the pandemic people are more isolated which, in many cases, leads to lack of structure and routine in quarantine. We believe this may influence a persons health in a negative way. Our target audience is anyone in isolation. Anyone needing more structure and routine in their life can benefit from our application.
