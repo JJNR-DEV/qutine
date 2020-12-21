@@ -13,7 +13,7 @@ The problems our target audience is facing is lack of structure and routine. Our
 
 ### Environment
 
-Production link = https://qutine.herokuapp.com/dashboard
+Production link = https://qutine.herokuapp.com
 
 ### Installation
 

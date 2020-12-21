@@ -1,4 +1,4 @@
-import {loginUser, logoutUser, registerUser} from '../api/auth';
+import {loginUser, registerUser} from '../api/auth';
 import {HIDE_SNACKBAR, SHOW_SNACKBAR, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_FAIL, USER_REGISTER_SUCCESS,} from './actionTypes';
 
 export const register = (user) => (dispatch) => registerUser(user).then(
@@ -81,10 +81,3 @@ export const login = (user) => (dispatch) => loginUser(user).then(
     },
 );
 
-export const logout = () => (dispatch) => {
-    logoutUser();
-
-    dispatch({
-        type: USER_LOGOUT,
-    });
-};
