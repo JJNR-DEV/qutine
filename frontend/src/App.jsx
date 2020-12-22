@@ -25,14 +25,17 @@ import {getAllUserRoutines} from "./actions/routines";
 import {getAllUserGoals} from "./actions/goals";
 import axios from "axios";
 
-let ENDPOINT = process.env.NODE_ENV;
+let ENDPOINT = process.env.BACKEND;
 
 const App = () => {
   const {isLoggedIn, user} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let socket = socketIOClient(ENDPOINT);
+    let socket = socketIOClient(ENDPOINT, {
+      // no http polling
+      transports: ['websocket']
+    });
     if (isLoggedIn && user.email) {
       // update authorization header with latest token
       dispatch(getAllUserRoutines(user.email));
@@ -69,7 +72,7 @@ const App = () => {
           <Route path="/login">
             <Login/>
           </Route>
-          <PrivateRoute path="/dashboard" >
+          <PrivateRoute path="/dashboard">
             <Dashboard/>
           </PrivateRoute>
 
