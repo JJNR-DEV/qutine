@@ -5,6 +5,7 @@ import {useDispatch} from 'react-redux';
 import {login} from '../../actions/auth';
 import {HIDE_SNACKBAR, SHOW_SNACKBAR, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS} from "../../actions/actionTypes";
 import {loginUser} from "../../api/auth";
+import axios from "axios";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,10 @@ const Login = () => {
           },
         });
         localStorage.setItem('user', JSON.stringify(data));
+        axios.defaults.headers.common['Authorization'] = data.accessToken;
+        setUser({email: '', password: ''});
       })
+      .then(() => history.push('/dashboard'))
       .catch(error => {
         dispatch({
           type: USER_LOGIN_FAIL,
@@ -73,7 +77,6 @@ const Login = () => {
         }, 2900);
       });
 
-    setUser({email: '', password: ''});
   };
 
   return (

@@ -15,9 +15,9 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch({
       type: USER_LOGOUT
-    })
-      .then(() => localStorage.removeItem('user'))
-      .finally(() => history.push('/login'));
+    });
+    localStorage.removeItem('user');
+    history.push('/login');
   };
 
   return (
