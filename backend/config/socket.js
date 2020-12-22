@@ -59,6 +59,6 @@ function createSocket(app, server) {
       logger.error("Error ", error);
     }
   };
-};
+}
 
 module.exports = createSocket;

@@ -9,12 +9,12 @@ if (process.env.NODE_ENV === 'development') {
         winston.format.splat(),
       )
     })
-  )
+  );
 } else {
   transports.push(
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'log.log' })
-  )
+    new winston.transports.File({filename: 'error.log', level: 'error'}),
+    new winston.transports.File({filename: 'log.log'})
+  );
 }
 
 const LoggerInstance = winston.createLogger({

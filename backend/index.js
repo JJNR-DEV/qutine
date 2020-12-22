@@ -22,7 +22,7 @@ app.use(jwt({
   algorithms: ['HS256'],
   credentialsRequired: false,
   getToken: function parseToken(req) {
-    if (req.headers.authorization) {
+    if (req.headers.authorization && req.headers.authorization !== "undefined") {
       return req.headers.authorization;
     } else if (req.query && req.query.token) {
       return req.query.token;
